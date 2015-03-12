@@ -1,0 +1,145 @@
+.interface_error{
+color:red;
+}
+.interface_block{
+background-color: rgb(231, 255, 224);
+border: 1px solid rgb(191, 231, 176);
+}
+#user-login-form .socialloginandsocialshare-links,
+#user-login .socialloginandsocialshare-links {
+  overflow: hidden;
+  padding-bottom: 15px;
+  padding-left: 0;
+}
+#user-login-form .socialloginandsocialshare-links li,
+#user-login .socialloginandsocialshare-links li {
+  list-style-image: none;
+  list-style-position: outside;
+  list-style-type: none;
+}
+#user-register-form .socialloginandsocialshare-links,
+#user-register .socialloginandsocialshare-links {
+  overflow: hidden;
+  padding-bottom: 15px;
+  padding-left: 0;
+}
+#user-register-form .socialloginandsocialshare-links li,
+#user-register .socialloginandsocialshare-links li {
+  list-style-image: none;
+  list-style-position: outside;
+  list-style-type: none;
+}
+.socialloginandsocialshare-idlinks {
+  color: #018FE2;
+  overflow: hidden;
+  padding-bottom: 15px;
+  padding-left: 0;
+}
+.socialloginandsocialshare-idlinks li {
+  list-style-image: none;
+  list-style-position: outside;
+  list-style-type: none;
+}
+.socialloginandsocialshare-mapprovider {
+  font-weight: bold;
+}
+.socialloginandsocialshare-mapprovider img {
+  margin-right: 5px;
+}
+.LoginRadius_overlay {
+  background: none no-repeat scroll 0 0 rgba(127, 127, 127, 0.6);
+  height: 100%;
+  left: 0;
+  overflow: auto;
+  padding: 220px 20px 20px 20px;
+  padding-bottom: 130px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100001;
+}
+#popupouter {
+  background: #f3f3f3;
+  border-radius: 4px;
+  margin: 0 auto;
+  -moz-border-radius: 4px;
+  overflow: auto;
+  padding: 0px 0px 0px 0px;
+  -webkit-border-radius: 4px;
+  width: 450px;
+}
+#outerp {
+  font-size: 17px;
+  line-height: 0.1em !important;
+  margin-top: 15px;
+  text-align: center;
+}
+#popupinner {
+  background: #ffffff;
+  border-radius: 4px;
+  border-top: 1px solid #ccc;
+  margin: 10px;
+  -moz-border-radius: 4px;
+  overflow: auto;
+  padding: 10px 8px 4px 8px;
+  -webkit-border-radius: 4px;
+}
+#textmatter {
+  background-color: #e1eabc;
+  border: 1px solid #90b203;
+  border-radius: 5px 5px 5px 5px;
+  color: #666666;
+  color: #222222;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  margin: 10px 0px 10px 0px;
+  padding: 10px;
+  text-align: justify;
+}
+#innerp {
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 1em !important;
+  margin-bottom: 0;
+  margin-left: 10px;
+  padding: 0;
+  text-align: left !important;
+}
+.inputtxt {
+  border: #e5e5e5 1px solid;
+  color: #a8a8a8;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  height: 27px;
+  margin: 5px 0px 15px 0px;
+  width: 390px;
+}
+.inputbutton {
+  float: left;
+  padding: 0px;
+  margin: 0px;
+}
+#textdivpopup {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  color: #000000;	
+  text-align: right;
+  margin-left: 216px;
+}
+.spanpopup {
+  color: #00ccff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+}
+.span1 {
+  color: #333333;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+}
+<!--[if IE]>
+.LoginRadius_content_IE {
+  background: black;
+  filter: alpha(opacity=90);
+  -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
+}
+<![endif]-->

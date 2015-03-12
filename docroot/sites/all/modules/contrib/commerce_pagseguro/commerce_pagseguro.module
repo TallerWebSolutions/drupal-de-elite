@@ -1,0 +1,442 @@
+<?php
+
+/**
+ * @file
+ * Provides payment method for Drupal Commerce for PagSeguro Brazilian payment
+ * gateway.
+ *
+ * @see http://www.pagseguro.com.br/
+ */
+
+define('COMMERCE_PAGSEGURO_STATUS_AWAITING', 1);
+define('COMMERCE_PAGSEGURO_STATUS_IN_ANALYSIS', 2);
+define('COMMERCE_PAGSEGURO_STATUS_PAID', 3);
+define('COMMERCE_PAGSEGURO_STATUS_AVAILABLE', 4);
+define('COMMERCE_PAGSEGURO_STATUS_DISPUTED', 5);
+define('COMMERCE_PAGSEGURO_STATUS_REFUNDED', 6);
+define('COMMERCE_PAGSEGURO_STATUS_CANCELED', 7);
+
+/**
+ * Implements hook_menu().
+ */
+function commerce_pagseguro_menu() {
+  $items = array();
+
+  // Supports the PagSeguro notification API v2.
+  $items['commerce-pagseguro/notification'] = array(
+    'page callback' => 'commerce_pagseguro_process_notification',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+  // recieve return on with transaction_id
+  $items['commerce-pagseguro/return'] = array(
+    'page callback' => 'commerce_pagseguro_process_return',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+
+  return $items;
+}
+/**
+ * Processes the the return from pagseguro redirect on page `commerce-pagseguro/return` and get propriety called 'transaction_id` needs Data Return functioning
+ */
+
+function commerce_pagseguro_process_return() {
+  $transactions = commerce_payment_transaction_load_multiple(array(), array('remote_id' => $_GET['transaction_id']), TRUE);
+  $transaction = current($transactions);
+  if (!empty($transaction)) {
+    drupal_goto('checkout/' . $transaction->order_id . '/payment/return');
+  } else {
+	drupal_set_message(t('An error occurred with your transaction.'), 'error');
+  }
+}
+
+/**
+ * Processes a notification request from Pagseguro
+ *
+ * @see https://pagseguro.uol.com.br/v2/guia-de-integracao/api-de-notificacoes.html
+ */
+function commerce_pagseguro_process_notification() {
+
+  // If received a POST is a notification API request from Pagseguro.
+  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+    if (!class_exists("SimpleXMLElement")) {
+      watchdog('commerce_pagseguro', 'Commerce Pagseguro requires the PHP "!simplexml_url" library.', array('!simplexml_url' => l('SimpleXML', 'http://php.net/manual/en/simplexml.setup.php')), WATCHDOG_ERROR);
+      return;
+    }
+
+    // Checks the kind of notification.
+    if (check_plain($_POST['notificationType']) === 'transaction') {
+
+      $payment_method = commerce_payment_method_instance_load('pagseguro|commerce_payment_pagseguro');
+
+      // Sets the web service URL.
+      $ws_url = 'https://ws.pagseguro.uol.com.br/v2/transactions/notifications/';
+
+      // Prepares the URL variables.
+      $data = check_plain($_POST['notificationCode']);
+      $data .= '?email=' . $payment_method['settings']['email'];
+      $data .= '&token=' . $payment_method['settings']['token_pagseguro'];
+
+      $result = drupal_http_request($ws_url . $data);
+      $xml = @simplexml_load_string(trim($result->data));
+
+      if ($payment_method['settings']['log_debug_info'] == TRUE) {
+        watchdog('commerce_pagseguro', print_r($xml, TRUE), array(), WATCHDOG_DEBUG);
+      }
+
+      if (!is_object($xml) || !$xml) {
+        watchdog('commerce_pagseguro', 'Notification XML fetched was invalid.', array(), WATCHDOG_ALERT);
+        return FALSE;
+      }
+      else {
+        $order_reference = check_plain((string) $xml->reference);
+        list($order_id, $timestamp) = explode('-', $order_reference);
+        $status = check_plain((string) $xml->status);
+        $transaction_id = check_plain((string) $xml->code);
+        $amount = check_plain((string) $xml->grossAmount);
+        $amount = floatval($amount) * 100;
+
+        // Discard if payment status is no recognized.
+        if (!in_array($status, array_keys(commerce_pagseguro_statuses()))) {
+          return FALSE;
+        }
+
+        $order = commerce_order_load($order_id);
+
+        // Discard if order not loaded.
+        if (!is_object($order)) {
+          return FALSE;
+        }
+
+        // Create a new payment transaction for the order.
+        $transaction = commerce_payment_transaction_new('pagseguro', $order->order_id);
+        $transaction->instance_id = $payment_method['instance_id'];
+        $transaction->remote_id = $transaction_id;
+        $transaction->amount = $amount;
+        // PagSeguro supports only Brazilian Reais.
+        $transaction->currency_code = 'BRL';
+        $transaction->payload[REQUEST_TIME] = $_POST;
+
+        // Set the transaction's statuses based on the PagSeguro status.
+        $transaction->remote_status = $status;
+
+        switch ($status) {
+          case COMMERCE_PAGSEGURO_STATUS_AWAITING: // Awaiting payment.
+          case COMMERCE_PAGSEGURO_STATUS_IN_ANALYSIS: // Payment in analysis.
+            $order_status = 'awaiting';
+            $transaction->status = COMMERCE_PAYMENT_STATUS_PENDING;
+            break;
+          case COMMERCE_PAGSEGURO_STATUS_PAID: // Paid.
+            $order_status = 'payment_received';
+            $transaction->status = COMMERCE_PAYMENT_STATUS_SUCCESS;
+            break;
+          case COMMERCE_PAGSEGURO_STATUS_AVAILABLE: // Available.
+            $order_status = 'payment_available';
+            $transaction->status = COMMERCE_PAYMENT_STATUS_SUCCESS;
+            break;
+          case COMMERCE_PAGSEGURO_STATUS_DISPUTED: // Payment disputed.
+            $order_status = 'payment_disputed';
+            $transaction->status = COMMERCE_PAYMENT_STATUS_FAILURE;
+            break;
+          case COMMERCE_PAGSEGURO_STATUS_REFUNDED: // Payment refunded.
+            $order_status = 'payment_refunded';
+            $transaction->status = COMMERCE_PAYMENT_STATUS_FAILURE;
+            break;
+          case COMMERCE_PAGSEGURO_STATUS_CANCELED: // Payment canceled.
+            $order_status = 'canceled';
+            $transaction->status = COMMERCE_PAYMENT_STATUS_FAILURE;
+            break;
+        }
+
+        $transaction->message = commerce_pagseguro_statuses($status);
+
+        // Save the transaction information.
+        commerce_payment_transaction_save($transaction);
+        commerce_order_status_update($order, $order_status);
+
+        watchdog('commerce_pagseguro', 'PagSeguro Notification processed for Order @order_number with ID @transaction_id.', array('@transaction_id' => $transaction_id, '@order_number' => $order->order_number), WATCHDOG_INFO);
+
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_commerce_payment_method_info().
+ */
+function commerce_pagseguro_commerce_payment_method_info() {
+  $payment_methods = array();
+
+  $payment_methods['pagseguro'] = array(
+    'base' => 'commerce_pagseguro',
+    'title' => t('PagSeguro Integration'),
+    'short_title' => t('PagSeguro'),
+    'description' => t('PagSeguro Integration'),
+    'terminal' => FALSE,
+    'offsite' => TRUE,
+  );
+
+  return $payment_methods;
+}
+
+/**
+ * Payment method callback: settings form.
+ */
+function commerce_pagseguro_settings_form($settings = NULL) {
+  $settings = (array) $settings + array(
+    'email' => '',
+    'token_pagseguro' => '',
+    'individual_items' => FALSE,
+    'log_debug_info' => '',
+  );
+
+  $form = array();
+  $form['email'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Email'),
+    '#description' => t('The email address used for the PagSeguro account you want to receive payments.'),
+    '#default_value' => $settings['email'],
+    '#required' => TRUE,
+  );
+
+  $form['token_pagseguro'] = array(
+    '#type' => 'textfield',
+    '#title' => t('PagSeguro Token'),
+    '#description' => t('The access token generated to your PagSeguro account. Required to process the "Automatic Data Return"'),
+    '#default_value' => $settings['token_pagseguro'],
+    '#size' => 50,
+    '#maxlength' => 50,
+    '#required' => FALSE,
+  );
+
+  $form['individual_items'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Send individual items'),
+    '#description' => t('Whether to send individual line items. If unchecked only one item will be sent summarizing the entire order.'),
+    '#default_value' => $settings['individual_items'],
+  );
+
+  $form['log_debug_info'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Log debug information'),
+    '#description' => t('Log info about notifications.'),
+    '#default_value' => $settings['log_debug_info'],
+  );
+
+  return $form;
+}
+
+/**
+ * Builds a PagSeguro HTML Integration form from an order object.
+ */
+function commerce_pagseguro_redirect_form($form, &$form_state, $order, $payment_method) {
+
+  $settings = $payment_method['settings'];
+
+  // Return an error if the enabling action's settings haven't been configured.
+  if (empty($settings['token_pagseguro']) || empty($settings['email'])) {
+    drupal_set_message(t('Pagseguro Integration is not configured for use. You can ')
+        . l(t('access PagSeguro Payment Method configuration'), 'admin/commerce/config/payment-methods/manage/commerce_payment_pagseguro')
+        . t(' to do it now.')
+        , 'error');
+    return array();
+  }
+
+  $order_wrapper = entity_metadata_wrapper('commerce_order', $order);
+
+  $hidden_fields = array(
+    'receiverEmail' => $settings['email'],
+    // Only Brazilian Real is allowed.
+    'currency' => 'BRL',
+    // Tell PagSeguro servers our post is going as utf-8 (Drupal's default encoding).
+    'encoding' => 'utf-8',
+    // Use the timestamp to generate a unique transaction number.
+    'reference' => $order->order_number . '-' . REQUEST_TIME,
+  );
+
+  // Prepare the customer address
+  $customer_address = '';
+  if ($order_wrapper->commerce_customer_billing->value()) {
+    $customer_address = $order_wrapper->commerce_customer_billing->commerce_customer_address->value();
+  }
+  elseif ($order_wrapper->commerce_customer_shipping->value()) {
+    $customer_address = $order_wrapper->commerce_customer_shipping->commerce_customer_address->value();
+  }
+
+  if (!empty($customer_address)) {
+
+    if (empty($customer_address['name_line'])) {
+      $customer_name = $customer_address['first_name'] . ' ' . $customer_address['last_name'];
+    }
+    else {
+      $customer_name = $customer_address['name_line'];
+    }
+
+    /**
+     * See PagSeguro docs on https://pagseguro.uol.com.br/v2/guia-de-integracao/pagamento-via-html.html
+     */
+    $customer_data = array(
+      'senderName' => $customer_name,
+      'senderEmail' => $order->mail,
+      'shippingAddressPostalCode' => $customer_address['postal_code'],
+    );
+  }
+
+  $hidden_fields += $customer_data;
+
+  foreach ($order->commerce_line_items[LANGUAGE_NONE] as $key => $value) {
+    $line_item_ids[] = $value['line_item_id'];
+  }
+
+  $line_items = commerce_line_item_load_multiple($line_item_ids);
+
+  if ($settings['individual_items']) {
+    $index = 1;
+    foreach ($line_items as $line_item) {
+      $line_item_wrapper = entity_metadata_wrapper('commerce_line_item', $line_item);
+      if ($line_item->type == 'product') {
+        $line_item_id = $line_item_wrapper->commerce_product->product_id->value();
+      }
+      elseif ($line_item->type == 'shipping') {
+        $line_item_id = $line_item_wrapper->commerce_shipping_service->value();
+      }
+      $unit_price = commerce_price_wrapper_value($line_item_wrapper, 'commerce_unit_price', TRUE);
+      $hidden_fields = array(
+        'itemId' . $index => $line_item_id,
+        'itemDescription' . $index => commerce_line_item_title($line_item),
+        'itemQuantity' . $index => round($line_item->quantity),
+        // Drupal Commerce uses integer value while PagSeguro prefers a decimal.
+        'itemAmount' . $index => number_format($unit_price['amount'] / 100, 2, '.', ''),
+      ) + $hidden_fields;
+      $index++;
+    }
+    unset($index);
+  }
+  else {
+    // Send everything as a single item.
+    $order_total = $order_wrapper->commerce_order_total->amount->value();
+    $hidden_fields = array(
+      'itemId1' => $order->order_number,
+      'itemDescription1' => t('Order @order_id', array('@order_id' => $order->order_number)),
+      'itemQuantity1' => 1,
+      // Drupal Commerce uses integer value while PagSeguro prefers a decimal.
+      'itemAmount1' => number_format($order_total / 100, 2, '.', ''),
+    ) + $hidden_fields;
+  }
+
+  // @todo allow setting a test server.
+  $form['#action'] = 'https://pagseguro.uol.com.br/v2/checkout/payment.html';
+
+  // Create hidden fields.
+  foreach ($hidden_fields as $name => $value) {
+    $form[$name] = array(
+      '#type' => 'hidden',
+      '#value' => $value,
+    );
+  }
+
+  // Add PagSeguro image button.
+  // @todo Make it possible to choose which image to use for the button.
+  $form['submit'] = array(
+    '#type' => 'image_button',
+    '#src' => 'https://p.simg.uol.com.br/out/pagseguro/i/botoes/pagamentos/120x53-pagar.gif',
+    '#alt' => 'Pague com PagSeguro'
+  );
+
+  return $form;
+}
+
+/**
+ * Implements hook_commerce_order_state_info().
+ *
+ * We add a new "payment_by_pagseguro" state.
+ */
+function commerce_pagseguro_commerce_order_state_info() {
+  $order_states['payment_by_pagseguro'] = array(
+    'name' => 'payment_by_pagseguro',
+    'title' => t('Payment by Pagseguro'),
+    'description' => t('Orders in this state are waiting the payment processing by Pagseguro.'),
+    'weight' => 20,
+    'default_status' => 'pending',
+    'cart' => FALSE,
+    'status' => TRUE,
+  );
+  return $order_states;
+}
+
+/**
+ * Implements hook_commerce_order_state_info_alter().
+ *
+ * Here we want to make sure that our 'payment_by_pagseguro' order state comes
+ * right before 'completed', so adjust the weight of each.
+ *
+ * @param $order_states
+ *   The order states.
+ */
+function commerce_pagseguro_commerce_order_state_info_alter(&$order_states) {
+  if (!empty($order_states['completed']) && $order_states['completed']['weight'] < $order_states['payment_by_pagseguro']['weight']) {
+    $order_states['completed']['weight'] += 10;
+    $order_states['payment_by_pagseguro']['weight'] = $order_states['completed']['weight'] - 1;
+  }
+}
+
+/**
+ * Implements hook_commerce_order_status_info().
+ *
+ * Here we add two statuses to the 'payment_by_pagseguro' order state.
+ */
+function commerce_pagseguro_commerce_order_status_info() {
+  $order_statuses['awaiting'] = array(
+    'name' => 'awaiting',
+    'title' => t('Awaiting Payment'),
+    'state' => 'payment_by_pagseguro',
+  );
+  $order_statuses['payment_received'] = array(
+    'name' => 'payment_received',
+    'title' => t('Payment Received'),
+    'state' => 'payment_by_pagseguro',
+  );
+  $order_statuses['payment_available'] = array(
+    'name' => 'payment_available',
+    'title' => t('Payment Available for Store Withdraw'),
+    'state' => 'payment_by_pagseguro',
+  );
+  $order_statuses['payment_disputed'] = array(
+    'name' => 'payment_disputed',
+    'title' => t('Payment on Dispute'),
+    'state' => 'payment_by_pagseguro',
+  );
+  $order_statuses['payment_refunded'] = array(
+    'name' => 'payment_refunded',
+    'title' => t('Payment Refunded to Buyer'),
+    'state' => 'payment_by_pagseguro',
+  );
+  $order_statuses['canceled'] = array(
+    'name' => 'canceled',
+    'title' => t('Payment Canceled'),
+    'state' => 'payment_by_pagseguro',
+  );
+  return $order_statuses;
+}
+
+/**
+ * Return a list of payment statuses, or an specific payment status message.
+ *
+ * @param $status
+ *   The status identification in which to return the message.
+ */
+function commerce_pagseguro_statuses($status = NULL) {
+  $statuses = array(
+    COMMERCE_PAGSEGURO_STATUS_AWAITING => t('The payment will be made or awaiting an offline payment.'),
+    COMMERCE_PAGSEGURO_STATUS_IN_ANALYSIS => t('The customer has paid with a credit card, the payment is waiting manual review from PagSeguro team.'),
+    COMMERCE_PAGSEGURO_STATUS_PAID => t('The payment authorized but not completed yet due to the normal flow of chosen payment method.'),
+    COMMERCE_PAGSEGURO_STATUS_AVAILABLE => t('The payment completed, the money was credited in the recipient account.'),
+    COMMERCE_PAGSEGURO_STATUS_DISPUTED => t('The payment was disputed by customer.'),
+    COMMERCE_PAGSEGURO_STATUS_REFUNDED => t('The payment was refunded to customer.'),
+    COMMERCE_PAGSEGURO_STATUS_CANCELED => t('The payment was canceled by the customer, payment institution, PagSeguro or recipient account.'),
+  );
+
+  return empty($status) ? $statuses : $statuses[$status];
+}

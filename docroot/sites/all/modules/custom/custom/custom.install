@@ -1,0 +1,739 @@
+<?php
+
+/**
+ * Enable the fs_podcast feature
+ */
+function custom_update_7110(&$sandbox) {
+  $ret = array();
+
+  module_enable(array(
+    'fs_podcast',
+  ));
+
+  drupal_flush_all_caches();
+
+  $ret['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
+  return $ret;
+}
+
+/**
+ * Enable the fs_core feature and basic modules
+ */
+function custom_update_7111(&$sandbox) {
+  $ret = array();
+
+  module_enable(array(
+    'fs_core',
+    'disqus',
+    'pathauto',
+    'transliterate',
+    'easy_social',
+  ));
+
+  drupal_flush_all_caches();
+
+  $ret['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
+  return $ret;
+}
+
+/**
+ * Enable diff
+ */
+function custom_update_7112(&$sandbox) {
+  $ret = array();
+
+  module_enable(array(
+    'diff',
+    'wysiwyg',
+  ));
+
+  drupal_flush_all_caches();
+
+  $ret['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
+  return $ret;
+}
+
+/**
+ * Enable the feature Blog
+ */
+function custom_update_7113(&$sandbox) {
+  $ret = array();
+
+  module_enable(array(
+    'fs_blog',
+  ));
+
+  drupal_flush_all_caches();
+
+  $ret['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
+  return $ret;
+}
+
+/**
+ * Enable some required modules
+ */
+function custom_update_7114(&$sandbox) {
+  $ret = array();
+
+  module_enable(array(
+    'oauth_common',
+    'twitter',
+    'twitter_actions',
+    'twitter_post',
+    'context',
+    'context_ui',
+    'empty_page',
+  ));
+
+  module_disable(array(
+    'features_tools',
+  ));
+
+  drupal_flush_all_caches();
+
+  $ret['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
+  return $ret;
+}
+
+/**
+ * Re-enable some required modules
+ */
+function custom_update_7115(&$sandbox) {
+  $ret = array();
+
+  module_enable(array(
+    'fs_core',
+    'fs_blog',
+  ));
+
+  drupal_flush_all_caches();
+
+  $ret['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
+  return $ret;
+}
+
+/**
+ * Enable screencast feature and flag
+ */
+function custom_update_7116(&$sandbox) {
+  $ret = array();
+
+  module_enable(array(
+    'fs_screencast',
+    'flag_actions',
+    'flag',
+  ));
+
+  drupal_flush_all_caches();
+
+  $ret['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
+  return $ret;
+}
+
+/**
+ * Enable boxes
+ */
+function custom_update_7117(&$sandbox) {
+  $ret = array();
+
+  module_enable(array(
+    'boxes',
+    'views_slideshow',
+    'views_slideshow_cycle',
+  ));
+
+  drupal_flush_all_caches();
+
+  $ret['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
+  return $ret;
+}
+
+/**
+ * Enable some nice modules
+ */
+function custom_update_7118(&$sandbox) {
+  $ret = array();
+
+  module_enable(array(
+    'codefilter',
+    'gravatar',
+    'views_nivo_slider',
+  ));
+
+  drupal_flush_all_caches();
+
+  $ret['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
+  return $ret;
+}
+
+/**
+ * Enable schedule content
+ */
+function custom_update_7119(&$sandbox) {
+  $ret = array();
+
+  module_enable(array(
+    'scheduler',
+  ));
+
+  drupal_flush_all_caches();
+
+  $ret['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
+  return $ret;
+}
+
+/**
+ * Enable Media Youtube module
+ */
+function custom_update_7120(&$sandbox) {
+  $ret = array();
+
+  module_enable(array(
+    'media_youtube',
+  ));
+
+  drupal_flush_all_caches();
+
+  $ret['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
+  return $ret;
+}
+
+/**
+ * Enable external links
+ */
+function custom_update_7121(&$sandbox) {
+  $ret = array();
+
+  module_enable(array(
+    'extlink',
+  ));
+
+  drupal_flush_all_caches();
+
+  $ret['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
+  return $ret;
+}
+
+/**
+ * Enable some modules
+ */
+function custom_update_7122(&$sandbox) {
+  $ret = array();
+
+  module_enable(array(
+    'link',
+    'pathauto',
+    'token',
+    'transliteration',
+  ));
+
+  drupal_flush_all_caches();
+
+  $ret['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
+  return $ret;
+}
+
+/**
+ * Enable date modules
+ */
+function custom_update_7123(&$sandbox) {
+  $ret = array();
+
+  module_enable(array(
+    'date',
+    'date_popup',
+    'date_api',
+  ));
+
+  drupal_flush_all_caches();
+
+  $ret['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
+  return $ret;
+}
+
+/**
+ * Enable seo modules
+ */
+function custom_update_7124(&$sandbox) {
+  $ret = array();
+
+  module_enable(array(
+    'fs_seo',
+    'alchemy',
+    'alchemy_contentanalysis',
+    'contentanalysis',
+    'contentoptimizer',
+    'globalredirect',
+    'googleanalytics',
+    'insight',
+    'kwresearch',
+    'kwresearch_google',
+    'metatag',
+    'metatag_opengraph',
+    'seotools',
+    'wordstream',
+    'xmlsitemap',
+    'xmlsitemap_engines',
+    'xmlsitemap_menu',
+    'xmlsitemap_node',
+    'xmlsitemap_taxonomy',
+    'xmlsitemap_user',
+  ));
+
+  drupal_flush_all_caches();
+
+  $ret['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
+  return $ret;
+}
+
+/**
+ * Enable vimeo for screencasts
+ */
+function custom_update_7125(&$sandbox) {
+  $ret = array();
+
+  module_enable(array(
+    'media_vimeo',
+  ));
+
+  drupal_flush_all_caches();
+
+  $ret['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
+  return $ret;
+}
+
+/**
+ * Enable readability
+ */
+function custom_update_7126(&$sandbox) {
+  $ret = array();
+
+  module_enable(array(
+    'readability',
+  ));
+
+  drupal_flush_all_caches();
+
+  $ret['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
+  return $ret;
+}
+
+/**
+ * Disable seo tools
+ */
+function custom_update_7127(&$sandbox) {
+  $ret = array();
+
+  module_disable(array(
+    'kwresearch_google',
+    'kwresearch',
+  ));
+
+  drupal_flush_all_caches();
+
+  $ret['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
+  return $ret;
+}
+
+/**
+ * Enable rules
+ */
+function custom_update_7128(&$sandbox) {
+  $ret = array();
+
+  module_enable(array(
+    'rules',
+  ));
+
+  drupal_flush_all_caches();
+
+  $ret['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
+  return $ret;
+}
+
+/**
+ * Enable seo and cursos features
+ */
+function custom_update_7129(&$sandbox) {
+  $ret = array();
+
+  module_enable(array(
+    'fs_seo',
+    'fs_cursos',
+    'rules_admin',
+    'rules_scheduler',
+  ));
+
+  drupal_flush_all_caches();
+
+  $ret['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
+  return $ret;
+}
+
+/**
+ * Enable syntax higlith (geshi)
+ */
+function custom_update_7130(&$sandbox) {
+  $ret = array();
+
+  module_enable(array(
+    'geshifilter',
+    'wysiwyg_geshi',
+  ));
+
+  drupal_flush_all_caches();
+
+  $ret['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
+  return $ret;
+}
+
+/**
+ * Improve the text editor
+ */
+function custom_update_7131(&$sandbox) {
+  $ret = array();
+
+  module_enable(array(
+    'ckeditor',
+  ));
+
+  module_disable(array(
+    'wysiwyg',
+    'wysiwyg_geshi',
+  ));
+
+  drupal_flush_all_caches();
+
+  $ret['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
+  return $ret;
+}
+
+/**
+ * Fixes highlight
+ */
+function custom_update_7132(&$sandbox) {
+  $ret = array();
+
+  module_enable(array(
+    'syntaxhighlighter',
+  ));
+
+  module_disable(array(
+    'geshifilter',
+  ));
+
+  drupal_flush_all_caches();
+
+  $ret['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
+  return $ret;
+}
+
+/**
+ * Improve function on webforms and install colorbox
+ */
+function custom_update_7133(&$sandbox) {
+  $ret = array();
+
+  module_enable(array(
+    'webform_conditional',
+    'colorbox',
+  ));
+
+  drupal_flush_all_caches();
+
+  $ret['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
+  return $ret;
+}
+
+/**
+ * Events
+ */
+function custom_update_7134(&$sandbox) {
+  $ret = array();
+
+  module_enable(array(
+    'date_repeat', 
+    'date_repeat_field',
+    'date_tools',
+    'date_all_day',
+    'calendar',
+    'file_entity',
+    'mediafield',
+    'menu_firstchild',
+    'sociallogin',
+    'compact_forms',
+    'actions_permissions',
+    'views_bulk_operations',
+    'search404',
+    'entityreference',
+    'hide_formats',
+    'fs_eventos',
+    'edit_profile',
+    'blockcache_alter',
+  ));
+
+  module_disable(array(
+    'gravatar', 
+  ));
+
+  drupal_flush_all_caches();
+
+  $ret['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
+  return $ret;
+}
+
+/**
+ * Chat and access
+ */
+function custom_update_7135(&$sandbox) {
+  $ret = array();
+
+  module_enable(array(
+    'field_permissions',
+  ));
+
+  drupal_flush_all_caches();
+
+  $ret['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
+  return $ret;
+}
+
+/**
+ * Improve chat and events
+ */
+function custom_update_7136(&$sandbox) {
+  $ret = array();
+
+  module_enable(array(
+    'tribune',
+    'fs_chat',
+  ));
+
+  module_disable(array(
+    'realchat',
+    'trigger',
+    'nodejs',
+    'nodejs_actions',
+    'nodejs_ajax',
+    'nodejs_config',
+    'nodejs_notify',
+    'nodejs_subscribe',
+    'nodejs_watchdog',
+    'chatroom',
+  ));
+
+  drupal_flush_all_caches();
+
+  $ret['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
+  return $ret;
+}
+
+/**
+ * Mollom module
+ */
+function custom_update_7137(&$sandbox) {
+  $ret = array();
+
+  module_enable(array(
+    'mollom',
+  ));
+
+  drupal_flush_all_caches();
+
+  $ret['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
+  return $ret;
+}
+
+/**
+ * Zopim module
+ */
+function custom_update_7138(&$sandbox) {
+  $ret = array();
+
+  module_enable(array(
+    'zopim',
+  ));
+
+  drupal_flush_all_caches();
+
+  $ret['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
+  return $ret;
+}
+
+/**
+ * Views_rss module
+ */
+function custom_update_7140(&$sandbox) {
+  $ret = array();
+
+  module_enable(array(
+    'views_rss',
+    'views_rss_itunes',
+    'getid3',
+  ));
+
+  drupal_flush_all_caches();
+
+  $ret['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
+  return $ret;
+}
+
+/**
+ *  Enable Module filter, Seo checklist  and Checklist API modules
+ */
+function custom_update_7141(&$sandbox) {
+  $ret = array();
+
+  module_enable(array(
+    'module_filter',
+    'seo_checklist',
+    'checklistapi',
+  ));
+
+  drupal_flush_all_caches();
+
+  $ret['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
+  return $ret;
+}
+
+/**
+ * Disable contentanalysis, alchemy_contentanalysis, contentoptimizer, insight, readability, seotools
+ */
+function custom_update_7142(&$sandbox) {
+  $ret = array();
+
+  module_disable(array(
+    'contentanalysis',
+    'alchemy_contentanalysis',
+    'contentoptimizer',
+    'insight',
+    'readability',
+    'seotools',
+  ));
+
+  drupal_flush_all_caches();
+
+  $ret['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
+  return $ret;
+}
+
+/**
+ * Enable fs_seo features
+ */
+function custom_update_7143(&$sandbox) {
+  $ret = array();
+
+  module_enable(array(
+    'fs_seo',
+  ));
+
+  drupal_flush_all_caches();
+
+  $ret['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
+  return $ret;
+}
+
+/**
+ * Disable contentanalysis, alchemy_contentanalysis, alchemy, insight
+ */
+function custom_update_7144(&$sandbox) {
+  $ret = array();
+
+  module_disable(array(
+    'insight',
+    'contentanalysis',
+    'alchemy_contentanalysis',
+    'alchemy',
+  ));
+
+  drupal_flush_all_caches();
+
+  $ret['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
+  return $ret;
+}
+
+/**
+ * Enable Conditional fields module
+ */
+function custom_update_7145(&$sandbox) {
+  $ret = array();
+
+  module_enable(array(
+    'conditional_fields',
+  ));
+
+  drupal_flush_all_caches();
+
+  $ret['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
+  return $ret;
+}
+
+/**
+ * Enable fs_webforms
+ */
+function custom_update_7146(&$sandbox) {
+  $ret = array();
+
+  module_enable(array(
+    'fs_webforms',
+  ));
+
+  drupal_flush_all_caches();
+
+  $ret['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
+  return $ret;
+}
+
+/**
+ * Enable some modules to improve DE
+ */
+function custom_update_7147(&$sandbox) {
+  $ret = array();
+
+  module_enable(array(
+    'fs_webforms',
+    'seotools',
+    'metatags_quick',
+    'ga_tokenizer',
+    'contact_google_analytics',
+    'context_keywords',
+  ));
+
+  drupal_flush_all_caches();
+
+  $ret['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
+  return $ret;
+}
+
+/**
+ * Enable some modules to improve DE
+ */
+function custom_update_7148(&$sandbox) {
+  $ret = array();
+
+  module_enable(array(
+    'fs_webforms',
+    'wordstream',
+  ));
+
+  drupal_flush_all_caches();
+
+  $ret['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
+  return $ret;
+}
+
+/**
+ * Enable some modules to improve DE
+ */
+function custom_update_7149(&$sandbox) {
+  $ret = array();
+
+  module_disable(array(
+    'media_browser_plus',
+  ));
+
+  drupal_flush_all_caches();
+
+  $ret['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
+  return $ret;
+}

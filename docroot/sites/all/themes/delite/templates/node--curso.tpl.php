@@ -1,0 +1,206 @@
+<?php
+/**
+ * @file
+ * Default theme implementation to display a node.
+ *
+ * Available variables:
+ * - $title: the (sanitized) title of the node.
+ * - $content: An array of node items. Use render($content) to print them all, or
+ *   print a subset such as render($content['field_example']). Use
+ *   hide($content['field_example']) to temporarily suppress the printing of a
+ *   given element.
+ * - $user_picture: The node author's picture from user-picture.tpl.php.
+ * - $date: Formatted creation date. Preprocess functions can reformat it by
+ *   calling format_date() with the desired parameters on the $created variable.
+ * - $name: Themed username of node author output from theme_username().
+ * - $node_url: Direct url of the current node.
+ * - $terms: the themed list of taxonomy term links output from theme_links().
+ * - $display_submitted: whether submission information should be displayed.
+ * - $classes: String of classes that can be used to style contextually through
+ *   CSS. It can be manipulated through the variable $classes_array from
+ *   preprocess functions. The default values can be one or more of the following:
+ *   - node: The current template type, i.e., "theming hook".
+ *   - node-[type]: The current node type. For example, if the node is a
+ *     "Blog entry" it would result in "node-blog". Note that the machine
+ *     name will often be in a short form of the human readable label.
+ *   - node-teaser: Nodes in teaser form.
+ *   - node-preview: Nodes in preview mode.
+ *   The following are controlled through the node publishing options.
+ *   - node-promoted: Nodes promoted to the front page.
+ *   - node-sticky: Nodes ordered above other non-sticky nodes in teaser listings.
+ *   - node-unpublished: Unpublished nodes visible only to administrators.
+ * - $title_prefix (array): An array containing additional output populated by
+ *   modules, intended to be displayed in front of the main title tag that
+ *   appears in the template.
+ * - $title_suffix (array): An array containing additional output populated by
+ *   modules, intended to be displayed after the main title tag that appears in
+ *   the template.
+ *
+ * Other variables:
+ * - $node: Full node object. Contains data that may not be safe.
+ * - $type: Node type, i.e. story, page, blog, etc.
+ * - $comment_count: Number of comments attached to the node.
+ * - $uid: User ID of the node author.
+ * - $created: Time the node was published formatted in Unix timestamp.
+ * - $classes_array: Array of html class attribute values. It is flattened
+ *   into a string within the variable $classes.
+ * - $zebra: Outputs either "even" or "odd". Useful for zebra striping in
+ *   teaser listings.
+ * - $id: Position of the node. Increments each time it's output.
+ *
+ * Node status variables:
+ * - $view_mode: View mode, e.g. 'full', 'teaser'...
+ * - $teaser: Flag for the teaser state (shortcut for $view_mode == 'teaser').
+ * - $page: Flag for the full page state.
+ * - $promote: Flag for front page promotion state.
+ * - $sticky: Flags for sticky post setting.
+ * - $status: Flag for published status.
+ * - $comment: State of comment settings for the node.
+ * - $readmore: Flags true if the teaser content of the node cannot hold the
+ *   main body content.
+ * - $is_front: Flags true when presented in the front page.
+ * - $logged_in: Flags true when the current user is a logged-in member.
+ * - $is_admin: Flags true when the current user is an administrator.
+ *
+ * Field variables: for each field instance attached to the node a corresponding
+ * variable is defined, e.g. $node->body becomes $body. When needing to access
+ * a field's raw values, developers/themers are strongly encouraged to use these
+ * variables. Otherwise they will have to explicitly specify the desired field
+ * language, e.g. $node->body['en'], thus overriding any language negotiation
+ * rule that was previously applied.
+ *
+ * @see template_preprocess()
+ * @see template_preprocess_node()
+ * @see template_process()
+ */
+// dsm($content);
+render($content['metatags']);
+?>
+<?php if (!$page): ?>
+  <article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
+<?php endif; ?>
+    <?php if (!$page): ?>
+      <header>
+  <?php endif; ?>
+      <?php print render($title_prefix); ?>
+      <?php if (!$page): ?>
+      <h3 class="title" <?php print $title_attributes; ?>><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h3>
+      <?php endif; ?>
+      <?php print render($title_suffix); ?>
+  
+
+    <?php if (!$page): ?>
+      </header>
+  <?php endif; ?>
+
+  <div class="content"<?php print $content_attributes; ?>>
+    <?php
+      // Hide comments, tags, and links now so that we can render them later.
+      hide($content['comments']);
+      hide($content['links']);
+      // print render($content); -->
+    ?>
+    <?php if (render($content['field_date'])): ?>
+      <div class="subscribe-button">
+        <?php print render($content['links']['flag']); ?>
+        <?php if ($user->uid == 0): ?>
+          <div class="txt">
+            <?php print t('<a href="/user/login">Login</a> or <a href="/user/register">register</a> to subscribe'); ?>
+          </div>
+        <?php endif; ?>
+      </div>
+    <?php endif; ?>
+    <div class="podcast-img">
+      <?php print render($content['field_image']); ?>
+    </div>
+    
+    <div class="curso-info">
+      <h3>Informações</h3>
+      <?php print render($content['field_nivel']); ?>
+      <?php print render($content['field_tipo_curso']); ?>
+      <?php print render($content['field_carga_horaria']); ?>
+      
+      <?php if(!empty($content['field_publico_alvo'])):?>
+        <div class="cursos-publico-alvo">
+          <?php print render($content['field_publico_alvo']); ?>
+        </div>
+      <?php endif; ?>
+
+      <?php if(!empty($content['field_preco_individual_on_line']) || !empty($content['field_preco_individual_presencia']) || !empty($content['field_preco_em_grupo_on_line']) || !empty($content['field_preco_em_grupo_presencial'])): ?>
+        <h3>Preços</h3>
+      
+        <div class="cusos-preco">
+          <div span="preco-individual">
+            <?php if(!empty($content['field_preco_individual_on_line'])):?>
+              <?php render($content['field_preco_individual_on_line']); ?>
+            <?php endif; ?>
+
+            <?php if(!empty($content['field_preco_individual_presencia'])):?>
+              <?php print render($content['field_preco_individual_presencia']); ?>
+            <?php endif; ?>
+          </div>
+
+          <div span="preco-grupo">
+            <?php if(!empty($content['field_preco_em_grupo_on_line'])):?>
+              <?php print render($content['field_preco_em_grupo_on_line']); ?>
+            <?php endif; ?>
+
+            <?php if(!empty($content['field_preco_em_grupo_presencial'])):?>
+              <?php print render($content['field_preco_em_grupo_presencial']); ?>
+            <?php endif; ?>
+          </div>
+        </div>
+      <?php endif; ?>
+      
+      <?php if(!empty($content['field_requesitos'])):?>
+        <div class="cursos-requesitos">
+          <h3>Requesitos</h3>
+          <?php print render($content['field_requesitos']); ?>
+        </div>
+      <?php endif; ?>
+    </div>
+
+
+    <div class="podcast-description">
+      <?php if(!empty($content['field_description'])): ?>
+        <h3>Descrição</h3>
+        <?php print render($content['field_description']); ?>
+      <?php endif; ?>
+
+      <?php if(!empty($content['field_recursos_oferecidos'])): ?>
+        <h3>Recursos oferecidos</h3>
+        <?php print render($content['field_recursos_oferecidos']); ?>
+      <?php endif; ?>      
+
+      <?php if (render($content['field_date'])): ?>
+        <div class="date-event">
+          <h3><?php print t('When?'); ?></h3>
+          <?php print render($content['field_date']); ?>
+        </div>
+      <?php endif; ?>
+    </div>
+    
+    <?php if ($display_submitted && $page): ?>
+      <div class="podcast-submitted">
+        <span class="submitted"><?php print $submitted; ?></span>
+      </div>
+    <?php endif; ?>
+    <div class="podcast-tags">
+      <?php print render($content['field_tags']); ?>
+    </div>
+    <div class="podcast-social">
+      <?php print render($content['easy_social_1']); ?>
+    </div>
+  </div>
+
+  <?php if (!empty($content['links'])): ?>
+    <footer>
+      <?php // print render($content['links']); ?>
+    </footer>
+  <?php endif; ?>
+  <div class="podcast-comments">
+    <?php print render($content['disqus']); ?>
+  </div>
+<?php if (!$page): ?>
+  </article> <!-- /.node -->
+<?php endif; ?>

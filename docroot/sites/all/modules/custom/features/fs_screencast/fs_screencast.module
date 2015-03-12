@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the DRPE Screencast feature.
+ */
+
+include_once 'fs_screencast.features.inc';

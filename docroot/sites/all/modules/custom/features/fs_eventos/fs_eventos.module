@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the DRPE Eventos feature.
+ */
+
+include_once 'fs_eventos.features.inc';

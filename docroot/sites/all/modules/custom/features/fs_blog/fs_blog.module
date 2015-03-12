@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the DRPE Blog feature.
+ */
+
+include_once 'fs_blog.features.inc';

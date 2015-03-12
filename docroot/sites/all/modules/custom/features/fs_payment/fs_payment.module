@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Payment feature.
+ */
+
+include_once 'fs_payment.features.inc';

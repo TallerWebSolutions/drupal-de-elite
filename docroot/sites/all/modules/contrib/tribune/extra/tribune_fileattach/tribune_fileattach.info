@@ -1,0 +1,15 @@
+name = Tribune file attachments
+description = "Allows sharing files over tribunes."
+core = 7.x
+package = Tribune
+dependencies[] = file
+dependencies[] = tribune
+files[] = tribune_fileattachments.module
+php = 5.3
+
+; Information added by drupal.org packaging script on 2013-09-17
+version = "7.x-3.11"
+core = "7.x"
+project = "tribune"
+datestamp = "1379406837"
+

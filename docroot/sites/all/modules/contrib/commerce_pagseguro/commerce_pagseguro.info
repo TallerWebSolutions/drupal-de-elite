@@ -1,0 +1,16 @@
+name = PagSeguro
+description = Provides a payment method for PagSeguro.
+package = Commerce
+dependencies[] = commerce
+dependencies[] = commerce_payment
+core = 7.x
+
+; Base module files
+files[] = commerce_pagseguro.module
+
+; Information added by drupal.org packaging script on 2012-10-10
+version = "7.x-2.0-alpha1+1-dev"
+core = "7.x"
+project = "commerce_pagseguro"
+datestamp = "1349828011"
+

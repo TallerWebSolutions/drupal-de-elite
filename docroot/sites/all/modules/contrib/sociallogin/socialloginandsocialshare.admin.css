@@ -1,0 +1,207 @@
+#socialshare_providers_list > div {
+display: inline-block;
+margin-right: 17px;
+width: 252px;
+}
+#socialloginandsocialshare_share_vertical_images>div> label> img {
+vertical-align: top;
+}
+#socialcounter_show_providers_list > div {
+display: inline-block;
+margin-right: 17px;
+width: 252px;
+}
+#socialcounter_vertical_show_providers_list > div {
+display: inline-block;
+margin-right: 17px;
+width: 252px;
+}
+#socialshare_vetical_show_providers_list > div {
+display: inline-block;
+margin-right: 17px;
+width: 252px;
+}
+#edit-socialshare-counter-show-providers-list>div {
+display: inline-block;
+margin-right: 17px;
+}
+#socialloginandsocialshare_share_horizontal_images {
+display: block;
+border: 1px solid #ccc;
+padding: 10px;
+border-radius: 5px;
+}
+#socialloginandsocialshare_share_vertical_images{
+display: block;
+border: 1px solid #ccc;
+padding: 10px;
+
+border-radius: 5px;
+}
+#show_horizontal_block {
+display: block;
+border: 1px solid #ccc;
+padding: 10px;
+border-radius: 5px;
+}
+
+#edit-socialloginandsocialshare-custom-redirection{
+margin-left: 16px;
+}
+.addtopmargin, .form-item.form-type-radios.form-item-socialshare-vertical-show-pages.addtopmargin{
+margin-top:-65px !important;
+}
+ul#socialloginandsocialshare_rearrange_providers >li{
+float: left;
+margin-left:0px;
+}
+ul#socialshare_vertical_rearrange_providers >li{
+float: left;
+margin-left:0px;
+}
+
+#socialloginandsocialshare_question{
+margin-top: 64px;
+}
+
+#thanks_block{
+background-color: #EAF7FF;
+border: solid 1px;
+border-color: rgb(195, 239, 250);
+padding-bottom: 10px;
+border-radius: 7px;
+padding: 10px;
+width: 350px;
+height: 172px;
+margin-right: 4px;
+float: left;
+}
+#sociallogin_get_update{
+background-color: #FFFFE0;
+border: solid 1px;
+border-color: rgb(195, 239, 250);
+padding-bottom: 10px;
+border-radius: 7px;
+padding: 10px;
+height: 172px;
+width: 376px;
+margin-top: -30px;
+}
+#edit-lrshare-iconsprite32-facebook{
+padding: 0px;
+}
+.form-item.form-type-radio.form-item-socialloginandsocialshare-share-vertical-images{
+display:inline;
+}
+.form-item.form-type-radio.form-item-socialloginandsocialshare-attach-login-form, .form-item.form-type-radio.form-item-socialloginandsocialshare-loginpage-position, .form-item .form-type-radio.form-item-socialloginandsocialshare-registerpage-position,.form-item.form-type-radio.form-item-socialloginandsocialshare-enable-share,
+.form-item.form-type-radio.form-item-socialloginandsocialshare-enable-counter,.form-item.form-type-radio.form-item-socialloginandsocialshare-enable-horizontal-share, 
+.form-item.form-type-radio.form-item-socialloginandsocialshare-enable-vertical-share, .form-item.form-type-radio.form-item-socialloginandsocialshare-enable, .form-item.form-type-radio.form-item-socialloginandsocialshare-interface-size, .form-item.form-type-radio.form-item-socialloginandsocialshare-skip-email-verification, 
+.form-item.form-type-radio.form-item-socialloginandsocialshare-update-profile, .form-item.form-type-radio.form-item-socialloginandsocialshare-commenting-enable{
+display:inline;
+margin-right: 17px;
+}
+.form-item.form-type-radios.form-item-socialshare-vertical-position{
+background-color: #EAF7FC;
+border: solid 1px;
+border-color: rgb(195, 239, 250);
+padding-bottom: 10px;
+border-radius: 7px;
+padding: 10px;
+}
+.form-item.form-type-checkbox.form-item-socialloginandsocialshare-counter-comments {
+background-color: #EAF7FC;
+}
+.form-item.form-type-radio.form-item-socialloginandsocialshare-counter-vertical-images{
+display:inline;
+}
+.form-item.form-type-radio.form-item-socialloginandsocialshare-counter-vertical-images > input{
+vertical-align:top;
+}
+.form-item.form-type-radio.form-item-socialloginandsocialshare-share-vertical-images>input{
+vertical-align:top;
+}
+.form-item.form-type-radio.form-item-socialloginandsocialshare-share-horizontal-images>input{
+vertical-align:top;
+}
+.form-item.form-type-radio.form-item-socialloginandsocialshare-counter-horizontal-images>input{
+vertical-align:top;
+}
+#VerticlewithBox{
+vertical-align:top;
+}
+#verticalhorizontal{
+ vertical-align:top;
+ }
+.form-item.form-type-radios.form-item-socialshare-counter-vertical-position{
+background-color: #EAF7FC;
+border: solid 1px;
+border-color: rgb(195, 239, 250);
+padding-bottom: 10px;
+border-radius: 7px;
+padding: 10px;
+}
+.form-item.form-type-radio.form-item-socialloginandsocialshare-share-vertical-images > .form-item.form-type-radio.form-item-socialloginandsocialshare-share-vertical-images{
+float: none;
+margin-top: 113px;
+}
+.twitter_box {
+    width: 58px; height: 34px;
+    position: relative;
+    background: #fff;
+    border: 1px solid #bbb;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    margin-bottom: 6px;
+	margin-left: 55px;
+    }
+.twitter_box:after,
+.twitter_box:before {
+    width: 0; height: 0;
+    position: absolute;
+    top: 100%;
+    border: solid transparent;
+    pointer-events: none;
+    content: " ";
+    }
+.twitter_box:after {
+    left: 50%;
+    border-top-color: #fff;
+    border-width: 3px;
+    margin-left: -3px;
+    }
+.twitter_box:before {
+    left: 50%;
+    border-top-color: #aaa;
+    border-width: 4px;
+    margin-left: -4px;
+    }
+.twitter_box #followers {
+    width: 100%; height: auto;
+    position: absolute;
+    top: 0px; left: 0px;
+    font-family: "Helvetica Neue", helvetica, arial, sans-serif;
+    font-size: 16px; line-height: 34px;
+    letter-spacing: 0;
+    white-space: nowrap;
+    color: #333;
+    text-align: center;
+    -webkit-font-smoothing: subpixel-antialiased;
+  }
+#lrsharing_divwhite{
+border-color: transparent transparent #fff;
+border-style: dashed dashed solid;
+border-width: 0 10px 10px;
+margin-top: -9px;
+position: absolute;
+z-index: 4;
+}
+#lrsharing_divgrey{
+border-color: transparent transparent #ccc;
+border-style: dashed dashed solid;
+border-width: 0 10px 10px;
+margin-top: -10px;
+position: absolute;
+}

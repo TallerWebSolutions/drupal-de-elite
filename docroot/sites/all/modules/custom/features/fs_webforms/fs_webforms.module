@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the DRPE Webforms feature.
+ */
+
+include_once 'fs_webforms.features.inc';

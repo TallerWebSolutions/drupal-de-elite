@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the DRPE SEO feature.
+ */
+
+include_once 'fs_seo.features.inc';

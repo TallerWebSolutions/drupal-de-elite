@@ -1,0 +1,92 @@
+<?php
+/**
+ * @file
+ * Bridge between the WYSIWYG module and the GeSHi Filter syntax highlighting
+ * module.
+ */
+
+/* --- HOOKS ---------------------------------------------------------------- */
+
+/**
+ * Implements hook_wysiwyg_plugin().
+ */
+function wysiwyg_geshi_wysiwyg_plugin($editor, $version) {
+  if ('ckeditor' == $editor) {
+    module_load_include('inc', 'geshifilter');
+    $languages = _geshifilter_get_available_languages();
+
+    $buttons = _wysiwyg_geshi_get_buttons($languages);
+    $settings = _wysiwyg_geshi_get_settings($languages);
+
+    $css = _wysiwyg_geshi_get_css(array_keys($buttons));
+
+    drupal_add_css($css, 'inline');
+    drupal_add_js(array('wysiwygGeshi' => $settings), 'setting');
+
+    return array(
+      'geshi' => array(
+        'path' => drupal_get_path('module', 'wysiwyg_geshi') . '/js',
+        'buttons' => $buttons,
+        'load' => TRUE,
+      ),
+    );
+  }
+}
+
+/* --- UTILITY -------------------------------------------------------------- */
+
+/**
+ * Returns wysiwyg buttons based on the enabled GeSHi filters.
+ */
+function _wysiwyg_geshi_get_buttons($languages) {
+  $buttons = array();
+
+  foreach ($languages as $index => $language) {
+    if (variable_get('geshifilter_language_enabled_' . $index, FALSE)) {
+      $buttons['Geshi-' . $index] = 'Geshi: ' . $language['fullname'];
+    }
+  }
+
+  return $buttons;
+}
+
+/**
+ * Returns wysiwyg settings based on the enabled GeSHi filters.
+ */
+function _wysiwyg_geshi_get_settings($languages) {
+  $settings = array();
+
+  foreach ($languages as $index => $language) {
+    if (variable_get('geshifilter_language_enabled_' . $index, FALSE)) {
+      $settings['Geshi-' . $index] = array(
+        'label' => $index,
+        'settings' => array(
+          'element' => 'pre',
+          'attributes' => array(
+            'language' => $index,
+          ),
+        ),
+      );
+    }
+  }
+
+  return $settings;
+}
+
+/**
+ * Returns wysiwyg css based on the enabled GeSHi filters.
+ */
+function _wysiwyg_geshi_get_css($keys) {
+  $css = '';
+
+  $icons = $labels = array();
+  foreach ($keys as $key) {
+    $icons[] = '.cke_skin_kama .cke_button_' . $key . ' span.cke_icon';
+    $labels[] = '.cke_skin_kama .cke_button_' . $key . ' span.cke_label';
+  }
+
+  $css .= implode(', ', $icons) . '{display: none !important;}';
+  $css .= implode(', ', $labels) . '{display: inline;}';
+
+  return $css;
+}

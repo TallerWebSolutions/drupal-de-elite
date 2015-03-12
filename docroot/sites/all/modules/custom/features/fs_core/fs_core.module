@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the DRPE Core feature.
+ */
+
+include_once 'fs_core.features.inc';

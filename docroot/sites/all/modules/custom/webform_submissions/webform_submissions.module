@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Webform Submissions feature.
+ */
+
+include_once 'webform_submissions.features.inc';

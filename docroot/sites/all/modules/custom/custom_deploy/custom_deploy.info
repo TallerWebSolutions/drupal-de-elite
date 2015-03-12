@@ -1,0 +1,9 @@
+name = "Custom Deploy"
+description = "Assists developers in the deployment process."
+package = "Drupal de Elite"
+core = "7.x"
+version = "7.x-1.0"
+files[] = custom_deploy.module
+files[] = custom_deploy.install
+files[] = custom_deploy.admin.inc
+configure=admin/config/system/custom_deploy/settings

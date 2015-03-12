@@ -1,0 +1,20 @@
+<?php
+
+/**
+ * @file
+ * Performs uninstallation cleanup for the Chatroll module.
+ */
+
+/**
+ * Implements hook_uninstall().
+ */
+function chatroll_uninstall() {
+  $delta = variable_get('chatroll_number_of_blocks', '1');
+  for ($i = 1; $i <= $delta; $i++) {
+    variable_del('chatroll_block_' . $delta . '_shortcode');
+    variable_del('chatroll_block_' . $delta . '_width');
+    variable_del('chatroll_block_' . $delta . '_height');
+    variable_del('chatroll_block_' . $delta . '_showlink');
+  }
+  variable_del('chatroll_number_of_blocks');
+}

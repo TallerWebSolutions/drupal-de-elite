@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the DRPE Cursos feature.
+ */
+
+include_once 'fs_cursos.features.inc';

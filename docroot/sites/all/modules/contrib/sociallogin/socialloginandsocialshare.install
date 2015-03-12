@@ -1,0 +1,109 @@
+<?php
+
+/**
+ * @file
+ * Provides uninstall function for the socialloginandsocialshare module.
+ */
+
+/**
+ * Implements hook_uninstall().
+ */
+function socialloginandsocialshare_uninstall() {
+  variable_del('socialloginandsocialshare_enable');
+  variable_del('socialloginandsocialshare_apikey');
+  variable_del('socialloginandsocialshare_apisecret');
+  variable_del('socialloginandsocialshare_api_handler');
+  variable_del('checkApi');
+  variable_del('socialloginandsocialshare_interface_size');
+  variable_del('socialloginandsocialshare_interface_columns');
+  variable_del('socialloginandsocialshare_interface_bgcolor');
+  variable_del('socialloginandsocialshare_label_string'); 
+  variable_del('socialloginandsocialshare_attach_login_form');
+  variable_del('socialloginandsocialshare_loginpage_position');
+  variable_del('socialloginandsocialshare_registerpage_position');
+  variable_del('socialloginandsocialshare_showicon_location');
+  variable_del('socialloginandsocialshare_block_required');
+  variable_del('socialloginandsocialshare_disable_traditional_login');
+  variable_del('socialloginandsocialshare_identity_label_string');
+  variable_del('socialloginandsocialshare_identity_tab_text');
+  variable_del('socialloginandsocialshare_display_username');
+  variable_del('socialloginandsocialshare_skip_email_verification');
+  variable_del('socialloginandsocialshare_force_registration');
+  variable_del('socialloginandsocialshare_link_account');
+  variable_del('socialloginandsocialshare_email_required');
+  variable_del('socialloginandsocialshare_emailrequired_popup_top');
+  variable_del('socialloginandsocialshare_emailrequired_popup_text');
+  variable_del('socialloginandsocialshare_emailrequired_popup_wrong');
+  variable_del('socialloginandsocialshare_userlogin_redirect');
+  variable_del('socialloginandsocialshare_custom_redirection');
+  variable_del('socialloginandsocialshare_share_horizontal');
+  variable_del('socialloginandsocialshare_selected_share_interface');
+  variable_del('socialloginandsocialshare_enable_horizontal_share');
+  variable_del('socialloginandsocialshare_enable_vertical_share');
+  variable_del('socialshare_label_string');
+  variable_del('socialloginandsocialshare_share_horizontal_images');
+  variable_del('socialloginandsocialshare_share_vertical_images');
+  variable_del('socialloginandsocialshare_show_horizotal');
+  variable_del('socialcounter_rearrange_providers_list');
+  variable_del('socialshare_counter_show_providers_list');
+  variable_del('socialloginandsocialshare_rearrange_providers_list');
+  variable_del('socialshare_show_providers_list');
+  variable_del('socialloginandsocialshare_rearran_providers_list');
+  variable_del('socialloginandsocialshare_show_veritical');
+  variable_del('socialcounter_vertical_rearrange_providers_list');
+  variable_del('socialshare_counter_vertical_show_providers_list');
+  variable_del('socialshare_vertical_rearrange_providers_list');
+  variable_del('socialshare_vetical_show_providers_list');
+  variable_del('socialshare_vertical_rearra_providers_list');
+  variable_del('socialshare_vertical_position');
+  variable_del('socialshare_vertical_topweight');
+  variable_del('socialshare_horizontal_location');
+  variable_del('socialshare_vertical_location');
+  variable_del('socialshare_position_top');
+  variable_del('socialshare_position_bottom');
+  variable_del('socialshare_top_weight');
+  variable_del('socialshare_bottom_weight');
+  variable_del('socialshare_show_pages');
+  variable_del('socialshare_show_exceptpages');
+  variable_del('socialshare_vertical_show_pages');
+  variable_del('socialshare_vertical_show_exceptpages');
+  variable_del('socialloginandsocialshare_user_fields');
+  variable_del('socialloginandsocialshare_profile_fields');
+  variable_del('thanks_block');
+  variable_del('socialloginandsocialshare_enable_share');
+  variable_del('socialloginandsocialshare_commenting_enable');
+  variable_del('socialloginandsocialshare_commenting_show');
+  
+}
+
+
+/**
+ * Implements hook_schema().
+ */
+function socialloginandsocialshare_schema() {
+  $schema['socialloginandsocialshare_mapusers'] = array(
+    'description' => 'Stores Engage linked account information (used in the Views integration).',
+    'fields' => array(
+      'aid' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'description' => 'Authmap ID of the authmap table.',
+      ),
+      'provider' => array(
+        'type' => 'varchar',
+        'length' => 30,
+        'not null' => TRUE,
+        'description' => 'The provider\'s machine name.',
+      ),
+      'provider_id' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'description' => 'The provider\'s unique id.',
+      ),
+    ),
+    'primary key' => array('aid'),
+  );
+  return $schema;
+}

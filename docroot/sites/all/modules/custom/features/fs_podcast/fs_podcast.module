@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the DRPE Podcast feature.
+ */
+
+include_once 'fs_podcast.features.inc';

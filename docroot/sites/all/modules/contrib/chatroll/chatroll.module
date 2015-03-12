@@ -1,0 +1,159 @@
+<?php
+/**
+ * @file
+ * chatroll Module for Drupal 7.x
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function chatroll_menu() {
+  $items = array();
+  $items['admin/config/services/chatroll'] = array(
+    'title' => 'Chatroll Settings',
+    'description' => 'Configure chatroll settings.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('chatroll_admin_settings_form'),
+    'access arguments' => array('moderate chatroll'),
+  );
+  return $items;
+}
+
+/**
+ * Implements hook_help().
+ * Display help and Chatroll module information.
+ */
+function chatroll_help($path, $arg) {
+  $output = '';
+  switch ($path) {
+    case 'admin/help#chatroll':
+      $output = '<p>Chatroll is an easy to use and flexible Drupal chat module. It can be used as a live chat or shoutbox, anywhere on your site.</p>';
+      $output .= '<p>Before using chatroll module, you need to setup an account at <a href="http://chatroll.com">Chatroll</a>.
+      If you have any questions how to setup account in chatroll? Contact Chatroll Support at <a href="http://chatroll.com/help/support">http://chatroll.com/help/support</a></p>';
+      $output .= '<p>Once you created an account in chatroll, you will get an shortcode. This shortcode needed at the time of Chatroll Block configuration in your site.</p>';
+      break;
+  }
+  return $output;
+}
+
+/**
+ * Implements hook_perm().
+ * Valid permissions for this module.
+ */
+function chatroll_permission() {
+  return array(
+    'moderate chatroll' =>  array(
+      'title' => t('Moderate Chatroll'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_block().
+ * Chatroll Block control
+ */
+function chatroll_block_info() {
+  $block_count = variable_get('chatroll_number_of_blocks', '1');
+  $blocks = array();
+  for ($i = 1; $i <= $block_count; $i++) {
+    $blocks['chatroll_block_' . $i] = array(
+      'info' => t('Chatroll: block #@block_num', array('@block_num' => $i)),
+      'cache' => DRUPAL_CACHE_PER_USER,
+    );
+  }
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_configure().
+ */
+function chatroll_block_configure($delta) {
+  // Note: We allow different embed HTML config for each block.
+  $form[$delta . '_shortcode'] = array(
+    '#type' => 'textfield',
+    '#size' => 80,
+    '#maxlength' => 200,
+    '#title' => t('Chatroll Shortcode'),
+    '#default_value' => variable_get($delta . '_shortcode', ''),
+    '#description' => t('Copy and paste your Chatroll Shortcode here.<br/>Your Shortcode can be found on your Chatroll\'s <b>Settings</b> -> <b>Widget</b> -> <b>Install</b> page on <a href="http://chatroll.com">chatroll.com</a>'),
+    '#required' => TRUE,
+  );
+  $form[$delta . '_width'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Width'),
+    '#default_value' => variable_get($delta . '_width', '100%'),
+    '#size' => 5,
+    '#maxlength' => 5,
+    '#description' => t('Set the width of your Chatroll'),
+    '#required' => TRUE,
+  );
+  $form[$delta . '_height'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Height'),
+    '#default_value' => variable_get($delta . '_height', '300'),
+    '#size' => 5,
+    '#maxlength' => 5,
+    '#description' => t('Set the height of your Chatroll. <br/><br/><b>Additional settings</b> and <b>moderation tools</b> can be found on your Chatroll\'s <b>Settings</b> page on <a href="http://chatroll.com">chatroll.com</a>):<ul style="font-weight:bold;"><li>Colors</li><li>Sound</li><li>Single Sign On (SSO)</li><li>White Label</li></ul>'),
+    '#required' => TRUE,
+  );
+  $form[$delta . '_showlink'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Show link below widget'),
+    '#default_value' => variable_get($delta . '_showlink', '1'),
+    '#description' => t(''),
+  );
+  return $form;
+}
+
+/**
+ * Save block variables.
+ */
+function chatroll_block_save($delta, $edit) {
+  variable_set($delta . '_shortcode', $edit[$delta . '_shortcode']);
+  variable_set($delta . '_width', $edit[$delta . '_width']);
+  variable_set($delta . '_height', $edit[$delta . '_height']);
+  variable_set($delta . '_showlink', $edit[$delta . '_showlink']);
+}
+
+/**
+ * Render block html output.
+ */
+function chatroll_block_view($delta = 0) {
+  $block = array();
+  $block['subject'] = $delta;
+  $block['content'] = chatroll_render_block($delta);
+  return $block;
+}
+
+/**
+ * Render embedded Chatroll.
+ */
+function chatroll_render_block($delta) {
+  $chatroll = new DrupalChatroll();
+
+  $chatroll->width = variable_get($delta . '_width', '');
+  $chatroll->height = variable_get($delta . '_height', '');
+  $chatroll->showlink = variable_get($delta . '_showlink', '1');
+  return $chatroll->renderChatrollHtmlFromShortcode(variable_get($delta . '_shortcode', ''));
+}
+
+/**
+ * Add admin settings form.
+ */
+function chatroll_admin_settings_form() {
+  $form = array();
+  $form['chatroll_admin_form'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Chatroll admin settings'),
+    '#collapsible' => TRUE,
+    '#collapsed' => FALSE,
+  );
+  $form['chatroll_admin_form']['chatroll_number_of_blocks'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Number of chatroll blocks'),
+    '#default_value' => variable_get('chatroll_number_of_blocks', '1'),
+    '#description' => t('Enter how many chatroll blocks you needed in your site. It must be greater than 0'),
+    '#element_validate' => array('element_validate_integer_positive'),
+  );
+  return system_settings_form($form);
+}

@@ -1,0 +1,89 @@
+<?php
+
+/**
+ * Implements hook_schema().
+ */
+
+function custom_deploy_schema() {
+  $schema['custom_deploy'] = array(
+    // define especifications for custom_deploy table
+    'description' => 'The Custom Deploy table.', 
+    'fields' => array(
+      'cdid' => array(
+        'description' => 'The primary key identifier for custom deploy.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'actions' => array(
+        'description' => 'The options set for custom deploy submit.', 
+        'type' => 'text', 
+        'size' => 'normal',
+        'not null' => TRUE,
+      ), 
+      'username' => array(
+        'description' => 'The username to connect on server.', 
+        'type' => 'varchar', 
+        'length' => 32,
+        'not null' => TRUE,
+      ), 
+      'password' => array(
+        'description' => 'The username pass to connect on server.', 
+        'type' => 'varchar', 
+        'length' => 32,
+        'not null' => TRUE, 
+      ), 
+      'email_address' => array(
+        'description' => 'The email address to send confirmation message.', 
+        'type' => 'varchar', 
+        'length' => 255, 
+      ),
+      'email_message' => array(
+        'description' => 'The email message to send confirmation message.', 
+        'type' => 'varchar', 
+        'length' => 255, 
+      ),
+      // 'uid' => aray (
+      //   'description' => 'The UID from user that submited custom deploy.',
+      //   'type' => 'int',
+      //   'unsigned' => TRUE,
+      //   'not null' => TRUE,
+      //   'default' => 1,
+      // ),
+      // 'comment' => array(
+      //   'description' => 'The comment inputed on custom deploy submit.',
+      //   'type' => 'varchar',
+      //   'length' => 255,
+      // ),
+      // 'date_deploy' => array(
+      //   'description' => 'The time when deploy run.',
+      //   'type' => 'datetime',
+      //   'not null' => TRUE,
+      // ),
+    ),
+    // 'unique keys' => array(
+    //   'cdid' => array('cdid'),
+    // ),
+    // 'foreign keys' => array(
+    //   'uid' => array('uid'),
+    // ),
+    'primary key' => array('cdid'),
+  );
+  return $schema;
+}
+
+/**
+ * test update
+ */
+// function custom_deploy_update_7999(&$sandbox) {
+  // $ret = array();
+
+  // module_enable(array(
+  //   'fs_podcast',
+  // ));
+
+  // drupal_flush_all_caches();
+
+  // $ret['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['progress'] / $sandbox['max']);
+  // return $ret;
+// }

@@ -1,0 +1,36 @@
+<?php
+
+/**
+ * @file
+ * Assists developers in the deployment process.
+ *
+ * Adds some funcions and configurations 
+ * to help developers in some process.
+ */
+
+/**
+ * Implementation of hook_menu().
+ */
+function custom_deploy_menu() {
+  $items['admin/config/system/custom_deploy'] = array(
+    'title' => 'Custom Deploy',
+    'description' => 'Run my custom deploy.',
+    'wight' => -5,
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('custom_deploy_admin_run'),
+    'access arguments' => array('administer site cofiguration'),
+    'file' => 'custom_deploy.admin.inc',
+  );
+
+  $items['admin/config/system/custom_deploy/settings'] = array(
+    'title' => 'Custom Deploy Settings',
+    'description' => 'Configure custom deploy',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('custom_deploy_admin_settings'),
+    'access arguments' => array('administer site configuration'),
+    'type' => MENU_NORMAL_ITEM,
+    'file' => 'custom_deploy.admin.inc',
+  );
+
+  return $items;
+}

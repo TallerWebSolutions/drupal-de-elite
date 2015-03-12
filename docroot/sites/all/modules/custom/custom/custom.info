@@ -1,0 +1,8 @@
+name = "Custom"
+description = "Module which contains some geral customizations and installers"
+package = "DRPE"
+core = "7.x"
+version = "7.x-1.0"
+
+files[] = custom.module
+files[] = custom.install

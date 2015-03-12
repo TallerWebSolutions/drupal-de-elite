@@ -1,0 +1,143 @@
+<?php
+
+// shortcode definition
+defined('RUMBLETALKCHAT_SHORTCODE') or define('RUMBLETALKCHAT_SHORTCODE', '[rumbletalkchat]');
+
+/**
+* Display help and module information
+* @param path which path of the site we're displaying help
+* @param arg array that holds the current path as would be returned from arg() function
+* @return help text for the path
+*/
+function rumbletalkchat_help($path, $arg) {
+  $output = null;
+  switch ($path) {
+    case "admin/help#onthisdate":
+      $output = '<p>'.  t("Displays RumbleTalk Chat in nodes") .'</p>';
+      break;
+  }
+  return $output;
+} // function rumbletalkchat_help
+
+/**
+* Valid permissions for this module
+* @return array An array of valid permissions for the onthisdate module
+*/
+function rumbletalkchat_permission(){
+  return array(
+    'access rumbletalkchat' => array(
+      'title' => t('Access RumbleTalk Chat'),
+    ),
+    'administer rumbletalkchat' => array(
+      'title' => t('Administer RumbleTalk Chat'),
+    )
+  ); 
+} // function onthisdate_perm()
+
+/**
+* Menu for this module
+* @return array An array with this module's settings.
+*/
+function rumbletalkchat_menu() {
+  $items = array();
+  
+  //Link to the test_module admin page:
+  $items['admin/config/user-interface/rumbletalkchat'] = array(
+    'title' => 'RumbleTalk Chat',
+    'description' => 'Administer RumbleTalk Chat',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('rumbletalkchat_form'),
+    'access arguments' => array('administer rumbletalkchat'),
+    'type' => MENU_NORMAL_ITEM,
+  );
+  
+  return $items;
+} // function rumbletalkchat_perm()
+
+/**
+* Form function, called by drupal_get_form()
+* in rumbletalk_memu().
+*/
+function rumbletalkchat_form($form, &$form_state) {
+  $form['rumbletalkchat_code'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Chatroom code'),
+    '#default_value' => variable_get('rumbletalkchat_code', null),
+    '#size' => 8,
+    '#maxlength' => 8,
+    '#description' => t('This is the 8 letters/signs chat room code you\'ve received from RumbleTalk.<br/>If you do not have a chat room code, please register at <a href="http://www.rumbletalk.com/" target="_blank">RumbleTalk.com</a>, it\'s super fast and free.'),
+    '#required' => TRUE,
+  );
+  
+  $form['rumbletalkchat_width'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Chatroom width'),
+    '#default_value' => variable_get('rumbletalkchat_width', null),
+    '#size' => 7,
+    '#maxlength' => 7,
+    '#description' => t('The width in pixels you wish the chat widget to be.<br/>You can use percentages, or pixels (e.g. 40%, resp. 400px) or leave blank.'),
+    '#required' => FALSE,
+  );
+  
+  $form['rumbletalkchat_height'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Chatroom height'),
+    '#default_value' => variable_get('rumbletalkchat_height', null),
+    '#size' => 7,
+    '#maxlength' => 7,
+    '#description' => t('The height in pixels you wish the chat widget to be.<br/>You can use percentages, or pixels (e.g. 40%, resp. 400px) or leave blank.'),
+    '#required' => FALSE,
+  );
+
+  return system_settings_form($form);
+} // function rumbletalk_form()
+
+/**
+* Implementation of hook_filter_info().
+*/
+function rumbletalkchat_filter_info() {
+  $filters['rumbletalkchat'] = array(
+    'title' => t('RumbleTalk Chat'),
+    'description' => t('RumbleTalk Chat - A Chat with Themes.'),
+    'process callback' => 'rumbletalkchat_filter_process',
+    'default settings' => array(),
+  );
+  
+  return $filters;
+} // function shortcode_filter_info()
+
+/**
+ * Replace rumbletalk shortcode with chat window
+ */
+function rumbletalkchat_filter_process($text, $filter) {
+  if (!substr_count($text, RUMBLETALKCHAT_SHORTCODE)) {
+    return $text;
+  }
+  
+  $style = null;
+  $output = null;
+  
+  $code = variable_get('rumbletalkchat_code',null);
+  $width = variable_get('rumbletalkchat_width',null);
+  $height = variable_get('rumbletalkchat_height',null);
+  
+  $style .= !empty($width) ? 'width: ' . $width . ';': null;
+  $style .= !empty($height) ? 'height: ' . $height . ';' : null;
+  $style = !empty($style) ? ' style="' . $style . '"' : null;
+  
+  $output .= '<div id="rumbletalkchat"' . $style . '>';
+  
+  if (!user_access('access rumbletalkchat')) {
+    $output .= 'You are not authorized to view RumbleTalk Chat, please configure access permissions.';
+  } elseif (!is_null($code)) {
+    $output .= '<script type="text/javascript" src="http://www.rumbletalk.com/client/?' . $code . '"></script>';
+  } else {
+    $output .= 'Empty RumbleTalk Chat Code, please configure RumbleTalk Chat plug-in.';
+  }
+  
+  $output .= '</div>';
+  
+  $text = str_replace(RUMBLETALKCHAT_SHORTCODE, $output, $text);
+  
+  return $text;
+} // function rumbletalkchat_filter()
