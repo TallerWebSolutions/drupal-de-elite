@@ -1,5 +1,5 @@
 if [[ "$1" == "" ]]; then
-  BRANCH="dev"
+  BRANCH="qa"
 else
   BRANCH="$1"
 fi
