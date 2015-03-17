@@ -17,17 +17,17 @@ http://www.loginradius.com/developers/support/write-to-us
 1. Install as usual, 
 see http://drupal.org/documentation/install/modules-themes/modules-7 for 
 further information.
-2. After successfully installing, you will see SocialLogin module in module 
+2. After successfully installing, you will see Social Login module in module 
 list in your site's admin account.
-3. Click on configuration link shown in SocialLogin module or click on 
-configration tab, 
-Then go to people block and click on SocialLogin 
-4. On configuration page, you will see config option for SocialLogin module .
+3. Click on configuration link shown in Social Login and Social Share module or click on 
+configuration tab, 
+Then go to people block and click on Social Login and Social Share 
+4. On configuration page, you will see config option for Social Login and Social Share module .
 
 Options:- 
-1. To get an SocialLogin API Key & API Secret  -
+1. To get an LoginRadius API Key & API Secret  -
    a. Go to www.LoginRadius.com and log in.
-   b. Create your app and choose technology of your website i.e. Drupal.
+   b. Create your site and choose technology of your website i.e. Drupal.
    c. Select providers and it'll generate API Key and Secret for you. Copy 
    your API Key & API Secret and 
    paste in module options in your Drupal admin account.
@@ -46,7 +46,7 @@ Options:-
 
  A: LoginRadius is a Software As A Service (SAAS) which allows users to log in 
  to a third party website via 
- popular open IDs/oAuths such as Google, Facebook, Yahoo, AOL and over 20 more.
+ popular open IDs/oAuths such as Google, Facebook, Yahoo, AOL and over 25 more.
  
 Q: How long can I keep my account?
 
