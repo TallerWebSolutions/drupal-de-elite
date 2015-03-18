@@ -8,16 +8,16 @@
 /**
  * Defines media macro test cases.
  */
-class MediaWysiwygOverridesTest extends MediaTestHelper {
+class MediaWYSIWYGWYSIWYGOverridesTest extends MediaWYSIWYGTestHelper {
 
   /**
    * Provide test information.
    */
   public static function getInfo() {
     return array(
-      'name' => t('Media wysiwyg overrides'),
-      'description' => t('Tests that overriden attributes display correct.'),
-      'group' => t('Media'),
+      'name' => t('Media WYSIWYG WYSIWYG overrides'),
+      'description' => t('Tests that overridden attributes display correct.'),
+      'group' => t('Media WYSIWYG'),
       'dependencies' => array('token'),
     );
   }
@@ -92,5 +92,4 @@ class MediaWysiwygOverridesTest extends MediaTestHelper {
     // Ensure that the alt/title from attributes display rather the field ones.
     $this->assertRaw(drupal_attributes($attributes), t('Image displays with alt/title set as attributes overriding field values.'));
   }
-
 }

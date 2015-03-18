@@ -5,7 +5,7 @@
  * Tests for the file usage in entity fields with the Media filter markup.
  */
 
-class MediaFileUsageTest extends MediaTestHelper {
+class MediaWYSIWYGFileUsageTest extends MediaWYSIWYGTestHelper {
 
   /**
    * Provide test information.
@@ -14,7 +14,7 @@ class MediaFileUsageTest extends MediaTestHelper {
     return array(
       'name' => t('File usage tracking'),
       'description' => t('Tests tracking of usage for files in text fields.'),
-      'group' => t('Media'),
+      'group' => t('Media WYSIWYG'),
     );
   }
 
@@ -161,7 +161,6 @@ class MediaFileUsageTest extends MediaTestHelper {
     $this->assertEqual(empty($file_uses), TRUE, t('Deleting the node removes all file uses.'));
   }
 
-
   /**
    * Tests the behavior of node and file deletion.
    */
@@ -235,5 +234,4 @@ class MediaFileUsageTest extends MediaTestHelper {
     $type = node_type_load($node->type);
     $this->assertRaw(t('@type %title has been updated.', array('@type' => $type->name, '%title' => $node->title)), t('Node without reference to deleted file saved successfully.'));
   }
-
 }
