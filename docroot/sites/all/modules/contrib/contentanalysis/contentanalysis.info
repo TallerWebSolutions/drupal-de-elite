@@ -12,9 +12,9 @@ scripts[] = contentanalysis.js
 core = 7.x
 
 configure = admin/settings/contentanalysis
-; Information added by drupal.org packaging script on 2013-06-17
-version = "7.x-1.0-beta6"
+; Information added by Drupal.org packaging script on 2015-01-14
+version = "7.x-1.0-beta7"
 core = "7.x"
 project = "contentanalysis"
-datestamp = "1371477651"
+datestamp = "1421252285"
 

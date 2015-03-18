@@ -19,3 +19,10 @@ core = "7.x"
 project = "views_nivo_slider"
 datestamp = "1382164949"
 
+
+; Information added by Drupal.org packaging script on 2014-09-10
+version = "7.x-3.0-alpha1"
+core = "7.x"
+project = "views_nivo_slider"
+datestamp = "1410364437"
+

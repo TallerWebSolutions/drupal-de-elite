@@ -45,7 +45,6 @@ class GA_Parse
   function ParseCookies(){
  // Parse __utmz cookie
  if (isset($this->utmz)) {
-   // list($domain_hash,$timestamp, $session_number, $campaign_numer, $campaign_data) = sscanf($this->utmz, '%d.%d.%d.%d.%[^.]');
    preg_match("((\d+)\.(\d+)\.(\d+)\.(\d+)\.(.*))", $this->utmz, $matches);
    $domain_hash = $matches[1];
    $timestamp = $matches[2];
@@ -77,7 +76,7 @@ class GA_Parse
 
   // Parse the __utma Cookie
   if (isset($this->utma)) {
-     list($domain_hash,$random_id,$time_initial_visit,$time_beginning_previous_visit,$time_beginning_current_visit,$session_counter) = explode('.', $this->utma);
+     list($domain_hash,$random_id,$time_initial_visit,$time_beginning_previous_visit,$time_beginning_current_visit,$session_counter) = preg_split('[\.]', $this->utma);
   }
 
   $this->first_visit = isset($time_initial_visit) ? date("m/d/Y g:i:s A",$time_initial_visit) : '';

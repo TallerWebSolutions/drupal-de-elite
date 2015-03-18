@@ -39,10 +39,8 @@ function commerce_checkout_router($order, $checkout_page = NULL) {
     }
   }
 
-  // If there are no line items on the order, redirect away.
-  $wrapper = entity_metadata_wrapper('commerce_order', $order);
-
-  if (commerce_line_items_quantity($wrapper->commerce_line_items, commerce_product_line_item_types()) == 0) {
+  // Ensure the order can proceed to checkout; if not, redirect away.
+  if (!commerce_checkout_order_can_checkout($order)) {
     drupal_goto('<front>');
   }
 
@@ -69,6 +67,9 @@ function commerce_checkout_router($order, $checkout_page = NULL) {
 function commerce_checkout_form($form, &$form_state, $order, $checkout_page) {
   global $user;
 
+  // Ensure this include file is loaded when the form is rebuilt from the cache.
+  $form_state['build_info']['files']['form'] = drupal_get_path('module', 'commerce_checkout') . '/includes/commerce_checkout.pages.inc';
+
   $form['#attached']['css'][] = drupal_get_path('module', 'commerce_checkout') .'/theme/commerce_checkout.base.css';
   $form['#attached']['css'][] = drupal_get_path('module', 'commerce_checkout') .'/theme/commerce_checkout.theme.css';
   $form['#attached']['js'][] = drupal_get_path('module', 'commerce_checkout') . '/commerce_checkout.js';
@@ -91,6 +92,8 @@ function commerce_checkout_form($form, &$form_state, $order, $checkout_page) {
     $form_errors = &drupal_static('form_set_error', array());
     $form_errors = $form_state['storage']['errors'];
   }
+
+  $form['#after_build'][] = 'commerce_checkout_form_process_errors';
 
   // Catch and clear already pushed messages.
   $previous_messages = drupal_get_messages();
@@ -223,6 +226,41 @@ function commerce_checkout_form($form, &$form_state, $order, $checkout_page) {
 }
 
 /**
+ * After build callback for the checkout form.
+ */
+function commerce_checkout_form_process_errors($form, $form_state) {
+  // Do this only on form rebuild (when the form will not be validated anymore):
+  if (!empty($form_state['storage']['errors']) && !empty($form_state['rebuild'])) {
+    foreach (array_keys($form_state['storage']['errors']) as $element_name) {
+      // Look for all elements which have $element_name as parents, and
+      // restore their #validated property (so _form_set_class() will set
+      // the error class even though the rebuilt form is not validated).
+      // We can't simply use drupal_array_get_nested_value(), since the #parents
+      // property may have been changed and not match the form structure.
+      _commerce_checkout_set_validated($form, $element_name);
+    }
+  }
+
+  return $form;
+}
+
+/**
+ * Set '#validated' on elements which have the specified parents.
+ */
+function _commerce_checkout_set_validated(&$element, $imploded_parents) {
+  // Recurse to child elements if the current element is a container.
+  foreach (element_children($element) as $key) {
+    _commerce_checkout_set_validated($element[$key], $imploded_parents);
+  }
+
+  // This will also set #validated on all elements where #needs_validation would
+  // be FALSE, but that doesn't hurt anything.
+  if (!empty($element['#parents']) && strpos($imploded_parents, implode('][', $element['#parents'])) === 0) {
+    $element['#validated'] = TRUE;
+  }
+}
+
+/**
  * Validate handler for the continue button of the checkout form.
  *
  * This function calls the validation function of each pane, followed by
@@ -231,8 +269,6 @@ function commerce_checkout_form($form, &$form_state, $order, $checkout_page) {
  * are happy, we move on to the next page.
  */
 function commerce_checkout_form_validate($form, &$form_state) {
-  global $user;
-
   $checkout_page = $form_state['checkout_page'];
 
   // Load a fresh copy of the order stored in the form.

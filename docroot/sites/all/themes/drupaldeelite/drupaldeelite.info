@@ -1,0 +1,20 @@
+; Default information for theme works
+
+name = "Drupal de Elite Theme"
+description = "New responsive theme for Drupal de Elite"
+core = "7.x"
+version = "7.x-1.0"
+base theme = "zurb_foundation"
+
+; Copy regions from top theme
+; Regions are output in the page.tpl.php
+regions[header]         = Header
+regions[navigation]     = Navigation
+regions[help]           = Help
+regions[highlighted]    = Highlighted
+regions[content]        = Content
+regions[sidebar_first]  = Left Sidebar
+regions[sidebar_second] = Right Sidebar
+regions[footer_first]   = Footer first
+regions[footer_middle]  = Footer middle
+regions[footer_last]    = Footer last

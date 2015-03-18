@@ -741,7 +741,7 @@ function fs_core_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'site_mail';
-  $strongarm->value = 'leonardo.silva@taller.net.br';
+  $strongarm->value = 'testes@taller.net.br';
   $export['site_mail'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -1237,7 +1237,7 @@ imce/*
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'theme_default';
-  $strongarm->value = 'delite';
+  $strongarm->value = 'drupaldeelite';
   $export['theme_default'] = $strongarm;
 
   $strongarm = new stdClass();

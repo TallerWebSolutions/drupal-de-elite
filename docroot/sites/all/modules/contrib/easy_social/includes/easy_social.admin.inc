@@ -506,7 +506,7 @@ function easy_social_admin_summary() {
     for ($i = 1; $i <= $count; ++$i) {
       $table .= '<table>';
       $table .= '<tr><td colspan="2"><strong>' . t('Block') . ' #' . $i . '</strong></td></tr>';
-      $title = variable_get_value("easy_social_block_{$i}_title");
+      $title = filter_xss((variable_get_value("easy_social_block_{$i}_title"))); 
 
       if (empty($title)) {
         $title = check_plain('<empty>');

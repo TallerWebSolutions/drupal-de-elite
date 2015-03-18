@@ -4,9 +4,9 @@ package = Commerce
 dependencies[] = commerce
 core = 7.x
 
-; Information added by drupal.org packaging script on 2013-07-23
-version = "7.x-1.8"
+; Information added by Drupal.org packaging script on 2015-01-16
+version = "7.x-1.11"
 core = "7.x"
 project = "commerce"
-datestamp = "1374609067"
+datestamp = "1421426596"
 
