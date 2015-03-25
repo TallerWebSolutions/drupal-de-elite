@@ -15,7 +15,7 @@
     color: white
 
 .header-site-title
-  @extend .large-5
+  @extend .large-6
   @extend .columns
   text-align: center
   h1
@@ -31,8 +31,9 @@
     margin-top: 10px
 
 .header-blocks
-  @extend .large-7
+  @extend .large-6
   @extend .columns
+  padding-left: 0
   .block-easy-social
     margin: 20px 0
   #edit-socialloginandsocialshare-links
@@ -99,6 +100,15 @@
   #edit-submit
     @extend %tiny-secondary-button
     margin-top: 3px
+
+.login-link
+  @extend .button
+  @extend .small
+  @extend .secondary
+  color: $primary-color
+
+.logged-in .login-link
+  display: none
 
 // Main menu styles.
 .main-menu-wrapper

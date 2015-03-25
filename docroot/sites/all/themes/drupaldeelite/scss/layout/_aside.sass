@@ -58,12 +58,43 @@ h2.block-title
   ul.pager
     margin-top: 20px
 
-// Comments.
-a img.dsq-widget-avatar  
-  width: 48px
-  height: auto
-  margin-right: 10px
-  border-radius: 50%
+// Comments block.
+a img.dsq-widget-avatar
+  @extend %side-content-img
 
 .dsq-widget-comment
   display: block
+
+// Author block.
+.view-autor
+  .views-field-picture
+    float: left
+  img
+    @extend %side-content-img
+  .views-field-view-user
+    a
+      @extend %side-content-title
+
+// Last posts block.
+.view-posts
+  .views-row
+    @extend %side-content-list-item
+  .views-field-field-image
+    float: left
+  img
+    @extend %side-content-img
+  .views-field-title
+    a
+      @extend %side-content-title
+ 
+// Related content block.
+.view-related-content
+  .views-row
+    @extend %side-content-list-item
+  .views-field-field-image
+    float: left
+  img
+    @extend %side-content-img
+  .views-field-title
+    a
+      @extend %side-content-title
