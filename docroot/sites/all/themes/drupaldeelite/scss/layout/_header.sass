@@ -1,0 +1,146 @@
+// Non-modular or client styles for .l-header region.
+
+// .l-header {}
+
+// Top Bar
+//--------------------------------------------------
+
+// .top-bar-section {}
+// .top-bar-section .left {}
+// .top-bar-section .right {}
+
+.l-header-region
+  background-color: $primary-color
+  *
+    color: white
+
+.header-site-title
+  @extend .large-5
+  @extend .columns
+  text-align: center
+  h1
+    font-size: 2rem
+    line-height: 1em
+    margin: 0
+  .site-slogan
+    font-size: 1.5rem
+    line-height: 1em
+    font-weight: lighter
+    margin: 0
+  img
+    margin-top: 10px
+
+.header-blocks
+  @extend .large-7
+  @extend .columns
+  .block-easy-social
+    margin: 20px 0
+  #edit-socialloginandsocialshare-links
+    @extend .large-4
+    @extend .columns
+    padding-left: 0
+    .lr-secured-linkboxtext, .lr-secured-link
+      @extend %dark-bg-link
+      margin-top: 5px
+  .form-item
+    border: none
+    float: left
+    margin-top: 0
+    margin-bottom: 0
+    input
+      width: 100px
+      border: none
+      margin-right: 10px
+      margin-bottom: 0
+    label
+      display: inline-block
+  .item-list
+    float: left
+    ul
+      list-style: none
+      li
+        display: inline-block
+        margin-left: 0
+        margin-right: 5px
+        a
+          @extend %dark-bg-link
+          font-size: 0.8rem
+  
+  // Logged specific styles.
+  .block-views-subscriptions-block
+    @extend .columns
+    @extend .large-8
+    padding-left: 0
+    a
+      @extend %dark-bg-link
+
+  .block-views-usuarios-block-1
+    @extend .columns
+    @extend .large-4
+    margin-top: 5px
+    .views-row
+      *
+        float: left
+    img
+      border-radius: 50%
+      margin-right: 5px
+    a
+      @extend %dark-bg-link
+      font-size: 0.8rem
+      line-height: 1.4em
+      margin-right: 5px
+  h2.block-title.element-invisible
+    height: auto
+    position: static !important
+    font-size: 1.5em
+    margin-top: 0
+    margin-bottom: 0
+
+  #edit-submit
+    @extend %tiny-secondary-button
+    margin-top: 3px
+
+// Main menu styles.
+.main-menu-wrapper
+  text-align: center
+ul#main-menu
+  @extend .button-group
+  float: none !important
+  display: inline-block
+  margin: 10px 0 20px 0
+  li
+    position: relative
+    a
+      @extend .button
+      @extend .medium
+      margin: 0
+      font-weight: normal
+      display: block
+    ul
+      list-style: none
+      margin: 0
+      display: none
+      position: absolute
+      top: 100%
+      left: 0
+      z-index: 100
+    &:hover > ul
+      display: block
+
+// Mobile main menu.
+div.responsive-menus.responsified
+  span.toggler
+    @extend .button
+    @extend .large
+    @extend .expanded
+    margin: 20px 0
+  &.responsive-toggled
+    span.toggler
+      margin-bottom: 0
+  ul.responsive-menus-simple
+    display: none
+    li a
+      @extend .button
+      @extend .expanded
+      margin: 0
+      display: block

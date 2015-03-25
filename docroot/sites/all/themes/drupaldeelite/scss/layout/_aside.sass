@@ -1,0 +1,69 @@
+// Non-modular or client styles for asides or sidebars.
+
+// .l-sidebar {}
+
+// .sidebar {}
+// .sidebar-first {}
+// .sidebar-second {}
+
+aside.sidebar-second
+  @extend .large-4
+  section
+    margin: 20px 0
+
+h2.block-title
+  font-size: $h4-font-size
+  line-height: 1em
+
+// Facebook block.
+.boxes-box-content iframe
+  height: 290px
+  max-width: 100%
+
+// Search form.
+#search-block-form
+  input[id^="edit-search-block-form"]
+    display: inline
+    width: 60%
+    border-right: 0
+    margin-bottom: 0
+  button.form-submit
+    display: inline
+    width: 40%
+    border-left: 0
+    margin-bottom: 0
+
+// Tags.
+.view-tags
+  a
+    @extend .button
+    @extend .tiny
+    @extend .secondary
+    margin: 2px 0
+  .views-row
+    display: inline
+
+// Tweets.
+.view-tweets
+  .views-row
+    padding: 10px
+    &:nth-child(odd)
+      background-color: $secondary-color
+      border-radius: 0.5rem
+  .views-field-profile-image-url
+    float: left
+    margin-right: 10px
+    img
+      border-radius: 50%
+  ul.pager
+    margin-top: 20px
+
+// Comments.
+a img.dsq-widget-avatar  
+  width: 48px
+  height: auto
+  margin-right: 10px
+  border-radius: 50%
+
+.dsq-widget-comment
+  display: block
