@@ -11,6 +11,8 @@
 
 .l-header-region
   background-color: $primary-color
+  @media all and (max-width: $small-screen)
+    text-align: center
   *
     color: white
 
@@ -29,12 +31,31 @@
     margin: 0
   img
     margin-top: 10px
+    width: 72px
 
 .header-blocks
   @extend .large-7
   @extend .columns
   .block-easy-social
     margin: 20px 0
+    @media all and (max-width: $de-medium-screen)
+      width: 300px
+      float: right
+      .easy_social-widget
+        float: right
+        margin-bottom: 10px
+        margin-right: 0
+    @media all and (max-width: $small-screen)
+      width: auto
+      float: none
+      display: inline-block
+      margin-right: -50px
+    @media all and (max-width: $de-smallest-screen)
+      width: 300px
+    .easy_social-widget
+      &.easy_social-widget-googleplus,
+      &.easy_social-widget-twitter
+        margin-left: 20px
   #edit-socialloginandsocialshare-links
     @extend .large-4
     @extend .columns
@@ -99,6 +120,23 @@
   #edit-submit
     @extend %tiny-secondary-button
     margin-top: 3px
+
+.login-link
+  @extend .button
+  @extend .small
+  @extend .secondary
+  color: $primary-color
+  &:hover
+    color: $primary-color
+  @media all and (max-width: $de-medium-screen)
+    float: right
+    margin-right: 50px
+  @media all and (max-width: $small-screen)
+    float: none
+    margin: 0
+
+.logged-in .login-link
+  display: none
 
 // Main menu styles.
 .main-menu-wrapper
