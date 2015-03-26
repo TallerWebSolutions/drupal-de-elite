@@ -94,6 +94,9 @@
         <div class="header-blocks">
           <?php print render($page['header']); ?>
         </div>
+
+        <a href="/user" class="login-link">Login/Registrar</a>
+
         <?php if ($top_bar_main_menu) :?>
           <div class="main-menu-wrapper">
             <?php print $top_bar_main_menu; ?>

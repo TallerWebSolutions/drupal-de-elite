@@ -20,6 +20,15 @@ h2.block-title
   height: 290px
   max-width: 100%
 
+.block-boxes-facebook-likebox
+  display: inline-block
+  @media all and (max-width: $de-small-screen)
+    width: 100%
+
+#boxes-box-facebook_likebox
+  @media all and (max-width: $de-small-screen)
+    text-align: center
+
 // Search form.
 #search-block-form
   input[id^="edit-search-block-form"]
@@ -47,6 +56,7 @@ h2.block-title
 .view-tweets
   .views-row
     padding: 10px
+    overflow: auto
     &:nth-child(odd)
       background-color: $secondary-color
       border-radius: 0.5rem
@@ -58,12 +68,55 @@ h2.block-title
   ul.pager
     margin-top: 20px
 
-// Comments.
-a img.dsq-widget-avatar  
-  width: 48px
-  height: auto
-  margin-right: 10px
-  border-radius: 50%
+.block-views-tweets-block
+  @media all and (max-width: $small-screen)
+    width: 45%
+    float: right
+  @media all and (max-width: $de-small-screen)
+    width: auto
+    float: none
+
+// Comments block.
+a img.dsq-widget-avatar
+  @extend %side-content-img
 
 .dsq-widget-comment
   display: block
+
+.block-disqus-disqus-recent-comments
+  clear: both
+
+// Author block.
+.view-autor
+  .views-field-picture
+    float: left
+  img
+    @extend %side-content-img
+  .views-field-view-user
+    a
+      @extend %side-content-title
+
+// Last posts block.
+.block-views-posts-block-2
+  .view-posts
+    .views-row
+      @extend %side-content-list-item
+    .views-field-field-image
+      float: left
+    img
+      @extend %side-content-img
+    .views-field-title
+      a
+        @extend %side-content-title
+ 
+// Related content block.
+.view-related-content
+  .views-row
+    @extend %side-content-list-item
+  .views-field-field-image
+    float: left
+  img
+    @extend %side-content-img
+  .views-field-title
+    a
+      @extend %side-content-title
