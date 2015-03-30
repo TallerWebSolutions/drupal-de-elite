@@ -64,18 +64,6 @@
     .lr-secured-linkboxtext, .lr-secured-link
       @extend %dark-bg-link
       margin-top: 5px
-  .form-item
-    border: none
-    float: left
-    margin-top: 0
-    margin-bottom: 0
-    input
-      width: 100px
-      border: none
-      margin-right: 10px
-      margin-bottom: 0
-    label
-      display: inline-block
   .item-list
     float: left
     ul
@@ -100,6 +88,8 @@
     @extend .columns
     @extend .large-4
     margin-top: 5px
+    @media all and (max-width: $small-screen)
+      margin-top: 20px
     .views-row
       *
         float: left
@@ -122,6 +112,7 @@
     @extend %tiny-secondary-button
     margin-top: 3px
 
+// Login page link.
 .login-link
   @extend .button
   @extend .small
@@ -170,8 +161,7 @@ ul#main-menu
 div.responsive-menus.responsified
   span.toggler
     @extend .button
-    @extend .large
-    @extend .expanded
+    @extend .medium
     margin: 20px 0
   &.responsive-toggled
     span.toggler
