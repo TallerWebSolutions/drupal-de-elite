@@ -126,7 +126,7 @@ function user_pass_reset($form, &$form_state, $uid, $timestamp, $hashed_pass, $a
         drupal_set_message(t('You have tried to use a one-time login link that has expired. Please request a new one using the form below.'));
         drupal_goto('user/password');
       }
-      elseif ($account->uid && $timestamp >= $account->login && $timestamp <= $current && $hashed_pass == user_pass_rehash($account->pass, $timestamp, $account->login)) {
+      elseif ($account->uid && $timestamp >= $account->login && $timestamp <= $current && $hashed_pass == user_pass_rehash($account->pass, $timestamp, $account->login, $account->uid)) {
         // First stage is a confirmation form, then login
         if ($action == 'login') {
           // Set the new user.
@@ -159,6 +159,7 @@ function user_pass_reset($form, &$form_state, $uid, $timestamp, $hashed_pass, $a
       // Deny access, no more clues.
       // Everything will be in the watchdog's URL for the administrator to check.
       drupal_access_denied();
+      drupal_exit();
     }
   }
 }
@@ -182,8 +183,11 @@ function user_logout() {
 /**
  * Process variables for user-profile.tpl.php.
  *
- * The $variables array contains the following arguments:
- * - $account
+ * @param array $variables
+ *   An associative array containing:
+ *   - elements: An associative array containing the user information and any
+ *     fields attached to the user. Properties used:
+ *     - #account: The user account of the profile being viewed.
  *
  * @see user-profile.tpl.php
  */
@@ -519,7 +523,7 @@ function user_cancel_confirm($account, $timestamp = 0, $hashed_pass = '') {
   // Basic validation of arguments.
   if (isset($account->data['user_cancel_method']) && !empty($timestamp) && !empty($hashed_pass)) {
     // Validate expiration and hashed password/login.
-    if ($timestamp <= $current && $current - $timestamp < $timeout && $account->uid && $timestamp >= $account->login && $hashed_pass == user_pass_rehash($account->pass, $timestamp, $account->login)) {
+    if ($timestamp <= $current && $current - $timestamp < $timeout && $account->uid && $timestamp >= $account->login && $hashed_pass == user_pass_rehash($account->pass, $timestamp, $account->login, $account->uid)) {
       $edit = array(
         'user_cancel_notify' => isset($account->data['user_cancel_notify']) ? $account->data['user_cancel_notify'] : variable_get('user_mail_status_canceled_notify', FALSE),
       );
@@ -534,14 +538,20 @@ function user_cancel_confirm($account, $timestamp = 0, $hashed_pass = '') {
       drupal_goto("user/$account->uid/cancel");
     }
   }
-  drupal_access_denied();
+  return MENU_ACCESS_DENIED;
 }
 
 /**
- * Access callback for path /user.
+ * Page callback: Displays the user page.
  *
  * Displays user profile if user is logged in, or login form for anonymous
  * users.
+ *
+ * @return
+ *   A render array for either a user profile or a login form.
+ *
+ * @see user_view_page()
+ * @see user_login()
  */
 function user_page() {
   global $user;

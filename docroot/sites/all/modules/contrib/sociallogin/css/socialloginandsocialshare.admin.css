@@ -1,0 +1,172 @@
+#lr_tabs {
+    bottom: -1px;
+    font-size: 1.54em;
+    line-height: 1.54em;
+    margin: 0;
+}
+
+div#lr_tabs li {
+    display: inline;
+    list-style: none;
+    margin: 0 0 0 -3px;
+    padding: 0;
+}
+
+div#lr_tabs li a {
+    border: 1px solid #aaaaaa /*{borderColorHeader}*/;
+    background: #cccccc;
+    -moz-border-radius: 8px 8px 0 0;
+    -webkit-border-top-left-radius: 8px;
+    -webkit-border-top-right-radius: 8px;
+    border-radius: 8px 8px 0 0;
+    color: #000;
+    display: inline-block;
+    font-size: 11px;
+    font-weight: bold;
+    margin: 0 5px 2px 0;
+    outline: 0;
+    padding: 0 14px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+div#lr_tabs li a.active, div#lr_tabs li a:hover {
+    color: white;
+    border: 1px solid white !important;
+    background: #666;
+}
+
+#show_horizontal_block {
+    display: block;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: -8px;
+}
+
+.form-item.form-type-radio.form-item-socialloginandsocialshare-share-horizontal-images > input {
+    margin: 15px 15px 15px 0px;
+}
+
+#horizonSharing32 {
+    margin-bottom: -11px;
+}
+
+#horizonSharing16 {
+    margin-bottom: -4px;
+
+}
+
+#horizontalvertical {
+    margin-bottom: -29px;
+
+}
+
+#horizontal {
+    margin-top: 20px;
+    margin-bottom: -12px;
+    margin-left: -4px;
+
+}
+
+#VerticlewithBox {
+    margin-left: 7px;
+}
+
+#single-image-theme-large {
+    margin-bottom: -6px;
+
+}
+
+#single-image-theme-small {
+    margin-bottom: -4px;
+
+}
+
+.form-item.form-type-radio.form-item-socialloginandsocialshare-attach-login-form,
+.form-item.form-type-radio.form-item-socialloginandsocialshare-loginpage-position,
+.form-item.form-type-radio.form-item-socialloginandsocialshare-registerpage-position,
+.form-item.form-type-radio.form-item-socialloginandsocialshare-enable-horizontal-share,
+.form-item.form-type-radio.form-item-socialloginandsocialshare-enable-vertical-share,
+.form-item.form-type-radio.form-item-socialloginandsocialshare-interface-size,
+.form-item.form-type-radio.form-item-socialloginandsocialshare-update-profile,
+.form-item.form-type-radio.form-item-socialloginandsocialshare-commenting-enable,
+.form-item.form-type-radio.form-item-socialloginandsocialshare-interface-size,
+.form-item.form-type-radio.form-item-socialloginandsocialshare-enable-user-registration,
+.form-item.form-type-radio.form-item-socialloginandsocialshare-send-user-credentials,
+.form-item.form-type-radio.form-item-socialloginandsocialshare-same-window-enable,
+.form-item.form-type-radio.form-item-socialloginandsocialshare-debug-mode {
+    display: inline;
+    margin-right: 17px;
+}
+
+div#socialshare_vetical_show_providers_list > div > input, div#socialcounter_vertical_show_providers_list > div > input, div#socialcounter_show_providers_list > div > input, div#socialshare_providers_list > div > input {
+    margin-right: 10px;
+}
+
+#socialshare_providers_list > div, #socialshare_vetical_show_providers_list > div, #socialcounter_show_providers_list > div, #socialcounter_vertical_show_providers_list > div {
+    display: inline-block;
+    margin-right: 17px;
+    width: 252px;
+}
+
+ul#socialloginandsocialshare_rearrange_providers > li, ul#socialshare_vertical_rearrange_providers > li {
+    float: left;
+    margin-left: 0px;
+}
+
+ul#socialloginandsocialshare_rearrange_providers, ul#socialshare_vertical_rearrange_providers {
+    margin-bottom: 40px;
+    padding-bottom: 19px;
+}
+
+#horizontal_sharing_show, .form-item.form-type-radios.form-item-socialshare-vertical-position {
+    clear: both;
+}
+
+#horizontal_sharing_show, #socialshare_providers_list, #socialshare_vetical_show_providers_list {
+    padding: 9px 0;
+    margin: 0 0 10px;
+}
+
+.form-item.form-type-radio.form-item-socialloginandsocialshare-share-vertical-images > input {
+    margin: 0px 15px 15px 15px;
+}
+
+div#socialloginandsocialshare_share_vertical_images > div.form-item-socialloginandsocialshare-share-vertical-images {
+    float: left;
+    margin-right: 25px;
+}
+
+#edit-thanks-block span {
+    text-transform: none;
+}
+
+#thanks_block {
+    background-color: #EAF7FF;
+    border: solid 1px;
+    border-color: rgb(195, 239, 250);
+    padding-bottom: 10px;
+    border-radius: 7px;
+    padding: 10px;
+    width: 350px;
+    height: 172px;
+    margin-right: 4px;
+    float: left;
+}
+
+#sociallogin_get_update {
+    background-color: #FFFFE0;
+    border: solid 1px;
+    border-color: rgb(195, 239, 250);
+    padding-bottom: 10px;
+    border-radius: 7px;
+    padding: 10px;
+    height: 172px;
+    width: 376px;
+    margin-top: -30px;
+}
+
+.form-item.form-type-radios.form-item-socialloginandsocialshare-enable-horizontal-share, .form-item.form-type-radios.form-item-socialloginandsocialshare-enable-vertical-share {
+    margin-bottom: 12px;
+}

@@ -1,0 +1,122 @@
+// Non-modular or client styles for asides or sidebars.
+
+// .l-sidebar {}
+
+// .sidebar {}
+// .sidebar-first {}
+// .sidebar-second {}
+
+aside.sidebar-second
+  @extend .large-4
+  section
+    margin: 20px 0
+
+h2.block-title
+  font-size: $h4-font-size
+  line-height: 1em
+
+// Facebook block.
+.boxes-box-content iframe
+  height: 290px
+  max-width: 100%
+
+.block-boxes-facebook-likebox
+  display: inline-block
+  @media all and (max-width: $de-small-screen)
+    width: 100%
+
+#boxes-box-facebook_likebox
+  @media all and (max-width: $de-small-screen)
+    text-align: center
+
+// Search form.
+#search-block-form
+  input[id^="edit-search-block-form"]
+    display: inline
+    width: 60%
+    border-right: 0
+    margin-bottom: 0
+  button.form-submit
+    display: inline
+    width: 40%
+    border-left: 0
+    margin-bottom: 0
+
+// Tags.
+.view-tags
+  a
+    @extend .button
+    @extend .tiny
+    @extend .secondary
+    margin: 2px 0
+  .views-row
+    display: inline
+
+// Tweets.
+.view-tweets
+  .views-row
+    padding: 10px
+    overflow: auto
+    &:nth-child(odd)
+      background-color: $secondary-color
+      border-radius: 0.5rem
+  .views-field-profile-image-url
+    float: left
+    margin-right: 10px
+    img
+      border-radius: 50%
+  ul.pager
+    margin-top: 20px
+
+.block-views-tweets-block
+  @media all and (max-width: $small-screen)
+    width: 45%
+    float: right
+  @media all and (max-width: $de-small-screen)
+    width: auto
+    float: none
+
+// Comments block.
+a img.dsq-widget-avatar
+  @extend %side-content-img
+
+.dsq-widget-comment
+  display: block
+
+.block-disqus-disqus-recent-comments
+  clear: both
+
+// Author block.
+.view-autor
+  .views-field-picture
+    float: left
+  img
+    @extend %side-content-img
+  .views-field-view-user
+    a
+      @extend %side-content-title
+
+// Last posts block.
+.block-views-posts-block-2
+  .view-posts
+    .views-row
+      @extend %side-content-list-item
+    .views-field-field-image
+      float: left
+    img
+      @extend %side-content-img
+    .views-field-title
+      a
+        @extend %side-content-title
+ 
+// Related content block.
+.view-related-content
+  .views-row
+    @extend %side-content-list-item
+  .views-field-field-image
+    float: left
+  img
+    @extend %side-content-img
+  .views-field-title
+    a
+      @extend %side-content-title
