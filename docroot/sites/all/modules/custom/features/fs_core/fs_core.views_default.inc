@@ -51,7 +51,7 @@ function fs_core_views_default_views() {
   $handler->display->display_options['fields']['picture']['label'] = '';
   $handler->display->display_options['fields']['picture']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['picture']['empty'] = '<img src="/sites/all/themes/delite/images/avatar-35.jpg">';
-  $handler->display->display_options['fields']['picture']['image_style'] = 'related_content_35x35';
+  $handler->display->display_options['fields']['picture']['image_style'] = 'list_posts_150x150';
   /* Campo: Usuário: Nome real */
   $handler->display->display_options['fields']['field_realname']['id'] = 'field_realname';
   $handler->display->display_options['fields']['field_realname']['table'] = 'field_data_field_realname';
@@ -718,7 +718,7 @@ return implode(\'+\',$terms);
   $handler->display->display_options['fields']['field_image']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_image']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_image']['settings'] = array(
-    'image_style' => 'related_content_35x35',
+    'image_style' => 'list_posts_150x150',
     'image_link' => 'content',
   );
   /* Campo: Conteúdo: Título */

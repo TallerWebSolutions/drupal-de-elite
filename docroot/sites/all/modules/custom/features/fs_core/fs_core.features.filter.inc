@@ -30,11 +30,6 @@ function fs_core_filter_default_formats() {
           'filter_url_length' => 72,
         ),
       ),
-      'media_filter' => array(
-        'weight' => -46,
-        'status' => 1,
-        'settings' => array(),
-      ),
       'filter_html' => array(
         'weight' => -44,
         'status' => 1,
@@ -72,11 +67,6 @@ function fs_core_filter_default_formats() {
           'filter_url_length' => 72,
         ),
       ),
-      'media_filter' => array(
-        'weight' => -46,
-        'status' => 1,
-        'settings' => array(),
-      ),
       'syntaxhighlighter' => array(
         'weight' => -41,
         'status' => 1,
@@ -113,11 +103,6 @@ function fs_core_filter_default_formats() {
         'settings' => array(
           'filter_url_length' => 72,
         ),
-      ),
-      'media_filter' => array(
-        'weight' => -43,
-        'status' => 1,
-        'settings' => array(),
       ),
       'syntaxhighlighter' => array(
         'weight' => -40,

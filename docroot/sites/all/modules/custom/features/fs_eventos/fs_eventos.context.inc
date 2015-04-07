@@ -35,65 +35,29 @@ function fs_eventos_context_default_contexts() {
   $context->reactions = array(
     'block' => array(
       'blocks' => array(
-        'search-form' => array(
-          'module' => 'search',
-          'delta' => 'form',
-          'region' => 'sidebar_first',
-          'weight' => '-10',
-        ),
-        'views-palestrante-block' => array(
-          'module' => 'views',
-          'delta' => 'palestrante-block',
-          'region' => 'sidebar_first',
-          'weight' => '-9',
-        ),
-        'views-eventos-block_2' => array(
-          'module' => 'views',
-          'delta' => 'eventos-block_2',
-          'region' => 'sidebar_first',
-          'weight' => '-8',
-        ),
-        'views-tags-block' => array(
-          'module' => 'views',
-          'delta' => 'tags-block',
-          'region' => 'sidebar_first',
-          'weight' => '-7',
-        ),
-        'views-related_content-block_1' => array(
-          'module' => 'views',
-          'delta' => 'related_content-block_1',
-          'region' => 'sidebar_first',
-          'weight' => '-6',
-        ),
-        'disqus-disqus_recent_comments' => array(
-          'module' => 'disqus',
-          'delta' => 'disqus_recent_comments',
-          'region' => 'sidebar_first',
-          'weight' => '-5',
-        ),
         'easy_social-easy_social_block_1' => array(
           'module' => 'easy_social',
           'delta' => 'easy_social_block_1',
-          'region' => 'search_box',
+          'region' => 'header',
           'weight' => '-10',
-        ),
-        'user-login' => array(
-          'module' => 'user',
-          'delta' => 'login',
-          'region' => 'search_box',
-          'weight' => '-9',
         ),
         'views-subscriptions-block' => array(
           'module' => 'views',
           'delta' => 'subscriptions-block',
-          'region' => 'search_box',
+          'region' => 'header',
           'weight' => '-8',
         ),
         'views-usuarios-block_1' => array(
           'module' => 'views',
           'delta' => 'usuarios-block_1',
-          'region' => 'search_box',
+          'region' => 'header',
           'weight' => '-7',
+        ),
+        'system-help' => array(
+          'module' => 'system',
+          'delta' => 'help',
+          'region' => 'help',
+          'weight' => '-10',
         ),
         'system-main' => array(
           'module' => 'system',
@@ -101,11 +65,41 @@ function fs_eventos_context_default_contexts() {
           'region' => 'content',
           'weight' => '-10',
         ),
-        'system-help' => array(
-          'module' => 'system',
-          'delta' => 'help',
-          'region' => 'help',
+        'search-form' => array(
+          'module' => 'search',
+          'delta' => 'form',
+          'region' => 'sidebar_second',
           'weight' => '-10',
+        ),
+        'views-palestrante-block' => array(
+          'module' => 'views',
+          'delta' => 'palestrante-block',
+          'region' => 'sidebar_second',
+          'weight' => '-9',
+        ),
+        'views-eventos-block_2' => array(
+          'module' => 'views',
+          'delta' => 'eventos-block_2',
+          'region' => 'sidebar_second',
+          'weight' => '-8',
+        ),
+        'views-tags-block' => array(
+          'module' => 'views',
+          'delta' => 'tags-block',
+          'region' => 'sidebar_second',
+          'weight' => '-7',
+        ),
+        'views-related_content-block_1' => array(
+          'module' => 'views',
+          'delta' => 'related_content-block_1',
+          'region' => 'sidebar_second',
+          'weight' => '-6',
+        ),
+        'disqus-disqus_recent_comments' => array(
+          'module' => 'disqus',
+          'delta' => 'disqus_recent_comments',
+          'region' => 'sidebar_second',
+          'weight' => '-5',
         ),
       ),
     ),

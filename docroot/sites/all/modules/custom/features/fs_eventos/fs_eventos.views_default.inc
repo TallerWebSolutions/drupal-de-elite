@@ -96,6 +96,7 @@ function fs_eventos_views_default_views() {
   $handler->display->display_options['arguments']['field_date_value']['table'] = 'field_data_field_date';
   $handler->display->display_options['arguments']['field_date_value']['field'] = 'field_date_value';
   $handler->display->display_options['arguments']['field_date_value']['exception']['title'] = 'Tudo';
+  $handler->display->display_options['arguments']['field_date_value']['default_argument_type'] = 'date';
   $handler->display->display_options['arguments']['field_date_value']['summary']['format'] = 'default_summary';
   /* Filter criterion: Conteúdo: Publicado */
   $handler->display->display_options['filters']['status']['id'] = 'status';
@@ -180,18 +181,13 @@ function fs_eventos_views_default_views() {
   $handler->display->display_options['fields']['rendered_entity']['link_to_entity'] = 1;
   $handler->display->display_options['fields']['rendered_entity']['display'] = 'view';
   $handler->display->display_options['fields']['rendered_entity']['view_mode'] = 'full';
-  /* Campo: Colorbox: Colorbox trigger */
+  /* Campo: Handler quebrado ou não encontrado */
   $handler->display->display_options['fields']['colorbox']['id'] = 'colorbox';
   $handler->display->display_options['fields']['colorbox']['table'] = 'colorbox';
   $handler->display->display_options['fields']['colorbox']['field'] = 'colorbox';
   $handler->display->display_options['fields']['colorbox']['label'] = '';
   $handler->display->display_options['fields']['colorbox']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['colorbox']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['colorbox']['trigger_field'] = 'title';
-  $handler->display->display_options['fields']['colorbox']['popup'] = '[rendered_entity]';
-  $handler->display->display_options['fields']['colorbox']['gid'] = 1;
-  $handler->display->display_options['fields']['colorbox']['width'] = '700px';
-  $handler->display->display_options['fields']['colorbox']['height'] = '550px';
   /* Campo: Conteúdo: Dados */
   $handler->display->display_options['fields']['field_date']['id'] = 'field_date';
   $handler->display->display_options['fields']['field_date']['table'] = 'field_data_field_date';
@@ -216,6 +212,7 @@ function fs_eventos_views_default_views() {
   $handler->display->display_options['arguments']['date_argument']['field'] = 'date_argument';
   $handler->display->display_options['arguments']['date_argument']['default_action'] = 'default';
   $handler->display->display_options['arguments']['date_argument']['exception']['title'] = 'Tudo';
+  $handler->display->display_options['arguments']['date_argument']['default_argument_type'] = 'date';
   $handler->display->display_options['arguments']['date_argument']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['date_argument']['add_delta'] = 'yes';
   $handler->display->display_options['arguments']['date_argument']['date_fields'] = array(
@@ -262,18 +259,13 @@ function fs_eventos_views_default_views() {
   $handler->display->display_options['fields']['rendered_entity']['link_to_entity'] = 1;
   $handler->display->display_options['fields']['rendered_entity']['display'] = 'view';
   $handler->display->display_options['fields']['rendered_entity']['view_mode'] = 'full';
-  /* Campo: Colorbox: Colorbox trigger */
+  /* Campo: Handler quebrado ou não encontrado */
   $handler->display->display_options['fields']['colorbox']['id'] = 'colorbox';
   $handler->display->display_options['fields']['colorbox']['table'] = 'colorbox';
   $handler->display->display_options['fields']['colorbox']['field'] = 'colorbox';
   $handler->display->display_options['fields']['colorbox']['label'] = '';
   $handler->display->display_options['fields']['colorbox']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['colorbox']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['colorbox']['trigger_field'] = 'title';
-  $handler->display->display_options['fields']['colorbox']['popup'] = '[rendered_entity]';
-  $handler->display->display_options['fields']['colorbox']['gid'] = 1;
-  $handler->display->display_options['fields']['colorbox']['width'] = '750px';
-  $handler->display->display_options['fields']['colorbox']['height'] = '550px';
   /* Campo: Conteúdo: Dados */
   $handler->display->display_options['fields']['field_date']['id'] = 'field_date';
   $handler->display->display_options['fields']['field_date']['table'] = 'field_data_field_date';
@@ -308,6 +300,7 @@ function fs_eventos_views_default_views() {
   $handler->display->display_options['arguments']['field_date_value']['table'] = 'field_data_field_date';
   $handler->display->display_options['arguments']['field_date_value']['field'] = 'field_date_value';
   $handler->display->display_options['arguments']['field_date_value']['exception']['title'] = 'Tudo';
+  $handler->display->display_options['arguments']['field_date_value']['default_argument_type'] = 'date';
   $handler->display->display_options['arguments']['field_date_value']['summary']['format'] = 'default_summary';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
@@ -404,18 +397,13 @@ function fs_eventos_views_default_views() {
   $handler->display->display_options['fields']['rendered_entity']['link_to_entity'] = 1;
   $handler->display->display_options['fields']['rendered_entity']['display'] = 'view';
   $handler->display->display_options['fields']['rendered_entity']['view_mode'] = 'full';
-  /* Campo: Colorbox: Colorbox trigger */
+  /* Campo: Handler quebrado ou não encontrado */
   $handler->display->display_options['fields']['colorbox']['id'] = 'colorbox';
   $handler->display->display_options['fields']['colorbox']['table'] = 'colorbox';
   $handler->display->display_options['fields']['colorbox']['field'] = 'colorbox';
   $handler->display->display_options['fields']['colorbox']['label'] = '';
   $handler->display->display_options['fields']['colorbox']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['colorbox']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['colorbox']['trigger_field'] = 'title';
-  $handler->display->display_options['fields']['colorbox']['popup'] = '[rendered_entity]';
-  $handler->display->display_options['fields']['colorbox']['gid'] = 1;
-  $handler->display->display_options['fields']['colorbox']['width'] = '700px';
-  $handler->display->display_options['fields']['colorbox']['height'] = '550px';
   /* Campo: Conteúdo: Dados */
   $handler->display->display_options['fields']['field_date']['id'] = 'field_date';
   $handler->display->display_options['fields']['field_date']['table'] = 'field_data_field_date';
@@ -452,6 +440,7 @@ function fs_eventos_views_default_views() {
   $handler->display->display_options['arguments']['date_argument']['field'] = 'date_argument';
   $handler->display->display_options['arguments']['date_argument']['default_action'] = 'default';
   $handler->display->display_options['arguments']['date_argument']['exception']['title'] = 'Tudo';
+  $handler->display->display_options['arguments']['date_argument']['default_argument_type'] = 'date';
   $handler->display->display_options['arguments']['date_argument']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['date_argument']['add_delta'] = 'yes';
   $handler->display->display_options['arguments']['date_argument']['date_fields'] = array(

@@ -1560,15 +1560,6 @@ function fs_core_user_default_permissions() {
     'module' => 'features',
   );
 
-  // Exported permission: 'import media'.
-  $permissions['import media'] = array(
-    'name' => 'import media',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'media',
-  );
-
   // Exported permission: 'kwresearch admin page keywords'.
   $permissions['kwresearch admin page keywords'] = array(
     'name' => 'kwresearch admin page keywords',
