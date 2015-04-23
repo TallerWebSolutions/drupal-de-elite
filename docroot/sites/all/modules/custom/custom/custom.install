@@ -452,7 +452,7 @@ function custom_update_7134(&$sandbox) {
   $ret = array();
 
   module_enable(array(
-    'date_repeat', 
+    'date_repeat',
     'date_repeat_field',
     'date_tools',
     'date_all_day',
@@ -473,7 +473,7 @@ function custom_update_7134(&$sandbox) {
   ));
 
   module_disable(array(
-    'gravatar', 
+    'gravatar',
   ));
 
   drupal_flush_all_caches();
@@ -746,5 +746,15 @@ function custom_update_7150(&$sandbox) {
 
   module_enable(array(
     'jquery_update',
+  ));
+}
+/**
+ * Enable responsive menus.
+ */
+function custom_update_7151(&$sandbox) {
+  $ret = array();
+
+  module_enable(array(
+    'responsive_menus',
   ));
 }
