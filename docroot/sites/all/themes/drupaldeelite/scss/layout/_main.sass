@@ -7,6 +7,65 @@
 // .image {}
 // .breadcrumb {}
 
+// Body.
+body
+  line-height: $line-height-smaller
+  font-family: $text-font
+  font-size: $font-size-smaller
+  height: 100%
+  +breakpoint($small-type-width)
+    &
+      font-size: $font-size-small
+      line-height: $line-height-small
+  +breakpoint($medium-type-width)
+    &
+      font-size: $font-size-medium
+      line-height: $line-height-medium
+  +breakpoint($big-type-width)
+    &
+      font-size: $font-size-big
+      line-height: $line-height-big
+
+// Headers.
+%heading
+  font-family: $heading-font
+  font-weight: 600
+  -webkit-font-smoothing: antialiased
+  font-smoothing: antialiased
+
+h1, h2, h3, h4, h5, h6
+  @extend %heading
+  line-height: 1em
+
+h1
+  font-size: $font-size-h1
+  +breakpoint("smaller-type-width")
+    &
+      font-size: 2.4em
+
+h2
+  font-size: $font-size-h2
+
+h3
+  font-size: $font-size-h3
+
+h4
+  font-size: $font-size-h4
+
+h5
+  font-size: $font-size-h5
+
+h6
+  font-size: $font-size-h6
+
+// Main content.
 div.main
   @extend .large-8
   padding-top: 20px !important
+
+.not-front article.node
+  p
+    @extend %hyphenated-paragraphs
+    max-width: 32em
+    margin-right: auto
+    margin-left: auto
