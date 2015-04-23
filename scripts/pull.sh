@@ -26,10 +26,9 @@ if [[ "$LAST_PART" == "docroot" ]]; then
   #rm -Rf sites/default/config
   #git checkout sites/default/config
   git status
-  #cd sites/all/themes/theme829
-  #bower install
-  #cd sass
-  #compass clean && compass compile
+  cd sites/all/themes/drupaldeelite
+  bower install
+  compass clean && compass compile
   drush cc all
   echo 'Parabéns! Pode acabar com a reza que tudo foi bem! :-)'
 else
