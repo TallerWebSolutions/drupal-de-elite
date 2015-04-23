@@ -20,12 +20,13 @@ if [[ "$LAST_PART" == "docroot" ]]; then
   git pull origin "$BRANCH"
   echo 'Executando possíveis atualizações no Drupal...'
   drush updb -y
-  echo 'Sincronizando o CM com seu banco de dados local..'
+  # echo 'Sincronizando o CM com seu banco de dados local..'
   #drush config-sync
   #echo 'Recuperando a pasta config novamente para te manter sincronizado...'
   #rm -Rf sites/default/config
   #git checkout sites/default/config
   git status
+  echo 'Comandos do tema'
   cd sites/all/themes/drupaldeelite
   bower install
   compass clean && compass compile
