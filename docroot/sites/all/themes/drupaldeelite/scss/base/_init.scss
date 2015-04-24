@@ -12,7 +12,7 @@
 // Comment out this import if you don't want to use normalize.
 @import "normalize";
 // Comment out this import below if you are customizing you imports below.
-@import "foundation";
+// @import "foundation";
 // Uncomment this import if you want to use Compass.
 // @import "compass";
 
@@ -20,20 +20,20 @@
 // risk), comment the above Foundation import and uncomment the ones below.
 
 /* Each individual part that can be added in */
-// @import "foundation/components/global";
-// @import "foundation/components/grid";
+@import "foundation/components/global";
+@import "foundation/components/grid";
 // @import "foundation/components/visibility";
 // @import "foundation/components/block-grid";
 // @import "foundation/components/type";
-// @import "foundation/components/buttons";
-// @import "foundation/components/forms"; // *requires components/buttons
-// @import "foundation/components/custom-forms"; // *requires components/buttons, components/forms
-// @import "foundation/components/button-groups"; // *requires components/buttons
+@import "foundation/components/buttons";
+@import "foundation/components/forms"; // *requires components/buttons
+@import "foundation/components/custom-forms"; // *requires components/buttons, components/forms
+@import "foundation/components/button-groups"; // *requires components/buttons
 // @import "foundation/components/dropdown-buttons"; // *requires components/buttons
 // @import "foundation/components/split-buttons"; // *requires components/buttons
 // @import "foundation/components/flex-video";
 // @import "foundation/components/section";
-// @import "foundation/components/top-bar";  // *requires components/grid
+@import "foundation/components/top-bar";  // *requires components/grid
 // @import "foundation/components/orbit";
 // @import "foundation/components/reveal";
 // @import "foundation/components/joyride";
@@ -51,8 +51,8 @@
 // @import "foundation/components/sub-nav";
 // @import "foundation/components/switch";
 // @import "foundation/components/magellan";
-// @import "foundation/components/tables";
-// @import "foundation/components/thumbs";
+@import "foundation/components/tables";
+@import "foundation/components/thumbs";
 // @import "foundation/components/tooltips";
 // @import "foundation/components/dropdown";
 
