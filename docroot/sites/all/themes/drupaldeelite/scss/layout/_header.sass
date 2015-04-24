@@ -9,6 +9,10 @@
 // .top-bar-section .left {}
 // .top-bar-section .right {}
 
+header.l-header > section
+  max-width: 100%
+  padding: 40px
+
 .l-header-region
   background-color: $primary-color
   @media all and (max-width: $small-screen)
@@ -75,7 +79,7 @@
         a
           @extend %dark-bg-link
           font-size: 0.8rem
-  
+
   // Logged specific styles.
   .block-views-subscriptions-block
     @extend .columns

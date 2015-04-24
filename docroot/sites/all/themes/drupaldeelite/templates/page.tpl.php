@@ -5,31 +5,30 @@
   <header role="banner" class="l-header">
 
 <!--
-    <?php if ($top_bar): ?>
+    </?php if ($top_bar): ?>
       <!-.top-bar ->
-      <?php if ($top_bar_classes): ?>
-      <div class="<?php //print $top_bar_classes; ?>">
-      <?php endif; ?>
-        <nav class="top-bar"<?php //print $top_bar_options; ?>>
+      </?php if ($top_bar_classes): ?>
+      <div class="</?php //print $top_bar_classes; ?>">
+      </?php endif; ?>
+        <nav class="top-bar"</?php //print $top_bar_options; ?>>
           <ul class="title-area">
-            <li class="toggle-topbar menu-icon"><a href="#"><span><?php //print $top_bar_menu_text; ?></span></a></li>
+            <li class="toggle-topbar menu-icon"><a href="#"><span></?php //print $top_bar_menu_text; ?></span></a></li>
           </ul>
           <section class="top-bar-section">
-            <?php if ($top_bar_secondary_menu) :?>
-              <?php //print $top_bar_secondary_menu; ?>
-            <?php endif; ?>
+            </?php if ($top_bar_secondary_menu) :?>
+              </?php //print $top_bar_secondary_menu; ?>
+            </?php endif; ?>
           </section>
         </nav>
-      <?php if ($top_bar_classes): ?>
+      </?php if ($top_bar_classes): ?>
       </div>
-      <?php endif; ?>
+      </?php endif; ?>
       <!-/.top-bar ->
-    <?php endif; ?>
+    </?php endif; ?>
 -->
 
     <!-- Title, slogan and menu -->
-    <?php if ($alt_header): ?>
-    <section class="row <?php print $alt_header_classes; ?>">
+    <section class="row <?//php print $alt_header_classes; ?>">
 
       <?php if ($linked_logo): print $linked_logo; endif; ?>
 
@@ -46,10 +45,16 @@
           </h1>
         <?php endif; ?>
       <?php endif; ?>
+<!--
+      </?php if ($site_slogan): ?>
+        <h2 title="</?php print $site_slogan; ?>" class="site-slogan"></?php print $site_slogan; ?></h2>
+      </?php endif; ?>
+-->
+      <div class="header-blocks">
+        <?php print render($page['header']); ?>
+      </div>
 
-      <?php if ($site_slogan): ?>
-        <h2 title="<?php print $site_slogan; ?>" class="site-slogan"><?php print $site_slogan; ?></h2>
-      <?php endif; ?>
+      <a href="/user" class="login-link">Login/Registrar</a>
 
       <?php if ($alt_main_menu): ?>
         <nav id="main-menu" class="navigation" role="navigation">
@@ -64,47 +69,42 @@
       <?php endif; ?>
 
     </section>
-    <?php endif; ?>
     <!-- End title, slogan and menu -->
 
-    <?php if (!empty($page['header'])): ?>
-      <!--.l-header-region -->
+    <!--  </?php if (!empty($page['header'])): ?>
+
       <section class="l-header-region row">
         <div class="header-site-title">
-          <h1><?php print $linked_logo; ?></h1>
+          <h1></?php print $linked_logo; ?></h1>
 
-          <?php if ($site_name): ?>
-            <?php if ($title): ?>
+          </?php if ($site_name): ?>
+            </?php if ($title): ?>
               <div id="site-name">
                 <h1>
-                  <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home"><span><?php print $site_name; ?></span></a>
+                  <a href="</?php print $front_page; ?>" title="</?php print t('Home'); ?>" rel="home"><span></?php print $site_name; ?></span></a>
                 </h1>
               </div>
-            <?php else: /* Use h1 when the content title is empty */ ?>
+            </?php else: /* Use h1 when the content title is empty */ ?>
               <h1 id="site-name">
-                <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home"><span><?php print $site_name; ?></span></a>
+                <a href="</?php print $front_page; ?>" title="</?php print t('Home'); ?>" rel="home"><span></?php print $site_name; ?></span></a>
               </h1>
-            <?php endif; ?>
-          <?php endif; ?>
+            </?php endif; ?>
+          </?php endif; ?>
 
-          <?php if ($site_slogan): ?>
-            <h2 title="<?php print $site_slogan; ?>" class="site-slogan"><?php print $site_slogan; ?></h2>
-          <?php endif; ?>
-        </div>
-        <div class="header-blocks">
-          <?php print render($page['header']); ?>
+          </?php if ($site_slogan): ?>
+            <h2 title="</?php print $site_slogan; ?>" class="site-slogan"></?php print $site_slogan; ?></h2>
+          </?php endif; ?>
         </div>
 
-        <a href="/user" class="login-link">Login/Registrar</a>
 
-        <?php if ($top_bar_main_menu) :?>
+        </?php if ($top_bar_main_menu) :?>
           <div class="main-menu-wrapper">
-            <?php print $top_bar_main_menu; ?>
+            </?php print $top_bar_main_menu; ?>
           </div>
-        <?php endif; ?>
+        </?php endif; ?>
       </section>
-      <!--/.l-header-region -->
-    <?php endif; ?>
+
+    </?php endif; ?> -->
 
   </header>
   <!--/.l-header -->
