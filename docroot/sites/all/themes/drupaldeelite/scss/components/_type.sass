@@ -16,6 +16,25 @@
     text-decoration: none
     color: white
 
+%menu-link
+  padding: 0.5em 1em
+  font-weight: normal
+  display: inline-block
+  font-family: $heading-font
+  color: $de-soft-gray-main
+  font-weight: bold
+  &:hover
+    color: $de-strong-gray-main
+    background-color: $de-soft-gray-main
+
+%list-block-link
+  color: $de-soft-gray-main
+  line-height: 2em
+  padding: 0 0.5em 0 0
+  margin: 0
+  &:hover
+    text-decoration: underline
+
 // Apply hyphenation in paragraphs.
 %hyphenated-paragraphs
   -webkit-hyphens: auto

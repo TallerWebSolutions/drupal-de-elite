@@ -9,12 +9,13 @@
 // .top-bar-section .left {}
 // .top-bar-section .right {}
 
-header.l-header > section
-  max-width: 100%
-  padding: 40px
+header.l-header
+  border-bottom: 3px solid $de-strong-gray-light !important
+  > section
+    max-width: 100%
+    padding: 40px 40px 0 40px
 
 .l-header-region
-  background-color: $primary-color
   @media all and (max-width: $small-screen)
     text-align: center
   *
@@ -137,19 +138,15 @@ header.l-header > section
 // Main menu styles.
 .main-menu-wrapper
   text-align: center
-ul#main-menu
-  @extend .button-group
+ul#main-menu-links
   float: none !important
   display: inline-block
-  margin: 10px 0 20px 0
+  margin: 10px 0 0 0
   li
     position: relative
+    margin-left: 0
     a
-      @extend .button
-      @extend .medium
-      margin: 0
-      font-weight: normal
-      display: block
+      @extend %menu-link
     ul
       list-style: none
       margin: 0

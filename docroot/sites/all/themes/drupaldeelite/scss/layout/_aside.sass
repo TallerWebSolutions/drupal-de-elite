@@ -15,10 +15,14 @@ h2.block-title
   font-size: $h4-font-size
   line-height: 1em
 
+.boxes-box-content
+  @extend %hyphenated-paragraphs
+
 // Facebook block.
 .boxes-box-content iframe
   height: 290px
   max-width: 100%
+  background-color: $de-soft-gray-light
 
 .block-boxes-facebook-likebox
   display: inline-block
@@ -32,23 +36,21 @@ h2.block-title
 // Search form.
 #search-block-form
   input[id^="edit-search-block-form"]
+    @extend %input
     display: inline
     width: 60%
     border-right: 0
     margin-bottom: 0
   button.form-submit
+    @extend %submit
     display: inline
     width: 40%
-    border-left: 0
     margin-bottom: 0
 
 // Tags.
 .view-tags
   a
-    @extend .button
-    @extend .tiny
-    @extend .secondary
-    margin: 2px 0
+    @extend %list-block-link
   .views-row
     display: inline
 
@@ -58,7 +60,7 @@ h2.block-title
     padding: 10px
     overflow: auto
     &:nth-child(odd)
-      background-color: $secondary-color
+      background-color: $de-strong-gray-main
       border-radius: 0.5rem
   .views-field-profile-image-url
     float: left
@@ -108,7 +110,7 @@ a img.dsq-widget-avatar
     .views-field-title
       a
         @extend %side-content-title
- 
+
 // Related content block.
 .view-related-content
   .views-row
