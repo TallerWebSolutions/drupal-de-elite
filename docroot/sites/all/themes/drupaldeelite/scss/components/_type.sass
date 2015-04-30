@@ -17,15 +17,23 @@
     color: white
 
 %menu-link
-  padding: 0.5em 1em
-  font-weight: normal
-  display: inline-block
+  display: block
   font-family: $heading-font
-  color: $de-soft-gray-main
-  font-weight: bold
+  color: $de-soft-gray-light
+  font-size: $font-size-h3
+  font-weight: 100
+  padding: 0 0.8em
+  $bold-shadow: 0 0 1px $de-soft-gray-light
+  text-shadow: $bold-shadow, $bold-shadow, $bold-shadow
+  -webkit-font-smoothing: antialiased
+  font-smoothing: antialiased
   &:hover
-    color: $de-strong-gray-main
-    background-color: $de-soft-gray-main
+    color: $de-soft-gray-main
+    text-shadow: none
+  +breakpoint($medium-type-width)
+    font-size: 1.2em
+    text-shadow: $bold-shadow, $bold-shadow
+    padding: 0 0.7em
 
 %list-block-link
   color: $de-soft-gray-main

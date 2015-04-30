@@ -10,33 +10,16 @@
 // .top-bar-section .right {}
 
 header.l-header
-  border-bottom: 3px solid $de-strong-gray-light !important
-  > section
-    max-width: 100%
-    padding: 40px 40px 0 40px
-
-.l-header-region
-  @media all and (max-width: $small-screen)
-    text-align: center
-  *
-    color: white
-
-.header-site-title
-  @extend .large-6
-  @extend .columns
-  text-align: center
-  h1
-    font-size: 2rem
-    line-height: 1em
-    margin: 0
-  .site-slogan
-    font-size: 1.5rem
-    line-height: 1em
-    font-weight: lighter
-    margin: 0
-  img
-    margin-top: 10px
-    width: 72px
+  background-color: $de-strong-gray-dark
+  .header-wrapper
+    @extend .row
+    > section
+      @extend .large-12
+      div.logo
+        @extend .large-1
+        @extend .columns
+        line-height: 100px
+        text-align: center
 
 .header-blocks
   @extend .large-6
@@ -118,35 +101,33 @@ header.l-header
     margin-top: 3px
 
 // Login page link.
-.login-link
-  @extend .button
-  @extend .small
-  @extend .secondary
-  color: $primary-color
-  &:hover
-    color: $primary-color
-  @media all and (max-width: $de-medium-screen)
-    float: right
-    margin-right: 50px
-  @media all and (max-width: $small-screen)
-    float: none
-    margin: 0
+.login-link-wrapper
+  @extend .large-3
+  @extend .columns
+  line-height: 100px
+  text-align: center
+  .login-link
+    @extend %link-button
 
 .logged-in .login-link
   display: none
 
 // Main menu styles.
 .main-menu-wrapper
+  @extend .large-8
+  @extend .columns
   text-align: center
 ul#main-menu-links
-  float: none !important
+  @extend .columns
+  @extend .large-12
   display: inline-block
-  margin: 10px 0 0 0
+  margin-bottom: 0
   li
-    position: relative
     margin-left: 0
+    text-align: center
     a
       @extend %menu-link
+      line-height: 100px
     ul
       list-style: none
       margin: 0
@@ -163,7 +144,7 @@ div.responsive-menus.responsified
   span.toggler
     @extend .button
     @extend .medium
-    margin: 20px 0
+    margin: 20px 0 0 0
   &.responsive-toggled
     span.toggler
       margin-bottom: 0
