@@ -21,10 +21,15 @@ header.l-header
         line-height: 100px
         text-align: center
 
+  // Logged specific styles.
+.logged-header-wrapper
+  @extend .large-12
+
 .header-blocks
   @extend .large-6
   @extend .columns
-  padding-left: 0
+  padding-top: 20px
+  padding-bottom: 20px
   .block-easy-social
     margin: 20px 0
     @media all and (max-width: $de-medium-screen)
@@ -64,7 +69,6 @@ header.l-header
           @extend %dark-bg-link
           font-size: 0.8rem
 
-  // Logged specific styles.
   .block-views-subscriptions-block
     @extend .columns
     @extend .large-8
@@ -99,6 +103,10 @@ header.l-header
   #edit-submit
     @extend %tiny-secondary-button
     margin-top: 3px
+
+#secondary-menu
+  @extend .large-6
+  @extend .columns
 
 // Login page link.
 .login-link-wrapper
