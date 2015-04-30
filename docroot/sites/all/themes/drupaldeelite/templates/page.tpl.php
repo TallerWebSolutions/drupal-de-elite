@@ -9,10 +9,6 @@
           <?php if ($linked_logo): print $linked_logo; endif; ?>
         </div>
 
-        <div class="header-blocks">
-          <?php print render($page['header']); ?>
-        </div>
-
         <div class="main-menu-wrapper">
           <?php if ($alt_main_menu): ?>
             <nav id="main-menu" class="navigation" role="navigation">
@@ -25,11 +21,11 @@
           <a href="/user" class="login-link">Login/Registrar</a>
         </div>
 
-        <?php if ($alt_secondary_menu): ?>
-          <nav id="secondary-menu" class="navigation" role="navigation">
-            <?php print $alt_secondary_menu; ?>
-          </nav> <!-- /#secondary-menu -->
-        <?php endif; ?>
+        <div class="logged-header-wrapper">
+          <div class="header-blocks">
+            <?php print render($page['header']); ?>
+          </div>
+        </div>
       </section>
     </div>
   </header>
