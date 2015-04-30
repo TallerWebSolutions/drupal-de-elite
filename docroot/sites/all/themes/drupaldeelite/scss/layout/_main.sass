@@ -13,6 +13,7 @@ body
   font-family: $text-font
   font-size: $font-size-smaller
   height: 100%
+  color: $de-soft-gray-dark
   +breakpoint($small-type-width)
     &
       font-size: $font-size-small
@@ -39,12 +40,16 @@ h1, h2, h3, h4, h5, h6
 
 h1
   font-size: $font-size-h1
+  color: $de-main-blue
   +breakpoint("smaller-type-width")
     &
       font-size: 2.4em
 
 h2
   font-size: $font-size-h2
+  color: $de-soft-gray-main
+  a
+    color: $de-main-blue
 
 h3
   font-size: $font-size-h3
@@ -69,3 +74,17 @@ div.main
     max-width: 32em
     margin-right: auto
     margin-left: auto
+
+ul.breadcrumbs
+  background-color: transparent
+  border: none
+  a
+    color: $de-main-blue
+  .current a
+    color: $de-soft-gray-dark
+
+div.field-name-field-tags ul.links li
+  display: inline-block
+  list-style: none
+  a
+    @extend %list-block-link

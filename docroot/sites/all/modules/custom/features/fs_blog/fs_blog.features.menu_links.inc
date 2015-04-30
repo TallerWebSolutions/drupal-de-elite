@@ -27,8 +27,8 @@ function fs_blog_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -49,
-    'customized' => 0,
+    'weight' => -48,
+    'customized' => 1,
   );
   // Translatables
   // Included for use with string extractors like potx.

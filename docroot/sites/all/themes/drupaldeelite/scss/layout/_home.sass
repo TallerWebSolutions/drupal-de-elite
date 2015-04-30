@@ -5,11 +5,12 @@
     margin-bottom: 40px
     h2
       line-height: 1em
-    ul.links
+    > ul.links
       li
-        @extend .button
-        @extend .tiny
-        @extend .secondary
+        display: inline-block
+        list-style: none
+        a
+          @extend %menu-link
   div.image
     float: left
     margin-right: 20px

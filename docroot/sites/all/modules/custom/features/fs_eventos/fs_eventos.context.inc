@@ -35,12 +35,6 @@ function fs_eventos_context_default_contexts() {
   $context->reactions = array(
     'block' => array(
       'blocks' => array(
-        'easy_social-easy_social_block_1' => array(
-          'module' => 'easy_social',
-          'delta' => 'easy_social_block_1',
-          'region' => 'header',
-          'weight' => '-10',
-        ),
         'views-subscriptions-block' => array(
           'module' => 'views',
           'delta' => 'subscriptions-block',
@@ -100,6 +94,12 @@ function fs_eventos_context_default_contexts() {
           'delta' => 'disqus_recent_comments',
           'region' => 'sidebar_second',
           'weight' => '-5',
+        ),
+        'easy_social-easy_social_block_1' => array(
+          'module' => 'easy_social',
+          'delta' => 'easy_social_block_1',
+          'region' => 'footer',
+          'weight' => '-10',
         ),
       ),
     ),

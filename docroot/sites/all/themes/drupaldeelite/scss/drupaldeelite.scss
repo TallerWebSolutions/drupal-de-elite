@@ -42,6 +42,12 @@
 @import "base/colors";
 @import "base/lists";
 
+// Components
+@import "components/buttons";
+@import "components/type";
+@import "components/forms";
+// @import "components/foundation-icons";
+
 // Layout
 //
 // Each section of the document has it's own partial seperated out to
@@ -53,12 +59,7 @@
 @import "layout/triptych";
 @import "layout/footer";
 @import "layout/home";
-
-// Components
-@import "components/buttons";
-@import "components/type";
-// @import "components/forms";
-// @import "components/foundation-icons";
+@import "layout/contact";
 
 // Themes
 // @import "theme/button-light";
