@@ -18,7 +18,8 @@ header.l-header
       div.logo
         @extend .large-1
         @extend .columns
-        line-height: 100px
+        padding-right: 0
+        line-height: 150px
         text-align: center
 
   // Logged specific styles.
@@ -113,7 +114,7 @@ header.l-header
 .login-link-wrapper
   @extend .large-3
   @extend .columns
-  line-height: 100px
+  line-height: 150px
   text-align: center
   .login-link
     @extend %link-button
@@ -136,7 +137,7 @@ ul#main-menu-links
     text-align: center
     a
       @extend %menu-link
-      line-height: 100px
+      line-height: 150px
     ul
       list-style: none
       margin: 0
@@ -150,6 +151,8 @@ ul#main-menu-links
 
 // Mobile main menu.
 div.responsive-menus.responsified
+  +breakpoint($small-type-width)
+    line-height: 150px
   span.toggler
     @extend .button
     @extend .medium
