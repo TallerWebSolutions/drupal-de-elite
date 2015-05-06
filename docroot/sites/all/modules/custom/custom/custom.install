@@ -748,6 +748,7 @@ function custom_update_7150(&$sandbox) {
     'jquery_update',
   ));
 }
+
 /**
  * Enable responsive menus.
  */
@@ -756,5 +757,16 @@ function custom_update_7151(&$sandbox) {
 
   module_enable(array(
     'responsive_menus',
+  ));
+}
+
+/**
+ * Enable display suite.
+ */
+function custom_update_7153(&$sandbox) {
+  $ret = array();
+
+  module_enable(array(
+    'ds',
   ));
 }
