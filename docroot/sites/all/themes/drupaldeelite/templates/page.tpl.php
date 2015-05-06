@@ -16,11 +16,11 @@
             </nav> <!-- /#main-menu -->
           <?php endif; ?>
         </div>
-
+<!--
         <div class="login-link-wrapper">
           <a href="/user" class="login-link">Login/Registrar</a>
         </div>
-
+ -->
         <div class="logged-header-wrapper">
           <div class="header-blocks">
             <?php print render($page['header']); ?>
@@ -71,7 +71,7 @@
 
       <a id="main-content"></a>
 
-      <?php if ($breadcrumb): print $breadcrumb; endif; ?>
+      <!-- </?php if ($breadcrumb): print $breadcrumb; endif; ?> -->
 
       <?php if ($title && !$is_front): ?>
         <?php print render($title_prefix); ?>
@@ -149,17 +149,19 @@
  -->
   <!--.l-footer-->
   <footer class="l-footer panel" role="contentinfo">
-    <?php if (!empty($page['footer'])): ?>
-      <div class="footer">
-        <?php print render($page['footer']); ?>
-      </div>
-    <?php endif; ?>
+    <div class="main-footer-wrapper">
+      <?php if (!empty($page['footer'])): ?>
+        <div class="footer">
+          <?php print render($page['footer']); ?>
+        </div>
+      <?php endif; ?>
 
-    <?php if ($site_name) :?>
-      <div class="copyright">
-        &copy; <?php print date('Y') . ' ' . check_plain($site_name) . ' ' . t('All rights reserved.'); ?>
-      </div>
-    <?php endif; ?>
+      <?php if ($site_name) :?>
+        <div class="copyright">
+          &copy; <?php print date('Y') . ' ' . check_plain($site_name) . ' ' . t('All rights reserved.'); ?>
+        </div>
+      <?php endif; ?>
+    </div>
   </footer>
   <!--/.footer-->
 
