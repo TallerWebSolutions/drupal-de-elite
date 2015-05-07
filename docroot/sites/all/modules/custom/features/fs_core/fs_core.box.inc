@@ -30,7 +30,7 @@ function fs_core_default_box() {
   $box->api_version = 1;
   $box->delta = 'facebook_likebox';
   $box->plugin_key = 'simple';
-  $box->title = 'Encontre-nos no Facebook';
+  $box->title = '';
   $box->description = 'Facebook Like Box';
   $box->options = array(
     'body' => array(

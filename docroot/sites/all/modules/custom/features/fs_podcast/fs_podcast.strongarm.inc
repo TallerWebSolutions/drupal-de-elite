@@ -14,7 +14,7 @@ function fs_podcast_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'additional_settings__active_tab_podcast';
-  $strongarm->value = 'edit-xmlsitemap';
+  $strongarm->value = 'edit-display';
   $export['additional_settings__active_tab_podcast'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -153,7 +153,7 @@ function fs_podcast_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'node_submitted_podcast';
-  $strongarm->value = 1;
+  $strongarm->value = 0;
   $export['node_submitted_podcast'] = $strongarm;
 
   $strongarm = new stdClass();

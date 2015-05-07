@@ -1,18 +1,13 @@
 // Homepage styles.
 
+.front .page
+  background-color: $de-strong-gray-main
+
 .view-home-page, .view-posts, .view-videos
-  article
+  .views-row
     margin-bottom: 40px
-    p
-      margin-bottom: 0
-    h2
-      line-height: 1em
-    > ul.links
-      li
-        display: inline-block
-        list-style: none
-        a
-          @extend %menu-link
+    +breakpoint($big-type-width)
+      padding-right: 40px
   div.image
     float: left
     margin-right: 20px
@@ -20,3 +15,33 @@
     a
       @extend .th
       @extend .radius
+
+article.node-teaser
+  @extend .row
+  p
+    margin-bottom: 0
+  h2
+    line-height: 1em
+  > ul.links
+    li
+      display: inline-block
+      list-style: none
+      a
+        @extend h5
+        padding-right: 20px
+        &:hover
+          text-decoration: underline
+
+// Pagination.
+ul.pagination.pager
+  li
+    a
+      color: $de-soft-gray-light
+      font-weight: bold
+      &:hover
+        background-color: transparent
+        color: $de-main-blue
+    &.current
+      a
+        background-color: transparent
+        color: $de-main-blue

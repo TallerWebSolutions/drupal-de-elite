@@ -69,3 +69,6 @@ nbproject
 # PHPSTORM FILES
 .idea
 .idea/*
+
+# Resources folder #
+resources/

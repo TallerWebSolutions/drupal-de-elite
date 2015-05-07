@@ -33,20 +33,21 @@
 
 // Base
 @import "base/init";
+@import "base/colors";
 @import "base/mixins";
 @import "base/common";
 @import "base/drupal";
 @import "base/elements";
 @import "base/typography";
 @import "base/media";
-@import "base/colors";
 @import "base/lists";
 
 // Components
 @import "components/buttons";
 @import "components/type";
 @import "components/forms";
-// @import "components/foundation-icons";
+@import "components/foundation-icons";
+@import "components/icons";
 
 // Layout
 //
@@ -56,7 +57,6 @@
 @import "layout/header";
 @import "layout/main";
 @import "layout/aside";
-@import "layout/triptych";
 @import "layout/footer";
 @import "layout/home";
 @import "layout/contact";

@@ -79,29 +79,11 @@ function fs_core_context_default_contexts() {
           'region' => 'sidebar_second',
           'weight' => '-9',
         ),
-        'views-archive-block' => array(
-          'module' => 'views',
-          'delta' => 'archive-block',
-          'region' => 'sidebar_second',
-          'weight' => '-8',
-        ),
         'boxes-facebook_likebox' => array(
           'module' => 'boxes',
           'delta' => 'facebook_likebox',
           'region' => 'sidebar_second',
           'weight' => '-7',
-        ),
-        'views-tweets-block' => array(
-          'module' => 'views',
-          'delta' => 'tweets-block',
-          'region' => 'sidebar_second',
-          'weight' => '-6',
-        ),
-        'disqus-disqus_recent_comments' => array(
-          'module' => 'disqus',
-          'delta' => 'disqus_recent_comments',
-          'region' => 'sidebar_second',
-          'weight' => '-5',
         ),
         'easy_social-easy_social_block_1' => array(
           'module' => 'easy_social',
@@ -171,18 +153,6 @@ function fs_core_context_default_contexts() {
           'region' => 'sidebar_second',
           'weight' => '-36',
         ),
-        'views-tweets-block' => array(
-          'module' => 'views',
-          'delta' => 'tweets-block',
-          'region' => 'sidebar_second',
-          'weight' => '-35',
-        ),
-        'disqus-disqus_recent_comments' => array(
-          'module' => 'disqus',
-          'delta' => 'disqus_recent_comments',
-          'region' => 'sidebar_second',
-          'weight' => '-34',
-        ),
         'easy_social-easy_social_block_1' => array(
           'module' => 'easy_social',
           'delta' => 'easy_social_block_1',
@@ -249,12 +219,6 @@ function fs_core_context_default_contexts() {
           'delta' => 'facebook_likebox',
           'region' => 'sidebar_second',
           'weight' => '-6',
-        ),
-        'views-tweets-block' => array(
-          'module' => 'views',
-          'delta' => 'tweets-block',
-          'region' => 'sidebar_second',
-          'weight' => '-5',
         ),
         'easy_social-easy_social_block_1' => array(
           'module' => 'easy_social',
@@ -341,12 +305,6 @@ function fs_core_context_default_contexts() {
           'delta' => 'facebook_likebox',
           'region' => 'sidebar_second',
           'weight' => '-9',
-        ),
-        'views-tweets-block' => array(
-          'module' => 'views',
-          'delta' => 'tweets-block',
-          'region' => 'sidebar_second',
-          'weight' => '-8',
         ),
         'easy_social-easy_social_block_1' => array(
           'module' => 'easy_social',

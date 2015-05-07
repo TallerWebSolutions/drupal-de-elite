@@ -1,10 +1,6 @@
-// Non-modular or client styles for asides or sidebars.
-
-// .l-sidebar {}
-
-// .sidebar {}
-// .sidebar-first {}
-// .sidebar-second {}
+/**
+ * Right sidebar styles.
+ */
 
 aside.sidebar-second
   @extend .large-4
@@ -37,15 +33,18 @@ h2.block-title
 // Search form.
 #search-block-form
   input[id^="edit-search-block-form"]
-    @extend %input
-    display: inline
-    width: 60%
+    @extend %dark-bg-input
+    display: inline-block
+    width: 280px
     border-right: 0
     margin-bottom: 0
+    border-top-right-radius: 0
+    border-bottom-right-radius: 0
   button.form-submit
-    @extend %submit
+    @extend %dark-bg-submit
+    @extend %loupe-icon
     display: inline
-    width: 40%
+    width: 40px
     margin-bottom: 0
 
 // Tags.
@@ -106,11 +105,11 @@ a img.dsq-widget-avatar
       @extend %side-content-list-item
     .views-field-field-image
       float: left
-    img
-      @extend %side-content-img
-    .views-field-title
-      a
-        @extend %side-content-title
+  img
+    @extend %side-content-img
+  .views-field-title
+    a
+      @extend %side-content-title
 
 // Related content block.
 .view-related-content

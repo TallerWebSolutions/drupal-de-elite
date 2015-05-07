@@ -39,7 +39,7 @@ function responsive_menus_feature_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'responsive_menus_media_size';
-  $strongarm->value = '860';
+  $strongarm->value = '800';
   $export['responsive_menus_media_size'] = $strongarm;
 
   $strongarm = new stdClass();

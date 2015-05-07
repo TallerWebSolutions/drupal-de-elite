@@ -89,12 +89,6 @@ function fs_eventos_context_default_contexts() {
           'region' => 'sidebar_second',
           'weight' => '-6',
         ),
-        'disqus-disqus_recent_comments' => array(
-          'module' => 'disqus',
-          'delta' => 'disqus_recent_comments',
-          'region' => 'sidebar_second',
-          'weight' => '-5',
-        ),
         'easy_social-easy_social_block_1' => array(
           'module' => 'easy_social',
           'delta' => 'easy_social_block_1',
