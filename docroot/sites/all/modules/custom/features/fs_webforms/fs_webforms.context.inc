@@ -71,12 +71,6 @@ function fs_webforms_context_default_contexts() {
           'region' => 'sidebar_second',
           'weight' => '-8',
         ),
-        'easy_social-easy_social_block_1' => array(
-          'module' => 'easy_social',
-          'delta' => 'easy_social_block_1',
-          'region' => 'footer',
-          'weight' => '-10',
-        ),
       ),
     ),
   );
