@@ -90,7 +90,7 @@ function fs_blog_strongarm() {
       'display' => array(
         'easy_social_1' => array(
           'teaser' => array(
-            'weight' => '3',
+            'weight' => '11',
             'visible' => FALSE,
           ),
           'default' => array(
