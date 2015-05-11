@@ -1,14 +1,23 @@
-// Docs: http://foundation.zurb.com/docs/components/type.html
-// Before adding styles be sure to modify variables.
-
-// .title {}
-// .node-title {}
-// .page-title {}
-// .block-title {}
-
-// .item-list {}
+/**
+ * Text elements styles definitions.
+ */
 
 // General styles for links.
+=link-hover-shadow($color, $invert)
+  color: $color
+  font-weight: 300 !important
+  $bold-shadow: 0 0 1px $color
+  @if $invert
+    text-shadow: none
+  @else
+    text-shadow: $bold-shadow, $bold-shadow, $bold-shadow
+  &:hover, &.active
+    color: $color
+    @if $invert
+      text-shadow: $bold-shadow, $bold-shadow, $bold-shadow
+    @else
+      text-shadow: none
+
 %dark-bg-link
   text-decoration: underline
   font-weight: bold
@@ -17,30 +26,20 @@
     color: white
 
 %menu-link
+  +link-hover-shadow($de-soft-gray-light, false)
   display: block
   font-family: $heading-font
-  color: $de-soft-gray-light
   font-size: $font-size-h3
-  font-weight: 300
   padding: 0 0.8em
-  $bold-shadow: 0 0 1px $de-soft-gray-light
-  text-shadow: $bold-shadow, $bold-shadow, $bold-shadow
-  -webkit-font-smoothing: antialiased
-  font-smoothing: antialiased
-  &:hover, &.active
-    text-shadow: none
   +breakpoint($medium-type-width)
     font-size: 1.2em
-    text-shadow: $bold-shadow, $bold-shadow
     padding: 0 0.7em
 
 %list-block-link
-  color: $de-soft-gray-main
+  +link-hover-shadow($de-soft-gray-main, true)
   line-height: 2em
   padding: 0 0.5em 0 0
   margin: 0
-  &:hover
-    text-decoration: underline
 
 // Apply hyphenation in paragraphs.
 %hyphenated-paragraphs

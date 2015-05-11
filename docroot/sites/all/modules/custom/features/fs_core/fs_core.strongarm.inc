@@ -117,12 +117,13 @@ function fs_core_strongarm() {
   $strongarm->value = array(
     'blog' => 'blog',
     'curso' => 'curso',
+    'evento' => 'evento',
     'podcast' => 'podcast',
     'screencast' => 'screencast',
-    'article' => 'article',
-    'evento' => 'evento',
     'page' => 0,
     'webform' => 0,
+    'tribune' => 0,
+    'banner' => 0,
   );
   $export['disqus_nodetypes'] = $strongarm;
 

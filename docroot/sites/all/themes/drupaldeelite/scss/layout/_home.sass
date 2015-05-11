@@ -1,47 +1,57 @@
-// Homepage styles.
+/**
+ * Homepage specific styles.
+ */
 
-.front .page
-  background-color: $de-strong-gray-main
-
-.view-home-page, .view-posts, .view-videos
+.view-home-page, .view-posts, .view-videos, .view-podcast
   .views-row
     margin-bottom: 40px
     +breakpoint($big-type-width)
-      padding-right: 40px
-  div.image
+      padding-right: 60px
+  .views-field-title, .field-name-title
+    h2, h2 a
+      +link-hover-shadow($de-main-blue, false)
+  .field-name-field-description, .views-field-field-description
+    min-height: 130px
+  p
+    @extend %hyphenated-paragraphs
+    margin-bottom: 0
+  div.image, .views-field-field-image
     float: left
     margin-right: 20px
     margin-bottom: 20px
     a
       @extend .th
       @extend .radius
+  .views-field-field-tags, .field-name-field-tags
+    @extend %tags-list
 
+// View more and comment count links.
+.views-row > div > ul.links
+  @extend %teaser-links-list
+
+.views-field-view-node, .views-field-disqus-comment-count
+  display: inline-block
+  a
+    @extend h5
+    +link-hover-shadow($de-soft-gray-light, false)
+    margin-right: 20px
+
+// Teaser styles for non-field view.
+// @TODO: Use fields in all teaser views.
 article.node-teaser
   @extend .row
-  p
-    margin-bottom: 0
-  h2
-    line-height: 1em
-  > ul.links
-    li
-      display: inline-block
-      list-style: none
-      a
-        @extend h5
-        padding-right: 20px
-        &:hover
-          text-decoration: underline
+  h2 a
+    +link-hover-shadow($de-main-blue, false)
 
 // Pagination.
 ul.pagination.pager
-  li
-    a
-      color: $de-soft-gray-light
-      font-weight: bold
-      &:hover
-        background-color: transparent
-        color: $de-main-blue
-    &.current
-      a
-        background-color: transparent
-        color: $de-main-blue
+  li.current a
+    background-color: transparent
+    color: $de-main-blue
+  a
+    color: $de-soft-gray-light
+    font-weight: bold
+    text-shadow: none
+    &:hover
+      background-color: transparent
+      color: $de-main-blue

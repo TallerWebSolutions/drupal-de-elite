@@ -2,6 +2,10 @@
  * Basic theme styles.
  */
 
+*
+  -webkit-font-smoothing: antialiased
+  font-smoothing: antialiased
+
 // Body.
 body
   line-height: $line-height-smaller
@@ -10,17 +14,17 @@ body
   height: 100%
   color: $de-soft-gray-dark
   +breakpoint($small-type-width)
-    &
-      font-size: $font-size-small
-      line-height: $line-height-small
+    font-size: $font-size-small
+    line-height: $line-height-small
   +breakpoint($medium-type-width)
-    &
-      font-size: $font-size-medium
-      line-height: $line-height-medium
+    font-size: $font-size-medium
+    line-height: $line-height-medium
   +breakpoint($big-type-width)
-    &
-      font-size: $font-size-big
-      line-height: $line-height-big
+    font-size: $font-size-big
+    line-height: $line-height-big
+
+.page
+  background-color: $de-strong-gray-main
 
 // Headers.
 %heading
@@ -37,8 +41,7 @@ h1
   font-size: $font-size-h1
   color: $de-main-blue
   +breakpoint("smaller-type-width")
-    &
-      font-size: 2.4em
+    font-size: 2.4em
 
 h2
   font-size: $font-size-h2
@@ -61,6 +64,10 @@ h5
 h6
   font-size: $font-size-h6
 
+// Anchors.
+p a
+  +link-hover-shadow($de-soft-gray-light, false)
+
 // Main content.
 main.l-main
   @extend .row
@@ -76,20 +83,6 @@ div.main
     max-width: 32em
     margin-right: auto
     margin-left: auto
-
-ul.breadcrumbs
-  background-color: transparent
-  border: none
-  a
-    color: $de-main-blue
-  .current a
-    color: $de-soft-gray-dark
-
-div.field-name-field-tags ul.links li
-  display: inline-block
-  list-style: none
-  a
-    @extend %list-block-link
 
 .l-messages
   @extend .row
