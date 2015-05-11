@@ -20,6 +20,8 @@ if [[ "$LAST_PART" == "docroot" ]]; then
   git pull origin "$BRANCH"
   echo 'Executando possíveis atualizações no Drupal...'
   drush updb -y
+  # echo 'Sincronizando features com seu banco de dados local..'
+  drush fra -y
   # echo 'Sincronizando o CM com seu banco de dados local..'
   #drush config-sync
   #echo 'Recuperando a pasta config novamente para te manter sincronizado...'
