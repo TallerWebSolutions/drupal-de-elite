@@ -29,19 +29,19 @@
 .views-row > div > ul.links
   @extend %teaser-links-list
 
-// Teaser styles for non-field view.
-// @TODO: Use fields in all teaser views.
-article.node-teaser
-  @extend .row
-  h2 a
-    +link-hover-shadow($de-main-blue, false)
-
 .views-field-view-node, .views-field-disqus-comment-count
   display: inline-block
   a
     @extend h5
     +link-hover-shadow($de-soft-gray-light, false)
     margin-right: 20px
+
+// Teaser styles for non-field view.
+// @TODO: Use fields in all teaser views.
+article.node-teaser
+  @extend .row
+  h2 a
+    +link-hover-shadow($de-main-blue, false)
 
 // Pagination.
 ul.pagination.pager

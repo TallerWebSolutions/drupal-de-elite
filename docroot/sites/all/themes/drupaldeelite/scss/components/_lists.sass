@@ -1,0 +1,23 @@
+/**
+ * Modular list styles definitions.
+ */
+
+%tags-list
+  clear: both
+  ul
+    list-style: none
+  li
+    display: inline-block
+    margin: 5px
+  a
+    @extend %tag-button
+    margin: 0
+
+%teaser-links-list
+  li
+    display: inline-block
+    list-style: none
+  a
+    @extend h5
+    +link-hover-shadow($de-soft-gray-light, false)
+    padding-right: 20px
