@@ -5,6 +5,30 @@
  */
 
 /**
+ * Implements hook_ds_custom_fields_info().
+ */
+function fs_blog_ds_custom_fields_info() {
+  $export = array();
+
+  $ds_field = new stdClass();
+  $ds_field->api_version = 1;
+  $ds_field->field = 'disqus_comments';
+  $ds_field->label = 'Disqus comments';
+  $ds_field->field_type = 6;
+  $ds_field->entities = array(
+    'node' => 'node',
+  );
+  $ds_field->ui_limit = '';
+  $ds_field->properties = array(
+    'block' => 'disqus|disqus_comments',
+    'block_render' => '1',
+  );
+  $export['disqus_comments'] = $ds_field;
+
+  return $export;
+}
+
+/**
  * Implements hook_ds_layout_settings_info().
  */
 function fs_blog_ds_layout_settings_info() {
