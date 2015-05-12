@@ -60,7 +60,7 @@ function fs_podcast_strongarm() {
         'custom_settings' => TRUE,
       ),
       'full' => array(
-        'custom_settings' => FALSE,
+        'custom_settings' => TRUE,
       ),
       'rss' => array(
         'custom_settings' => TRUE,
@@ -72,6 +72,12 @@ function fs_podcast_strongarm() {
         'custom_settings' => FALSE,
       ),
       'token' => array(
+        'custom_settings' => FALSE,
+      ),
+      'diff_standard' => array(
+        'custom_settings' => FALSE,
+      ),
+      'revision' => array(
         'custom_settings' => FALSE,
       ),
     ),
@@ -97,6 +103,10 @@ function fs_podcast_strongarm() {
           'rss' => array(
             'weight' => '4',
             'visible' => FALSE,
+          ),
+          'full' => array(
+            'weight' => '4',
+            'visible' => TRUE,
           ),
         ),
       ),
