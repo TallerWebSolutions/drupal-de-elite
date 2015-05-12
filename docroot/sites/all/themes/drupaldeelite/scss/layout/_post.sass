@@ -1,0 +1,37 @@
+/**
+ * Styles for blog, videos and podcasts nodes.
+ */
+
+.node-type-blog, .node-type-podcast, .node-type-screencast
+
+  // Background color invert.
+  .page
+    background-color: $de-soft-gray-main
+
+  // Font color invert.
+  h2, h3,
+  aside,
+  .main,
+  .views-field-title a
+    color: $de-strong-gray-main
+  p a
+    +link-hover-shadow($de-strong-gray-main, false)
+  .field-name-field-tags a
+    color: $de-soft-gray-dark
+    border-color: $de-soft-gray-dark
+    &:hover
+      color: $de-strong-gray-light
+      border-color: $de-strong-gray-light
+  .view-tags a
+    +link-hover-shadow($de-strong-gray-main, true)
+
+  // Diagramming.
+  .field-name-field-description
+    p, ul
+      @extend %hyphenated-paragraphs
+      max-width: 32em
+      margin-right: auto
+      margin-left: auto
+
+  .field-name-field-video
+    text-align: center
