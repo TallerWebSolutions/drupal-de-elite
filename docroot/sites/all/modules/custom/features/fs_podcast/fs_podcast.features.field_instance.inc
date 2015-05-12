@@ -32,6 +32,22 @@ function fs_podcast_field_default_field_instances() {
         'type' => 'jplayer_player',
         'weight' => 1,
       ),
+      'full' => array(
+        'label' => 'hidden',
+        'module' => 'jplayer',
+        'settings' => array(
+          'autoplay' => 0,
+          'backgroundColor' => '000000',
+          'mode' => 'single',
+          'muted' => 0,
+          'preload' => 'metadata',
+          'repeat' => 'none',
+          'solution' => 'flash, html',
+          'volume' => 80,
+        ),
+        'type' => 'jplayer_player',
+        'weight' => 1,
+      ),
       'rss' => array(
         'label' => 'hidden',
         'module' => 'file',
@@ -92,6 +108,13 @@ function fs_podcast_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 2,
       ),
+      'full' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 2,
+      ),
       'rss' => array(
         'label' => 'hidden',
         'module' => 'text',
@@ -135,6 +158,16 @@ function fs_podcast_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
+        'label' => 'hidden',
+        'module' => 'image',
+        'settings' => array(
+          'image_link' => '',
+          'image_style' => 'list_posts_150x150',
+        ),
+        'type' => 'image',
+        'weight' => 0,
+      ),
+      'full' => array(
         'label' => 'hidden',
         'module' => 'image',
         'settings' => array(
@@ -217,6 +250,13 @@ function fs_podcast_field_default_field_instances() {
         'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
         'weight' => 4,
+      ),
+      'full' => array(
+        'label' => 'hidden',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 3,
       ),
       'rss' => array(
         'label' => 'hidden',
