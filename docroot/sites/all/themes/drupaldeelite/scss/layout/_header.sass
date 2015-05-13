@@ -16,57 +16,6 @@ div.logo
   line-height: 150px
   text-align: center
 
-// Logged specific styles.
-.logged-in
-  .logged-header-wrapper
-    @extend .large-12
-
-  .header-blocks
-    @extend .large-6
-    @extend .columns
-    padding-top: 20px
-    padding-bottom: 20px
-
-    h2.block-title.element-invisible
-      height: auto
-      position: static !important
-      font-size: 1.5em
-      margin-top: 0
-      margin-bottom: 0
-
-  .block-views-subscriptions-block
-    @extend .columns
-    @extend .large-8
-    padding-left: 0
-    a
-      @extend %dark-bg-link
-
-  .block-views-usuarios-block-1
-    @extend .columns
-    @extend .large-4
-    margin-top: 5px
-    @media all and (max-width: $small-screen)
-      margin-top: 20px
-    .views-row
-      *
-        float: left
-    img
-      border-radius: 50%
-      margin-right: 5px
-    a
-      @extend %dark-bg-link
-      font-size: 0.8rem
-      line-height: 1.4em
-      margin-right: 5px
-
-    #edit-submit
-      @extend %tiny-secondary-button
-      margin-top: 3px
-
-  #secondary-menu
-    @extend .large-6
-    @extend .columns
-
 // Login page link.
 .login-link-wrapper
   @extend .large-3
