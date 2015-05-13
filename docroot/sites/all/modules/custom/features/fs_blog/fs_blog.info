@@ -27,6 +27,7 @@ features[ctools][] = views:views_default:3.0
 features[ds_field_settings][] = node|blog|full
 features[ds_field_settings][] = node|blog|teaser
 features[ds_fields][] = disqus_comments
+features[ds_layout_settings][] = node|blog|full
 features[ds_layout_settings][] = node|blog|teaser
 features[ds_view_modes][] = teaser
 features[features_api][] = api:2
