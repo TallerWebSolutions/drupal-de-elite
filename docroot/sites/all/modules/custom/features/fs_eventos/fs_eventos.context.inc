@@ -35,18 +35,6 @@ function fs_eventos_context_default_contexts() {
   $context->reactions = array(
     'block' => array(
       'blocks' => array(
-        'views-subscriptions-block' => array(
-          'module' => 'views',
-          'delta' => 'subscriptions-block',
-          'region' => 'header',
-          'weight' => '-8',
-        ),
-        'views-usuarios-block_1' => array(
-          'module' => 'views',
-          'delta' => 'usuarios-block_1',
-          'region' => 'header',
-          'weight' => '-7',
-        ),
         'system-help' => array(
           'module' => 'system',
           'delta' => 'help',
