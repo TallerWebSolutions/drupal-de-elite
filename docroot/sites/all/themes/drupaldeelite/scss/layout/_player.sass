@@ -1,0 +1,28 @@
+/**
+ * Specific styles for podcast audio player.
+ */
+
+div.jp-audio
+  width: 100%
+  margin-bottom: 20px
+  div.jp-interface
+    border-color: $de-main-blue
+    a.jp-play, a.jp-pause
+      left: 20px
+    a.jp-stop
+      left: 80px
+    div.jp-progress, div.jp-duration, div.jp-current-time
+      left: 130px
+    a.jp-mute, a.jp-unmute
+      left: 280px
+    div.jp-volume-bar
+      left: 310px
+    @media all and (max-width: $de-smallest-screen)
+      height: 100px !important
+      div.jp-volume-bar
+        left: 20px
+        top: 80px
+
+div.jp-playlist
+  background-color: $de-strong-gray-main
+  border-color: $de-main-blue

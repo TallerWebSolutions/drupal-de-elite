@@ -44,16 +44,14 @@ function fs_podcast_ds_layout_settings_info() {
   $ds_layout->settings = array(
     'regions' => array(
       'ds_content' => array(
-        0 => 'field_image',
-        1 => 'field_audio',
-        2 => 'field_description',
-        3 => 'field_tags',
-        4 => 'easy_social_1',
-        5 => 'disqus_comments',
+        0 => 'field_audio',
+        1 => 'field_description',
+        2 => 'field_tags',
+        3 => 'easy_social_1',
+        4 => 'disqus_comments',
       ),
     ),
     'fields' => array(
-      'field_image' => 'ds_content',
       'field_audio' => 'ds_content',
       'field_description' => 'ds_content',
       'field_tags' => 'ds_content',
