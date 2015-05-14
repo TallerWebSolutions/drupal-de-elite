@@ -1,8 +1,15 @@
 (function ($, Drupal) {
 
-  Drupal.behaviors.drupaldeelite = {
+  // Invert colors in internal post pages.
+  Drupal.behaviors.invertColors = {
     attach: function(context, settings) {
-      // Get your Yeti started.
+      var $invertButton = $('.invert-colors'),
+          $page = $('.page');
+
+      $invertButton.on('click', function(e) {
+        e.preventDefault();
+        $page.toggleClass('inverted');
+      });
     }
   };
 
