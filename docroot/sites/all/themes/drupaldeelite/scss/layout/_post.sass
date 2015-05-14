@@ -33,6 +33,37 @@
   .field-name-field-video
     text-align: center
 
+// Invert colors button.
 .invert-colors
   @extend %tag-button
   +button-contrast(false)
+
+// Inverted class toggled.
+.page.inverted
+  color: $de-soft-gray-light
+
+  // Background color invert.
+  background-color: $de-strong-gray-main
+
+  // Font color invert.
+  h2, h3,
+  aside,
+  .main,
+  .views-field-title a,
+  .views-field-view-user a
+    color: $de-soft-gray-light
+  p a
+    +link-hover-shadow($de-soft-gray-light, false)
+  .field-name-field-tags a
+    +button-contrast(true)
+  .view-tags a
+    +link-hover-shadow($de-soft-gray-light, true)
+
+  .invert-colors
+    +button-contrast(true)
+
+  #disqus_thread
+    padding: 20px
+    margin-top: 20px
+    background-color: $de-soft-gray-main
+    border-radius: 4px

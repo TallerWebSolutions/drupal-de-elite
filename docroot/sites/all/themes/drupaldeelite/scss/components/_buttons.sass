@@ -7,16 +7,6 @@
 // Before adding styles be sure to modify variables in the
 // "scss/_variables.scss" file.
 
-%tiny-secondary-button
-  @extend .button
-  @extend .tiny
-  @extend .secondary
-
-%link-button
-  +button-base
-  +button-size($button-sml)
-  +button-style($de-main-blue, $button-radius)
-
 =button-contrast($invert)
   @if $invert
     color: $de-soft-gray-main
@@ -31,7 +21,53 @@
       color: $de-strong-gray-light
       border-color: $de-strong-gray-light
 
+// Not working yet.
+// Use gradient.
+=cool-hover-button
+  position: relative
+  &:before
+    content: ''
+    position: absolute
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    background-color: red
+    transition: all 300ms
+    transition-delay: 300ms
+  &:after
+    content: ''
+    position: absolute
+    top: 50%
+    right: 50%
+    bottom: 50%
+    left: 50%
+    background-color: blue
+    transition: all 300ms
+  &:hover
+    &:before
+      top: 50%
+      right: 50%
+      bottom: 50%
+      left: 50%
+    &:after
+      top: 0
+      right: 0
+      bottom: 0
+      left: 0
+
+%tiny-secondary-button
+  @extend .button
+  @extend .tiny
+  @extend .secondary
+
+%link-button
+  +button-base
+  +button-size($button-sml)
+  +button-style($de-main-blue, $button-radius)
+
 %tag-button
   +button-base
   +button-size($button-tny)
   +button-style(transparent, $button-radius)
+
