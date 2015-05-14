@@ -17,12 +17,21 @@
   +button-size($button-sml)
   +button-style($de-main-blue, $button-radius)
 
+=button-contrast($invert)
+  @if $invert
+    color: $de-soft-gray-main
+    border-color: $de-soft-gray-main
+    &:hover
+      color: $de-soft-gray-dark
+      border-color: $de-soft-gray-dark
+  @else
+    color: $de-soft-gray-dark
+    border-color: $de-soft-gray-dark
+    &:hover
+      color: $de-strong-gray-light
+      border-color: $de-strong-gray-light
+
 %tag-button
   +button-base
   +button-size($button-tny)
   +button-style(transparent, $button-radius)
-  color: $de-soft-gray-main
-  border-color: $de-soft-gray-main
-  &:hover
-    color: $de-soft-gray-dark
-    border-color: $de-soft-gray-dark

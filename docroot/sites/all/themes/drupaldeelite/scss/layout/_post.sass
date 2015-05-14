@@ -18,11 +18,7 @@
   p a
     +link-hover-shadow($de-strong-gray-main, false)
   .field-name-field-tags a
-    color: $de-soft-gray-dark
-    border-color: $de-soft-gray-dark
-    &:hover
-      color: $de-strong-gray-light
-      border-color: $de-strong-gray-light
+    +button-contrast(false)
   .view-tags a
     +link-hover-shadow($de-strong-gray-main, true)
 
@@ -36,3 +32,7 @@
 
   .field-name-field-video
     text-align: center
+
+.invert-colors
+  @extend %tag-button
+  +button-contrast(false)
