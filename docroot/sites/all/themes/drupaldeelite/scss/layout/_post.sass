@@ -17,8 +17,11 @@
     color: $de-strong-gray-main
   p a
     +link-hover-shadow($de-strong-gray-main, false)
-  .field-name-field-tags a
-    +button-contrast(false)
+  .field-name-field-tags
+    li
+      +cool-hover-button($de-soft-gray-main, $de-soft-gray-dark, $button-radius)
+    a
+      +button-contrast(false)
   .view-tags a
     +link-hover-shadow($de-strong-gray-main, true)
 
@@ -34,9 +37,15 @@
     text-align: center
 
 // Invert colors button.
+.invert-colors-wrapper
+  +cool-hover-button($de-soft-gray-main, $de-soft-gray-dark, $button-radius)
+  display: inline-block
+  margin-bottom: 20px
+
 .invert-colors
   @extend %tag-button
   +button-contrast(false)
+  margin-bottom: 0
 
 // Inverted class toggled.
 .page.inverted
@@ -54,10 +63,16 @@
     color: $de-soft-gray-light
   p a
     +link-hover-shadow($de-soft-gray-light, false)
-  .field-name-field-tags a
-    +button-contrast(true)
+  .field-name-field-tags
+    li
+      +cool-hover-button($de-strong-gray-main, $de-strong-gray-light, $button-radius)
+    a
+      +button-contrast(true)
   .view-tags a
     +link-hover-shadow($de-soft-gray-light, true)
+
+  .invert-colors-wrapper
+    +cool-hover-button($de-strong-gray-main, $de-strong-gray-light, $button-radius)
 
   .invert-colors
     +button-contrast(true)
