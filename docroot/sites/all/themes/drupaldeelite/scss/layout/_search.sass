@@ -7,3 +7,25 @@
     +button-contrast(false)
   .views-row > div > ul.links a
     +link-hover-shadow($de-strong-gray-light, false)
+
+.page-taxonomy-term .node-teaser
+  +breakpoint($big-type-width)
+    padding-right: 60px
+  .field-name-title
+    h2, h2 a
+      +link-hover-shadow($de-main-blue, false)
+  .field-name-field-description
+    min-height: 130px
+  div.image
+    float: left
+    margin-right: 20px
+    margin-bottom: 20px
+    a
+      @extend .th
+      @extend .radius
+  > ul.links
+    @extend %teaser-links-list
+    a
+      +link-hover-shadow($de-strong-gray-light, false)
+  .field-name-field-tags a
+    +button-contrast(false)
