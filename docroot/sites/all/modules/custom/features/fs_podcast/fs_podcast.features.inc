@@ -11,6 +11,9 @@ function fs_podcast_ctools_plugin_api($module = NULL, $api = NULL) {
   if ($module == "context" && $api == "context") {
     return array("version" => "3");
   }
+  if ($module == "ds" && $api == "ds") {
+    return array("version" => "1");
+  }
   if ($module == "strongarm" && $api == "strongarm") {
     return array("version" => "1");
   }
@@ -21,21 +24,4 @@ function fs_podcast_ctools_plugin_api($module = NULL, $api = NULL) {
  */
 function fs_podcast_views_api($module = NULL, $api = NULL) {
   return array("api" => "3.0");
-}
-
-/**
- * Implements hook_node_info().
- */
-function fs_podcast_node_info() {
-  $items = array(
-    'podcast' => array(
-      'name' => t('Podcast'),
-      'base' => 'node_content',
-      'description' => '',
-      'has_title' => '1',
-      'title_label' => t('Title'),
-      'help' => '',
-    ),
-  );
-  return $items;
 }

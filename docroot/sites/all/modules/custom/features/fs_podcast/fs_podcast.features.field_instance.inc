@@ -32,14 +32,7 @@ function fs_podcast_field_default_field_instances() {
         'type' => 'jplayer_player',
         'weight' => 1,
       ),
-      'rss' => array(
-        'label' => 'hidden',
-        'module' => 'file',
-        'settings' => array(),
-        'type' => 'file_default',
-        'weight' => 0,
-      ),
-      'teaser' => array(
+      'full' => array(
         'label' => 'hidden',
         'module' => 'jplayer',
         'settings' => array(
@@ -54,6 +47,19 @@ function fs_podcast_field_default_field_instances() {
         ),
         'type' => 'jplayer_player',
         'weight' => 1,
+      ),
+      'rss' => array(
+        'label' => 'hidden',
+        'module' => 'file',
+        'settings' => array(),
+        'type' => 'file_default',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 3,
       ),
     ),
     'entity_type' => 'node',
@@ -102,6 +108,13 @@ function fs_podcast_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 2,
       ),
+      'full' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 2,
+      ),
       'rss' => array(
         'label' => 'hidden',
         'module' => 'text',
@@ -116,7 +129,7 @@ function fs_podcast_field_default_field_instances() {
           'trim_length' => 200,
         ),
         'type' => 'text_trimmed',
-        'weight' => 2,
+        'weight' => 1,
       ),
     ),
     'entity_type' => 'node',
@@ -152,6 +165,12 @@ function fs_podcast_field_default_field_instances() {
           'image_style' => 'list_posts_150x150',
         ),
         'type' => 'image',
+        'weight' => 0,
+      ),
+      'full' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 0,
       ),
       'rss' => array(
@@ -228,6 +247,13 @@ function fs_podcast_field_default_field_instances() {
         'type' => 'taxonomy_term_reference_link',
         'weight' => 4,
       ),
+      'full' => array(
+        'label' => 'hidden',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 3,
+      ),
       'rss' => array(
         'label' => 'hidden',
         'module' => 'taxonomy',
@@ -237,10 +263,9 @@ function fs_podcast_field_default_field_instances() {
       ),
       'teaser' => array(
         'label' => 'hidden',
-        'module' => 'taxonomy',
         'settings' => array(),
-        'type' => 'taxonomy_term_reference_link',
-        'weight' => 3,
+        'type' => 'hidden',
+        'weight' => 2,
       ),
     ),
     'entity_type' => 'node',

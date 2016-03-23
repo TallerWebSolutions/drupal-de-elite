@@ -10,7 +10,7 @@
 function fs_eventos_user_default_permissions() {
   $permissions = array();
 
-  // Exported permission: create field_video_auth.
+  // Exported permission: 'create field_video_auth'.
   $permissions['create field_video_auth'] = array(
     'name' => 'create field_video_auth',
     'roles' => array(
@@ -19,7 +19,7 @@ function fs_eventos_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
-  // Exported permission: edit field_video_auth.
+  // Exported permission: 'edit field_video_auth'.
   $permissions['edit field_video_auth'] = array(
     'name' => 'edit field_video_auth',
     'roles' => array(
@@ -28,7 +28,7 @@ function fs_eventos_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
-  // Exported permission: edit own field_video_auth.
+  // Exported permission: 'edit own field_video_auth'.
   $permissions['edit own field_video_auth'] = array(
     'name' => 'edit own field_video_auth',
     'roles' => array(
@@ -37,7 +37,7 @@ function fs_eventos_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
-  // Exported permission: view field_video_auth.
+  // Exported permission: 'view field_video_auth'.
   $permissions['view field_video_auth'] = array(
     'name' => 'view field_video_auth',
     'roles' => array(
@@ -47,7 +47,7 @@ function fs_eventos_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
-  // Exported permission: view own field_video_auth.
+  // Exported permission: 'view own field_video_auth'.
   $permissions['view own field_video_auth'] = array(
     'name' => 'view own field_video_auth',
     'roles' => array(

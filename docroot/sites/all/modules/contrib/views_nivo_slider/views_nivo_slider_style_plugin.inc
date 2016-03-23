@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- *  Provide the views nivo slider plugin object with default options and form.
+ * Provide the views nivo slider plugin object with default options and form.
  */
 
 /**
@@ -10,7 +10,7 @@
 
 class views_nivo_slider_style_plugin extends views_plugin_style {
 
-  function option_definition() {
+  public function option_definition() {
     $options = parent::option_definition();
     unset($options['grouping']);
 
@@ -29,11 +29,16 @@ class views_nivo_slider_style_plugin extends views_plugin_style {
     $options['pauseOnHover'] = array('default' => 'true');
     $options['manualAdvance'] = array('default' => 'false');
     $options['captionOpacity'] = array('default' => '0.8');
-
+    $options['advanced_settings']['toggle_bc'] = array('default' => 0);
+    $options['advanced_settings']['beforeChange'] = array('default' => '');
+    $options['advanced_settings']['afterChange'] = array('default' => '');
+    $options['advanced_settings']['slideshowEnd'] = array('default' => '');
+    $options['advanced_settings']['lastSlide'] = array('default' => '');
+    $options['advanced_settings']['afterLoad'] = array('default' => '');
     return $options;
   }
 
-  function options_form(&$form, &$form_state) {
+  public function options_form(&$form, &$form_state) {
     parent::options_form($form, $form_state);
     unset($form['grouping']);
 
@@ -175,6 +180,73 @@ class views_nivo_slider_style_plugin extends views_plugin_style {
       '#options' => array('true' => t('Yes'), 'false' => t('No')),
     );
 
+    $form['advanced_settings'] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Advanced Settings'),
+      '#collapsible' => TRUE,
+      '#collapsed' => TRUE,
+    );
+
+    $form['advanced_settings']['toggle_bc'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Before Change'),
+      '#default_value' => $this->options['advanced_settings']['toggle_bc'],
+    );
+
+    $form['advanced_settings']['beforeChange'] = array(
+      '#type' => 'textarea',
+      '#default_value' => $this->options['advanced_settings']['beforeChange'],
+      '#dependency' => array('edit-style-options-advanced-settings-toggle-bc' => array(1)),
+    );
+
+    $form['advanced_settings']['toggle_ac'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('After Change'),
+      '#default_value' => $this->options['advanced_settings']['toggle_ac'],
+    );
+
+    $form['advanced_settings']['afterChange'] = array(
+      '#type' => 'textarea',
+      '#default_value' => $this->options['advanced_settings']['afterChange'],
+      '#dependency' => array('edit-style-options-advanced-settings-toggle-ac' => array(TRUE)),
+    );
+
+    $form['advanced_settings']['toggle_sse'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Slide Show End'),
+      '#default_value' => $this->options['advanced_settings']['toggle_sse'],
+    );
+
+    $form['advanced_settings']['slideshowEnd'] = array(
+      '#type' => 'textarea',
+      '#default_value' => $this->options['advanced_settings']['slideshowEnd'],
+      '#dependency' => array('edit-style-options-advanced-settings-toggle-sse' => array(TRUE)),
+    );
+
+    $form['advanced_settings']['toggle_ls'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Last Slide'),
+      '#default_value' => $this->options['advanced_settings']['toggle_ls'],
+    );
+
+    $form['advanced_settings']['lastSlide'] = array(
+      '#type' => 'textarea',
+      '#default_value' => $this->options['advanced_settings']['lastSlide'],
+      '#dependency' => array('edit-style-options-advanced-settings-toggle-ls' => array(TRUE)),
+    );
+
+    $form['advanced_settings']['toggle_al'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('After Load'),
+      '#default_value' => $this->options['advanced_settings']['toggle_al'],
+    );
+
+    $form['advanced_settings']['afterLoad'] = array(
+      '#type' => 'textarea',
+      '#default_value' => $this->options['advanced_settings']['afterLoad'],
+      '#dependency' => array('edit-style-options-advanced-settings-toggle-al' => array(TRUE)),
+    );
+
     $form['keyboardNav'] = array(
       '#type' => 'select',
       '#title' => t('Keyboard Navigator'),
@@ -192,11 +264,11 @@ class views_nivo_slider_style_plugin extends views_plugin_style {
     );
   }
 
-  function get_style_options() {
+  public function get_style_options() {
     return views_nivo_slider_list_themes();
   }
 
-  function get_effect_options() {
+  public function get_effect_options() {
     return array(
       'random' => t('Random'),
       'boxRandom' => 'boxRandom',

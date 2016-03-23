@@ -18,6 +18,23 @@
                     });
                 });
 
+                // eval vars as functions
+                if (cfg['beforeChange']) {
+                    eval("cfg['beforeChange'] = " + cfg['beforeChange']);
+                }
+                if (cfg['afterChange']) {
+                    eval("cfg['afterChange'] = " + cfg['afterChange']);
+                }
+                if (cfg['slideshowEnd']) {
+                    eval("cfg['slideshowEnd'] = " + cfg['slideshowEnd']);
+                }
+                if (cfg['lastSlide']) {
+                   eval("cfg['lastSlide'] = " + cfg['lastSlide']);
+                }
+                if (cfg['afterLoad']) {
+                    eval("cfg['afterLoad'] = " + cfg['afterLoad']);
+                }
+
                 vns.nivoSlider(cfg);
             });
         }

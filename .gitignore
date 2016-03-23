@@ -12,6 +12,7 @@ docroot/files
 docroot/sites/*/files
 docroot/sites/*/private
 docroot/sites/*/scaffolding
+docroot/sites/all/modules/contrib/stage_file_proxy
 
 # Packages #
 ############
@@ -69,3 +70,6 @@ nbproject
 # PHPSTORM FILES
 .idea
 .idea/*
+
+# Resources folder #
+resources/

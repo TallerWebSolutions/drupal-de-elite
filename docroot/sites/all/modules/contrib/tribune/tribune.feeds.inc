@@ -32,7 +32,7 @@ function tribune_rss($tribune) {
           'value' => array(
             array(
               'key' => 'title',
-              'value' => $tribune->title,
+              'value' => check_plain($tribune->title),
             ),
             array(
               'key' => 'link',
@@ -72,8 +72,8 @@ function tribune_rss($tribune) {
       '#post' => $post,
       'value' => array(
         'author' => $login,
-        'title' => truncate_utf8($post['text'], 100, TRUE, TRUE, 80),
-        'description' => $post['text'],
+        'title' => truncate_utf8(check_plain($post['text']), 100, TRUE, TRUE, 80),
+        'description' => filter_xss($post['text']),
         'pubDate' => tribune_format_time($tribune, $post['timestamp'], 'r'),
         'link' => url('node/' . $tribune->nid, array('absolute' => TRUE, 'fragment' => 'tribune-' . $post_id)),
         'guid' => url('node/' . $tribune->nid, array('absolute' => TRUE, 'fragment' => 'tribune-' . $post_id)),
@@ -144,7 +144,7 @@ function tribune_xml($tribune, $last_id = NULL) {
       'value' => array(
         'info' => htmlspecialchars($post['info'], ENT_NOQUOTES),
         'login' => $login,
-        'message' => $post['text'],
+        'message' => filter_xss($post['text']),
       ),
     );
   }

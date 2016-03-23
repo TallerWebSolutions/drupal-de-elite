@@ -10,8 +10,8 @@
 function fs_blog_menu_default_menu_links() {
   $menu_links = array();
 
-  // Exported menu link: main-menu:blog
-  $menu_links['main-menu:blog'] = array(
+  // Exported menu link: main-menu_blog:blog
+  $menu_links['main-menu_blog:blog'] = array(
     'menu_name' => 'main-menu',
     'link_path' => 'blog',
     'router_path' => 'blog',
@@ -20,13 +20,15 @@ function fs_blog_menu_default_menu_links() {
       'attributes' => array(
         'title' => '',
       ),
+      'identifier' => 'main-menu_blog:blog',
     ),
     'module' => 'menu',
     'hidden' => 0,
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -49,
+    'weight' => -48,
+    'customized' => 1,
   );
   // Translatables
   // Included for use with string extractors like potx.

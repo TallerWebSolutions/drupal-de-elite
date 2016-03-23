@@ -1,0 +1,42 @@
+/**
+ * Modular list styles definitions.
+ */
+
+%tags-list
+  clear: both
+  ul
+    list-style: none
+    li
+      // +cool-hover-button($de-strong-gray-light, $button-radius)
+      display: inline-block
+      margin: 5px
+  a
+    @extend %tag-button
+    margin: 0
+
+%teaser-links-list
+  li
+    display: inline-block
+    list-style: none
+  a
+    @extend h5
+    +link-hover-shadow($de-soft-gray-light, false)
+    padding-right: 20px
+
+// Sidebar content lists.
+%side-content-img
+  width: 48px
+  height: auto
+  margin-right: 10px
+  border-radius: 50%
+
+%side-content-title
+  @extend h5
+  line-height: 1em
+  color: $primary-color
+  &:hover
+    text-decoration: underline
+
+%side-content-list-item
+  padding-bottom: 20px
+  overflow: auto

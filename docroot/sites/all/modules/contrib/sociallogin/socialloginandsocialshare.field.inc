@@ -1,109 +1,72 @@
 <?php
 
 /**
- * @file
- * socialloginandsocialshare Field mapping.
+ * create user profile2 fields.
+ *
+ * @param object $account User account information
+ * @param object $userprofile User profile data that you got from social network
+ * @param array $form Nested array of form elements that comprise the form.
+ * @param array $form_state A keyed array containing the current state of the form.
  */
-
-function socialloginandsocialshare_field_create_profile_user($account, $lrdata, $form, $form_state) {
+function socialloginandsocialshare_field_create_profile_user($account, $userprofile, $form, $form_state) {
   $field_map = variable_get('socialloginandsocialshare_profile_fields', array());
+
   foreach ($field_map as $key => $value) {
     $mapped_value[$key] = array_values($value);
-  } 
-  $field_convert_info = socialloginandsocialshare_field_convert_info();
-  $instances = field_info_instances('profile2');
+  }
+
+  $field_convert_info = socialloginandsocialshare_field_field_convert_info();
   foreach (field_info_instances('profile2') as $field_name => $instances) {
     if (!empty($mapped_value[$field_name]) && strlen(implode($mapped_value[$field_name])) != 0) {
-      $profile = profile2_by_uid_load($account->uid, $field_name);
+      $profile = profile2_load_by_user($account->uid, $field_name);
+
       if (!$profile) {
-        $profile = profile_create(array('type' => $field_name, 'uid' => $account->uid));
+        $profile = profile_create(array(
+          'type' => $field_name,
+          'uid' => $account->uid
+        ));
       }
+
       foreach ($instances as $instance => $array) {
         $field = field_info_field($array['field_name']);
-        if (module_exists('addressfield') && $field['type'] == 'addressfield' && isset($field_map[$field_name][$array['field_name']]) &&  $field_map[$field_name][$array['field_name']] == 'import') {
-          require_once DRUPAL_ROOT . '/includes/locale.inc';
-          $lrdata['country_code'] ='';
-          $countries = country_get_list();
-          foreach ($countries as $code => $value) {
-            if ($value == $lrdata['country']) {
-              $lrdata['country_code'] = $code;
-              break;
-            }
-          }
-          $profile->{$array['field_name']}[LANGUAGE_NONE][0]['country']= (!empty($lrdata['country_code']) ? $lrdata['country_code'] : variable_get('site_default_country', NULL));
-          if (!empty($lrdata['city']))
-            $profile->{$array['field_name']}[LANGUAGE_NONE][0]['locality']= $lrdata['city'];
-          if (!empty($lrdata['address']))
-            $profile->{$array['field_name']}[LANGUAGE_NONE][0]['thoroughfare']= $lrdata['address'] ;
-          if (!empty($lrdata['state']))
-            $profile->{$array['field_name']}[LANGUAGE_NONE][0]['administrative_area']= $lrdata['state'];
-          if (!empty($lrdata['company']))
-            $profile->{$array['field_name']}[LANGUAGE_NONE][0]['organisation_name']= $lrdata['company'];
-          if (!empty($lrdata['fullname']))
-            $profile->{$array['field_name']}[LANGUAGE_NONE][0]['name_line']= $lrdata['fullname'];
-          if (!empty($lrdata['fname']))
-            $profile->{$array['field_name']}[LANGUAGE_NONE][0]['first_name']= $lrdata['fname'];
-          if (!empty($lrdata['lname']))
-            $profile->{$array['field_name']}[LANGUAGE_NONE][0]['last_name']= $lrdata['lname'];
-        }
+
         if (isset($field_map[$field_name][$array['field_name']]) && isset($field_convert_info[$field['type']]['callback'])) {
           $callback = $field_convert_info[$field['type']]['callback'];
-          $socialloginandsocialshare_property_name = $field_map[$field_name][$array['field_name']];
-          $value = $callback($socialloginandsocialshare_property_name, $lrdata, $field, $array);
+          $socialloginandsocialshare_field_property_name = $field_map[$field_name][$array['field_name']];
+          $value = $callback($socialloginandsocialshare_field_property_name, $userprofile, $field, $array);
           $profile->{$array['field_name']}[LANGUAGE_NONE][0]['value'] = $value; // department info got from 3rd party site  
         }
-        $form_state = array();
-        $form_state['values'] = array();
         $form_state['values']['profile_' . $field_name] = array();
         $form = array();
         $form['#parents'] = array();
         field_attach_submit('profile2', $profile, $form, $form_state); // attach $profile to profile2 submit
         $profile->bundle = $field_name; // main is the profile type which is created in step 3
         profile2_save($profile);
-     }
-   }
- }
+      }
+    }
+  }
 }
+
 /**
  * Function that adding field data.
+ *
+ * @param array $form_state A keyed array containing the current state of the form.
+ * @param object $userprofile User profile data that you got from social network
  */
-function socialloginandsocialshare_field_create_user(&$form_state, $lrdata) {
+function socialloginandsocialshare_field_create_user(&$form_state, $userprofile) {
   $field_map = variable_get('socialloginandsocialshare_user_fields', array());
-  $field_convert_info = socialloginandsocialshare_field_convert_info();
+  $field_convert_info = socialloginandsocialshare_field_field_convert_info();
   $instances = field_info_instances('user', 'user');
+
   foreach ($instances as $field_name => $instance) {
     $field = field_info_field($instance['field_name']);
-    if (module_exists('addressfield') && $field['type'] == 'addressfield' && isset($field_map[$field_name]) && $field_map[$field_name] == 'import') {
-      require_once DRUPAL_ROOT . '/includes/locale.inc';
-      $lrdata['country_code'] ='';
-      $countries = country_get_list();
-      foreach ($countries as $code => $value) {
-        if ($value == $lrdata['country']) {
-          $lrdata['country_code'] = $code;
-          break;
-        }
-      }
-      $form_state[$field_name][LANGUAGE_NONE][0]['country']= (!empty($lrdata['country_code']) ? $lrdata['country_code'] : variable_get('site_default_country', NULL));
-      if (!empty($lrdata['city']))
-        $form_state[$field_name][LANGUAGE_NONE][0]['locality']= $lrdata['city'];
-      if (!empty($lrdata['address']))
-        $form_state[$field_name][LANGUAGE_NONE][0]['thoroughfare']= $lrdata['address'] ;
-      if (!empty($lrdata['state']))
-        $form_state[$field_name][LANGUAGE_NONE][0]['administrative_area']= $lrdata['state'];
-      if (!empty($lrdata['company']))
-        $form_state[$field_name][LANGUAGE_NONE][0]['organisation_name']= $lrdata['company'];
-      if (!empty($lrdata['fullname']))
-        $form_state[$field_name][LANGUAGE_NONE][0]['name_line']= $lrdata['fullname'];
-      if (!empty($lrdata['fname']))
-        $form_state[$field_name][LANGUAGE_NONE][0]['first_name']= $lrdata['fname'];
-      if (!empty($lrdata['lname']))
-        $form_state[$field_name][LANGUAGE_NONE][0]['last_name']= $lrdata['lname'];
-    }
+
     if (isset($field_map[$field_name]) && isset($field_convert_info[$field['type']]['callback'])) {
       $callback = $field_convert_info[$field['type']]['callback'];
-     $socialloginandsocialshare_property_name = $field_map[$field_name];
-      if ($value = $callback($socialloginandsocialshare_property_name, $lrdata, $field, $instance)) {
-       $form_state[$field_name][LANGUAGE_NONE][0] = $value;
+      $socialloginandsocialshare_field_property_name = $field_map[$field_name];
+
+      if ($value = $callback($socialloginandsocialshare_field_property_name, $userprofile, $field, $instance)) {
+        $form_state[$field_name][LANGUAGE_NONE][0] = $value;
       }
     }
   }
@@ -111,190 +74,303 @@ function socialloginandsocialshare_field_create_user(&$form_state, $lrdata) {
 
 /**
  * Function that provide a callback for data map.
+ *
+ * @return array Get array of label and callback through which we can field data
  */
-function socialloginandsocialshare_field_convert_info() {
+function socialloginandsocialshare_field_field_convert_info() {
   $convert_info = array(
     'text' => array(
       'label' => t('Text'),
-      'callback' => 'socialloginandsocialshare_field_convert_text',
+      'callback' => 'socialloginandsocialshare_field_field_convert_text',
     ),
     'text_long' => array(
       'label' => t('Long text'),
-      'callback' => 'socialloginandsocialshare_field_convert_text',
+      'callback' => 'socialloginandsocialshare_field_field_convert_text',
     ),
     'list_text' => array(
       'label' => t('List (\'text\')'),
-      'callback' => 'socialloginandsocialshare_field_convert_list',
+      'callback' => 'socialloginandsocialshare_field_field_convert_list',
     ),
     'datetime' => array(
       'label' => t('Date'),
-      'callback' => 'socialloginandsocialshare_field_convert_date',
+      'callback' => 'socialloginandsocialshare_field_field_convert_date',
     ),
     'date' => array(
       'label' => t('Date'),
-      'callback' => 'socialloginandsocialshare_field_convert_date',
+      'callback' => 'socialloginandsocialshare_field_field_convert_date',
     ),
     'datestamp' => array(
       'label' => t('Date'),
-      'callback' => 'socialloginandsocialshare_field_convert_date',
+      'callback' => 'socialloginandsocialshare_field_field_convert_date',
     ),
   );
-  drupal_alter('socialloginandsocialshare_field_convert_info', $convert_info);
+
+  drupal_alter('socialloginandsocialshare_field_field_convert_info', $convert_info);
   return $convert_info;
 }
 
 /**
  * Convert text and text_long data.
+ *
+ * @param string $socialloginandsocialshare_field_property_name User profile property name thorugh which data mapped
+ * @param object $userprofile User profile data that you got from social network
+ * @param string User field name stored in database
+ * @param string $instance Field instance
+ * @return array  Contain value of field map data
  */
-function socialloginandsocialshare_field_convert_text($socialloginandsocialshare_property_name, $lrdata, $field, $instance) {
+function socialloginandsocialshare_field_field_convert_text($socialloginandsocialshare_field_property_name, $userprofile, $field, $instance) {
   $value = NULL;
-  if (isset($lrdata[$socialloginandsocialshare_property_name])) {
-    if (is_string($lrdata[$socialloginandsocialshare_property_name])) {
-      $value = $lrdata[$socialloginandsocialshare_property_name];
+if(!empty($socialloginandsocialshare_field_property_name)){
+  if (isset($userprofile->$socialloginandsocialshare_field_property_name)) {
+    if (is_string($userprofile->$socialloginandsocialshare_field_property_name)) {
+      $value = $userprofile->$socialloginandsocialshare_field_property_name;
     }
-    elseif (is_object($lrdata[$socialloginandsocialshare_property_name])) {
-      $object = $lrdata[$socialloginandsocialshare_property_name];
+    elseif (is_object($userprofile->$socialloginandsocialshare_field_property_name)) {
+      $object = $userprofile->$socialloginandsocialshare_field_property_name;
+
       if (isset($object->name)) {
         $value = $object->name;
       }
     }
   }
+
   return $value ? array('value' => $value) : NULL;
+  }
 }
 
 /**
  * Convert list data.
+ *
+ * @param string $socialloginandsocialshare_field_property_name User profile property name thorugh which data mapped
+ * @param object $userprofile User profile data that you got from social network
+ * @param string $field User field name stored in database
+ * @param string $instance Field instance
+ * @return array Contain value of field map data
  */
-function socialloginandsocialshare_field_convert_list($socialloginandsocialshare_property_name, $lrdata, $field, $instance) {
-  if (!is_string($lrdata[$socialloginandsocialshare_property_name])) {
+function socialloginandsocialshare_field_field_convert_list($socialloginandsocialshare_field_property_name, $userprofile, $field, $instance) {
+  if(!empty($socialloginandsocialshare_field_property_name)){
+  if (!isset($userprofile->$socialloginandsocialshare_field_property_name) && !is_string($userprofile->$socialloginandsocialshare_field_property_name)) {
     return;
   }
+
   $options = list_allowed_values($field);
   $best_match = 0.0;
-  $best_option = NULL;
-  $sl_option = is_string($lrdata[$socialloginandsocialshare_property_name]) ? $lrdata[$socialloginandsocialshare_property_name] : '';
-  $match_sl = strtolower($lrdata[$socialloginandsocialshare_property_name]);
+  $match_sl = strtolower($userprofile->$socialloginandsocialshare_field_property_name);
+
   foreach ($options as $key => $option) {
     $option = trim($option);
     $match_option = strtolower($option);
     $this_match = 0;
     similar_text($match_option, $match_sl, $this_match);
+
     if ($this_match > $best_match) {
       $best_match = $this_match;
-      $best_option = $option;
       $best_key = $key;
     }
   }
+
   return isset($best_key) ? array('value' => $best_key) : NULL;
+  }
 }
 
 /**
  * Convert date data.
+ *
+ * @param $socialloginandsocialshare_field_property_name User profile property name thorugh which data mapped
+ * @param $userprofile User profile data that you got from social network
+ * @param $field User field name stored in database
+ * @param $instance Field instance
+ * @return array Contain value of field map data
+ *
  */
-function socialloginandsocialshare_field_convert_date($socialloginandsocialshare_property_name, $lrdata, $field, $instance) {
-  $value = NULL;
-  $sldate = explode('/', $lrdata[$socialloginandsocialshare_property_name]);
-  if (count($sldate) == 3) {
-    $date = new DateObject($lrdata[$socialloginandsocialshare_property_name]);
-    if (date_is_date($date)) {
-      $format = $field['type'] == 'datestamp' ? DATE_FORMAT_UNIX : DATE_FORMAT_ISO;
-      $value = array(
-        'value' => $date->format($format, TRUE),
-        'date_type' => $field['type'],
-      );
+function socialloginandsocialshare_field_field_convert_date($socialloginandsocialshare_field_property_name, $userprofile, $field, $instance) {
+if(!empty($socialloginandsocialshare_field_property_name)){
+  if (isset($userprofile->$socialloginandsocialshare_field_property_name)) {
+    $value = NULL;
+    $sldate = explode('/', $userprofile->$socialloginandsocialshare_field_property_name);
+
+    if (count($sldate) == 3) {
+      $date = new DateObject($userprofile->$socialloginandsocialshare_field_property_name);
+
+      if (date_is_date($date)) {
+        $format = $field['type'] == 'datestamp' ? DATE_FORMAT_UNIX : DATE_FORMAT_ISO;
+        $value = array(
+          'value' => $date->format($format, TRUE),
+          'date_type' => $field['type'],
+        );
+      }
     }
+
+    return $value;
   }
-  return $value;
+  }
 }
+
 /**
  * Return a all list of social user properties.
+ *
+ * @return array Get all list of user properties that will show at field mapping
  */
-function socialloginandsocialshare_user_properties($include_common = FALSE) {
+function socialloginandsocialshare_field_user_properties() {
   $common = array(
-    'id' => array(
+    'ID' => array(
       'label' => t('Provider ID'),
     ),
-    'provider' => array(
+    'Provider' => array(
       'label' => t('Social Provider'),
       'field_types' => array('text'),
     ),
-    'fullname' => array(
+    'FullName' => array(
       'label' => t('Full name'),
       'field_types' => array('text'),
     ),
-    'fname' => array(
+    'FirstName' => array(
       'label' => t('First name'),
       'field_types' => array('text'),
     ),
-    'lname' => array(
+    'LastName' => array(
       'label' => t('Last name'),
       'field_types' => array('text'),
     ),
-    'email' => array(
+    'Email_value' => array(
       'label' => t('E-mail'),
       'field_types' => array('text'),
     ),
-    'gender' => array(
+    'Gender' => array(
       'label' => t('Gender'),
       'field_types' => array('text', 'list_text'),
     ),
-    'dob' => array(
+    'BirthDate' => array(
       'label' => t('Birthday'),
       'field_types' => array('text', 'date', 'datetime', 'datestamp'),
     ),
-    'aboutme' => array(
+    'About' => array(
       'label' => t('About me (a short bio)'),
       'field_types' => array('text', 'text_long'),
     ),
-    'address' => array(
-      'label' => t('Location'),
+    'HomeTown' => array(
+      'label' => t('HomeTown'),
       'field_types' => array('text'),
     ),
-    'company' => array(
+    'Company_name' => array(
       'label' => t('Work history'),
       'field_types' => array('text'),
     ),
-    'website' => array(
+    'Website' => array(
       'label' => t('Profile url'),
       'field_types' => array('text'),
     ),
-    'nickname' => array(
+    'NickName' => array(
       'label' => t('Nick name'),
       'field_types' => array('text'),
     ),
-    'state' => array(
+    'State' => array(
       'label' => t('State'),
       'field_types' => array('text'),
     ),
-    'city' => array(
+    'City' => array(
       'label' => t('City'),
       'field_types' => array('text'),
     ),
-    'country' => array(
+    'LocalCity' => array(
+      'label' => t('Local City'),
+      'field_types' => array('text'),
+    ),
+    'Country_name' => array(
       'label' => t('Country'),
       'field_types' => array('text'),
     ),
-    'id' => array(
+    'LocalCountry' => array(
+      'label' => t('Local Country'),
+      'field_types' => array('text'),
+    ),
+    'ID' => array(
       'label' => t('Social ID'),
       'field_types' => array('text'),
     ),
-    'positions' => array(
-      'label' => t('Positions'),
+    'ThumbnailImageUrl' => array(
+      'label' => t('Thumbnail'),
       'field_types' => array('text'),
     ),
-    'educations' => array(
-      'label' => t('Educations'),
+    'PhoneNumber' => array(
+      'label' => t('PhoneNumber'),
       'field_types' => array('text'),
     ),
-    'favoritethings' => array(
-      'label' => t('Favorite Things'),
-      'field_types' => array('text'),
-    ),
+    ''
   );
-  drupal_alter('socialloginandsocialshare_user_properties', $common);
+
+  $common = array_merge(advance_extended_columns_field_mapping(), $common);
+  drupal_alter('socialloginandsocialshare_field_user_properties', $common);
   ksort($common);
-  if (!$include_common) {
-    $common = array_diff_key($common);
-  }
+  $common = array_map("unserialize", array_unique(array_map("serialize", $common)));
   return $common;
+}
+
+/**
+ * Get mapping field data from extended data which is saved in database.
+ *
+ * @param string $key To identify the field mapping data is in basic or extended data
+ * @param string $table_name Database table name of extended data
+ * @param array $mappingfields Basic mapping fields in field mapping
+ * @return array Add extended mapping fields to basic mapping fields
+ */
+function advance_extended_columns_field_mapping() {
+  //Check table exists in database.
+  $extended_profile = array('Website','Favicon','Industry','About',
+    'TimeZone','Verified', 'UpdatedTime','Created', 'RelationshipStatus', 'Quota','InterestedIn', 'Interests', 'Religion','Political',
+    'HttpsImageUrl', 'FollowersCount', 'FriendsCount', 'IsGeoEnabled', 'TotalStatusesCount', 'NumRecommenders', 'Honors',
+    'Associations', 'Hireable', 'Age', 'ProfessionalHeadline', 'MainAddress','LocalCity','ProfileCity', 'ProfileUrl', 'LocalLanguage', 'Language');
+  foreach ($extended_profile as $profile_column) {
+    $columns_array[$profile_column] = array(
+      'label' => $profile_column,
+      'field_types' => array('text')
+    );
+  }
+  return $columns_array;
+
+}
+
+/**
+ * Fill user fields and profile fields to register form.
+ *
+ * @param $form Nested array of form elements that comprise the form.
+ * @param $userprofile User profile data that you got from social network
+ */
+function socialloginandsocialshare_field_show_profile_field_to_register_form(&$form, $userprofile) {
+  $field_map = variable_get('socialloginandsocialshare_user_fields', array());
+  $field_convert_info = socialloginandsocialshare_field_field_convert_info();
+  $instances = field_info_instances('user', 'user');
+
+  foreach ($instances as $field_name => $instance) {
+    $field = field_info_field($instance['field_name']);
+
+    if (isset($field_map[$field_name]) && isset($field_convert_info[$field['type']]['callback'])) {
+      $callback = $field_convert_info[$field['type']]['callback'];
+      $socialloginandsocialshare_field_property_name = $field_map[$field_name];
+
+      if ($value = $callback($socialloginandsocialshare_field_property_name, $userprofile, $field, $instance)) {
+        $form[$field_name][LANGUAGE_NONE][0]['value']['#default_value'] = $value;
+      }
+    }
+  }
+
+  if (module_exists('profile2')) {
+    $field_map = variable_get('socialloginandsocialshare_profile_fields', array());
+    $field_convert_info = socialloginandsocialshare_field_field_convert_info();
+
+    foreach (field_info_instances('profile2') as $field_name => $instances) {
+      foreach ($instances as $instance => $array) {
+        $field = field_info_field($array['field_name']);
+
+        if (isset($field_map[$field_name][$array['field_name']]) && isset($field_convert_info[$field['type']]['callback'])) {
+          $callback = $field_convert_info[$field['type']]['callback'];
+          $socialloginandsocialshare_field_property_name = $field_map[$field_name][$array['field_name']];
+
+          if ($value = $callback($socialloginandsocialshare_field_property_name, $userprofile, $field, $array)) {
+            $form['profile_' . $field_name][$array['field_name']][LANGUAGE_NONE][0]['value']['#default_value'] = $value;
+          }
+        }
+      }
+    }
+  }
 }

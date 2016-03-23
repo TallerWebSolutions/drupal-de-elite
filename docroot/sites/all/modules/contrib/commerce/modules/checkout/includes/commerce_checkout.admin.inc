@@ -15,7 +15,7 @@ function commerce_checkout_builder_form($form, &$form_state) {
   $checkout_pages = commerce_checkout_pages();
 
   // Add a "disabled" pseudo-page.
-  $checkout_pages['disabled'] = array('page_id' => 'disabled', 'title' => t('Disabled'));
+  $checkout_pages['disabled'] = array('page_id' => 'disabled', 'name' => t('Disabled'));
 
   $form['checkout_pages'] = array(
     '#type' => 'value',
@@ -29,7 +29,7 @@ function commerce_checkout_builder_form($form, &$form_state) {
     $form['page'][$page_id]['panes'] = array('#tree' => TRUE);
 
     // Build the options list for selecting the pane's checkout page.
-    $checkout_pages_options[$page_id] = $checkout_pages[$page_id]['title'];
+    $checkout_pages_options[$page_id] = $checkout_pages[$page_id]['name'];
   }
 
   // Loop through all the checkout panes on the site.
@@ -114,7 +114,7 @@ function commerce_checkout_builder_form_validate(&$form, &$form_state) {
         drupal_set_message(t('%pane must be configured before it can be enabled. It has been moved back to a disabled position.', array('%pane' => $panes[$pane_id]['title'])), 'warning');
       }
       else {
-        drupal_set_message(t('%pane is locked in the code to the %page page and was repositioned accordingly.', array('%pane' => $panes[$pane_id]['title'], '%page' => $pages[$panes[$pane_id]['page']]['title'])), 'warning');
+        drupal_set_message(t('%pane is locked in the code to the %page page and was repositioned accordingly.', array('%pane' => $panes[$pane_id]['title'], '%page' => $pages[$panes[$pane_id]['page']]['name'])), 'warning');
       }
 
       form_set_value($element, $panes[$pane_id]['page'], $form_state);
@@ -181,7 +181,7 @@ function theme_commerce_checkout_builder_form($variables) {
 
     // Add a non-draggable header row for each checkout page.
     $row = array(
-      array('data' => $checkout_page['title'], 'colspan' => 4),
+      array('data' => $checkout_page['name'], 'colspan' => 4),
     );
 
     $rows[] = array('data' => $row, 'class' => array('page-header'));
@@ -397,4 +397,54 @@ function commerce_checkout_complete_rules() {
   $content['#page_callback'] = 'commerce_checkout_complete_rules';
 
   return $content;
+}
+
+/**
+ * Form callback: confirmation form for manually invoking the checkout
+ * completion event for an order.
+ *
+ * @param $order
+ *   The order object to process checkout completion on.
+ *
+ * @return
+ *   The form array to confirm the process.
+ *
+ * @see confirm_form()
+ */
+function commerce_checkout_complete_form($form, &$form_state, $order) {
+  $form['order_id'] = array(
+    '#type' => 'value',
+    '#value' => $order->order_id,
+  );
+
+  // Build a description of what the user may expect to occur on submission.
+  $items = array(
+    t('The normal checkout completion process will be invoked on this order.'),
+    t('This may involve order status updates and e-mail notifications.'),
+  );
+
+  $form = confirm_form($form,
+    t('Are you sure you want to simulate checkout completion for order @number?', array('@number' => $order->order_number)),
+    'admin/commerce/orders/' . $order->order_id . '/edit',
+    '<p>' . theme('item_list', array('items' => $items)) . '</p>',
+    t('Simulate checkout completion'),
+    t('Cancel')
+  );
+
+  return $form;
+}
+
+/**
+ * Form submit callback for commerce_checkout_complete_form().
+ */
+function commerce_checkout_complete_form_submit($form, &$form_state) {
+  if ($order = commerce_order_load($form_state['values']['order_id'])) {
+    commerce_checkout_complete($order);
+    drupal_set_message(t('Checkout completion rules have been executed for the order.'));
+    $form_state['redirect'] = 'admin/commerce/orders/' . $order->order_id . '/edit';
+  }
+  else {
+    drupal_set_message(t('Order not found.'), 'error');
+    $form_state['redirect'] = 'admin/commerce/orders';
+  }
 }

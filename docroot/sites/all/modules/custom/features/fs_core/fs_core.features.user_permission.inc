@@ -89,6 +89,7 @@ function fs_core_user_default_permissions() {
     'name' => 'access devel information',
     'roles' => array(
       'administrator' => 'administrator',
+      'anonymous user' => 'anonymous user',
     ),
     'module' => 'devel',
   );
@@ -1558,15 +1559,6 @@ function fs_core_user_default_permissions() {
     'name' => 'generate features',
     'roles' => array(),
     'module' => 'features',
-  );
-
-  // Exported permission: 'import media'.
-  $permissions['import media'] = array(
-    'name' => 'import media',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'media',
   );
 
   // Exported permission: 'kwresearch admin page keywords'.

@@ -107,7 +107,7 @@ function fs_core_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'disqus_location';
-  $strongarm->value = 'content_area';
+  $strongarm->value = 'block';
   $export['disqus_location'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -117,12 +117,13 @@ function fs_core_strongarm() {
   $strongarm->value = array(
     'blog' => 'blog',
     'curso' => 'curso',
+    'evento' => 'evento',
     'podcast' => 'podcast',
     'screencast' => 'screencast',
-    'article' => 'article',
-    'evento' => 'evento',
     'page' => 0,
     'webform' => 0,
+    'tribune' => 0,
+    'banner' => 0,
   );
   $export['disqus_nodetypes'] = $strongarm;
 
@@ -186,7 +187,7 @@ function fs_core_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'disqus_weight';
-  $strongarm->value = '50';
+  $strongarm->value = '100';
   $export['disqus_weight'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -741,7 +742,7 @@ function fs_core_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'site_mail';
-  $strongarm->value = 'leonardo.silva@taller.net.br';
+  $strongarm->value = 'testes@taller.net.br';
   $export['site_mail'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -1237,7 +1238,7 @@ imce/*
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'theme_default';
-  $strongarm->value = 'delite';
+  $strongarm->value = 'drupaldeelite';
   $export['theme_default'] = $strongarm;
 
   $strongarm = new stdClass();

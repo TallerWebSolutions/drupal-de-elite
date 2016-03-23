@@ -1,0 +1,88 @@
+/**
+ * Buttons modular styles definitions.
+ */
+
+// Docs: http://foundation.zurb.com/docs/components/buttons.html
+//
+// Before adding styles be sure to modify variables in the
+// "scss/_variables.scss" file.
+
+=button-contrast($invert)
+  @if $invert
+    // color: $de-soft-gray-main
+    // border-color: $de-soft-gray-main
+    &:hover
+      color: $de-soft-gray-dark
+      border-color: $de-soft-gray-dark
+  @else
+    color: $de-soft-gray-dark
+    border-color: $de-soft-gray-dark
+    &:hover
+      color: $de-strong-gray-light
+      border-color: $de-strong-gray-light
+
+%has-pseudo-element
+  position: relative
+  &::before, &::after
+    content: ''
+    position: absolute
+
+%extended-pseudo-element
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
+
+%compressed-pseudo-element
+  top: 50%
+  right: 50%
+  bottom: 50%
+  left: 50%
+
+=cool-hover-button($bg-color, $hover-color, $radius)
+  @extend %has-pseudo-element
+  background-color: $bg-color
+  border-radius: $radius
+  overflow: hidden
+  transition-delay: 600ms
+  padding: 0
+  z-index: 40
+  &::before
+    @extend %extended-pseudo-element
+    border-radius: $radius
+    background-color: $bg-color
+    transition: all 600ms ease-in-out
+    z-index: 30
+  &::after
+    @extend %compressed-pseudo-element
+    border-radius: $radius
+    background-color: $hover-color
+    transition: all 600ms ease-in-out
+    z-index: 20
+  &:hover
+    background-color: $hover-color
+    &::before
+      @extend %compressed-pseudo-element
+      z-index: 10
+    &::after
+      @extend %extended-pseudo-element
+  a
+    position: relative
+    z-index: 40
+    display: block
+
+%tiny-secondary-button
+  @extend .button
+  @extend .tiny
+  @extend .secondary
+
+%link-button
+  +button-base
+  +button-size($button-sml)
+  +button-style($de-main-blue, $button-radius)
+
+%tag-button
+  +button-base
+  +button-size($button-tny)
+  +button-style(transparent, $button-radius)
+  transition: 600ms

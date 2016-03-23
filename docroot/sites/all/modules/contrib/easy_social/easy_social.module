@@ -555,7 +555,7 @@ function easy_social_get_widgets() {
       }
 
       variable_set('easy_social_global_order', $order);
-      cache_set('easy_social_widgets', $return, 'bin', CACHE_TEMPORARY);
+      cache_set('easy_social_widgets', $return, 'cache', CACHE_TEMPORARY);
     }
     $static = $return;
   }

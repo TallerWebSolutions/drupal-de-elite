@@ -28,7 +28,7 @@ function tribune_local_upgrade_form($form, &$form_state) {
           $node = node_load($nid);
           $form['tribune-2'][$tid] = array(
             '#type' => 'checkbox',
-            '#title' => $node->title,
+            '#title' => check_plain($node->title),
             '#default_value' => 1,
             '#value' => 1,
             '#readonly' => TRUE,

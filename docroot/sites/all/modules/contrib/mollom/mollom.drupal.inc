@@ -9,6 +9,22 @@
  * Drupal Mollom client implementation.
  */
 class MollomDrupal extends Mollom {
+
+  /**
+   * Overrides the connection timeout based on module configuration.
+   *
+   * @see Mollom::__construct().
+   */
+  public function __construct() {
+    // Set any configured endpoint that may be different from the default.
+    parent::__construct();
+    $configured_server = $this->loadConfiguration('server');
+    if (!empty($configured_server)) {
+      $this->server = $configured_server;
+    }
+    $this->requestTimeout = variable_get('mollom_connection_timeout', 3);
+  }
+
   /**
    * Mapping of configuration names to Drupal variables.
    *
@@ -17,6 +33,8 @@ class MollomDrupal extends Mollom {
   public $configuration_map = array(
     'publicKey' => 'mollom_public_key',
     'privateKey' => 'mollom_private_key',
+    'expectedLanguages' => 'mollom_languages_expected',
+    'server' => 'mollom_api_endpoint',
   );
 
   /**
@@ -31,6 +49,11 @@ class MollomDrupal extends Mollom {
    * Implements Mollom::saveConfiguration().
    */
   public function saveConfiguration($name, $value) {
+    // Set local variable.
+    if (property_exists('MollomDrupal', $name)) {
+      $this->{$name} = $value;
+    }
+    // Persist in Drupal.
     $name = $this->configuration_map[$name];
     return variable_set($name, $value);
   }
@@ -211,6 +234,7 @@ class MollomDrupalTest extends MollomDrupal {
       // Do not destroy production variables when testing mode is enabled.
       $this->configuration_map['publicKey'] = 'mollom_test_public_key';
       $this->configuration_map['privateKey'] = 'mollom_test_private_key';
+      $this->configuration_map['server'] = 'mollom_test_api_endpoint';
     }
 
     // Load and set publicKey and privateKey configuration values.
@@ -220,6 +244,9 @@ class MollomDrupalTest extends MollomDrupal {
     if (!isset($this->createKeys)) {
       $this->createKeys = (bool) variable_get('mollom_testing_create_keys', TRUE);
     }
+
+    // Testing can require additional time.
+    $this->requestTimeout = variable_get('mollom_connection_timeout', 3) + 10;
   }
 
   /**
@@ -315,6 +342,7 @@ class MollomDrupalTest extends MollomDrupal {
  * Drupal Mollom client implementation using local dummy/fake REST server.
  */
 class MollomDrupalTestLocal extends MollomDrupalTest {
+
   /**
    * Overrides MollomDrupalTest::__construct().
    */
@@ -322,6 +350,9 @@ class MollomDrupalTestLocal extends MollomDrupalTest {
     // Replace server/endpoint with our local fake server.
     list(, $server) = explode('://', $GLOBALS['base_url'], 2);
     $this->server = $server . '/mollom-test/rest';
+
+    // Do not destroy production server variables when testing mode is enabled.
+    $this->configuration_map['server'] = 'mollom_test_local_api_endpoint';
 
     parent::__construct();
   }
@@ -381,10 +412,6 @@ class MollomDrupalTestLocal extends MollomDrupalTest {
  * Drupal Mollom client implementation using an invalid server.
  */
 class MollomDrupalTestInvalid extends MollomDrupalTest {
-  /**
-   * Overrides Mollom::$server.
-   */
-  public $server = 'fake-host';
 
   /**
    * Overrides MollomDrupalTest::$createKeys.
@@ -394,6 +421,19 @@ class MollomDrupalTestInvalid extends MollomDrupalTest {
   public $createKeys = FALSE;
 
   private $currentAttempt = 0;
+
+  private $originalServer;
+
+  /**
+   * Overrides MollomDrupalTest::__construct().
+   */
+  function __construct() {
+    parent::__construct();
+    $this->originalServer = $this->server;
+    $this->configuration_map['server'] = 'mollom_test_invalid_api_endpoint';
+    $this->saveConfiguration('server', 'fake-host');
+    $this->server = 'fake-host';
+  }
 
   /**
    * Overrides Mollom::query().
@@ -416,7 +456,7 @@ class MollomDrupalTestInvalid extends MollomDrupalTest {
     if (variable_get('mollom_testing_server_failover', FALSE) && $this->currentAttempt == $this->requestMaxAttempts) {
       // Prior to PHP 5.3, there is no late static binding, so there is no way
       // to access the original value of MollomDrupalTest::$server.
-      $server = strtr($server, array($this->server => 'dev.mollom.com'));
+      $server = strtr($server, array($this->server => $this->originalServer));
     }
     return parent::handleRequest($method, $server, $path, $data, $expected);
   }

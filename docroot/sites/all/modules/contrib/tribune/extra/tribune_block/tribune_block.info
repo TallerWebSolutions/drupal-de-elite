@@ -6,9 +6,9 @@ dependencies[] = tribune
 files[] = tribune_block.module
 php = 5.3
 
-; Information added by drupal.org packaging script on 2013-09-17
-version = "7.x-3.11"
+; Information added by Drupal.org packaging script on 2015-07-17
+version = "7.x-3.12"
 core = "7.x"
 project = "tribune"
-datestamp = "1379406837"
+datestamp = "1437148156"
 

@@ -30,11 +30,11 @@ function fs_core_default_box() {
   $box->api_version = 1;
   $box->delta = 'facebook_likebox';
   $box->plugin_key = 'simple';
-  $box->title = 'Encontre-nos no Facebook';
+  $box->title = '';
   $box->description = 'Facebook Like Box';
   $box->options = array(
     'body' => array(
-      'value' => '<iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fdrupaldeelite&amp;width=260&amp;height=275&amp;colorscheme=light&amp;show_faces=true&amp;border_color=%23ffffff&amp;stream=false&amp;header=false&amp;appId=131612406981819" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:260px; height:275px;" allowTransparency="true"></iframe>',
+      'value' => '<iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fdrupaldeelite&amp;width=260&amp;height=290&amp;colorscheme=light&amp;show_faces=true&amp;border_color=%23ffffff&amp;stream=false&amp;header=false&amp;appId=131612406981819" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:260px; height:275px;" allowTransparency="true"></iframe>',
       'format' => 'filtered_html',
     ),
     'additional_classes' => '',

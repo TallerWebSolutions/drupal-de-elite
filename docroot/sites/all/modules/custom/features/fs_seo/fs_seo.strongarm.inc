@@ -86,7 +86,7 @@ function fs_seo_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'googleanalytics_codesnippet_after';
-  $strongarm->value = '';
+  $strongarm->value = 'var ElTracker = [];(function(){ var el = document.createElement(\'script\');el.defer = true;el.type = \'text/javascript\';el.async = true;el.src = "//elstage-eltracker.com";el.src += window === window.parent ? "project/cdn/721c30b7-3e66-4c04-884b-a899cf72e569" : "project/cdn/editor/721c30b7-3e66-4c04-884b-a899cf72e569";var s = document.getElementsByTagName(\'script\')[0];s.parentNode.insertBefore(el, s);})();';
   $export['googleanalytics_codesnippet_after'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -332,7 +332,7 @@ user/*/*';
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'xmlsitemap_generated_last';
-  $strongarm->value = 1384972612;
+  $strongarm->value = 1431358923;
   $export['xmlsitemap_generated_last'] = $strongarm;
 
   $strongarm = new stdClass();

@@ -1,0 +1,34 @@
+name = Drupal de Elite
+description = Tema baseado em Bootstrap
+version = 1.0
+core = 7.x
+base theme = bootstrap
+
+simplytest_dependencies[] = jquery_update
+
+settings[bootstrap_navbar_position] = 'fixed-top'
+settings[bootstrap_cdn] = 3.3.4
+
+stylesheets[all][] = css/common.css
+stylesheets[all][] = css/style.css
+stylesheets[all][] = css/player.css
+
+scripts[] = js/druelite.js
+
+regions[body_top] = Body top
+regions[page_top] = Page top
+regions[header] = Header
+regions[header_bg] = Header background
+regions[help] = Help
+regions[highlighted] = Highlighted
+regions[content] = Content
+regions[sidebar_first] = Sidebar first
+regions[sidebar_second] = Sidebar second
+regions[content_bottom_1] = Content bottom 1
+regions[content_bottom_2] = Content bottom 2
+regions[content_bottom_3] = Content bottom 3
+regions[share] = Share
+regions[bottom] = Bottom
+regions[footer] = Footer
+regions[page_bottom] = Page bottom
+regions[body_bottom] = Body bottom

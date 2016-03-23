@@ -29,7 +29,6 @@ function hide_formats_install() {
     // Something went wrong so log the exception .
     watchdog_exception('hide_formats', $e);
   }
-
 }
 
 
