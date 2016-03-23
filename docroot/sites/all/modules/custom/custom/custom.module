@@ -1,34 +1,34 @@
 <?php
 
-function custom_page_build(&$page) {
-  if (arg(0) == 'search404') {
-  	global $user;
-    // dsm($page);
-  	// sidebar region
-    $page['sidebar_first']['search'] = array(
-      '#markup' => '<div id="sidebar" class="block">' . render(module_invoke('search', 'block_view', 'search')) . '</div>',
-    );
-    $page['sidebar_first']['tags'] = array(
-    	'#markup' => '<div id="sidebar"><div id="block-views-tags-block" class="block"><h2>' . t('Tags') . '</h2>' . views_embed_view('tags', 'default') . '</div></div>',
-    );
-    $page['sidebar_first']['archive'] = array(
-      '#markup' => '<div id="sidebar" class="block"><h2>' . t('Archive') . '</h2>' . views_embed_view('archive', 'block') . '</div>',
-    );
-    // header region
-    $page['search_box']['share'] = array (
-    	'#markup' => '<div class="region-search-block">' . render(_block_get_renderable_array(_block_render_blocks(array(block_load('easy_social', 'easy_social_block_1'))))) . '</div>',
-    );
-    if ($user->uid) {
-	    $page['search_box']['inscriptions'] = array (
-	    	'#markup' => '<div class="region-search-block" id="block-views-subscriptions-block"><h2>' . t('My subscriptions') . '</h2>' . views_embed_view('subscriptions', 'block') . '</div>',
-	    );
-	    $page['search_box']['my-account'] = array (
-	    	'#markup' => '<div class="region-search-block" id="block-views-usuarios-block-1">' . views_embed_view('usuarios', 'block_1') . '</div>',
-	    );
-	  } elseif (!$user->uid) {
-	    $page['search_box']['login'] = array (
-	    	'#markup' => '<div class="region-search-block" id="block-user-login">' . render(drupal_get_form('user_login_block')) . '</div>',
-	    );
-  	}
-  }
-}
+// function custom_page_build(&$page) {
+//   if (arg(0) == 'search404') {
+//   	global $user;
+//     // dsm($page);
+//   	// sidebar region
+//     $page['sidebar_first']['search'] = array(
+//       '#markup' => '<div id="sidebar" class="block">' . render(module_invoke('search', 'block_view', 'search')) . '</div>',
+//     );
+//     $page['sidebar_first']['tags'] = array(
+//     	'#markup' => '<div id="sidebar"><div id="block-views-tags-block" class="block"><h2>' . t('Tags') . '</h2>' . views_embed_view('tags', 'default') . '</div></div>',
+//     );
+//     $page['sidebar_first']['archive'] = array(
+//       '#markup' => '<div id="sidebar" class="block"><h2>' . t('Archive') . '</h2>' . views_embed_view('archive', 'block') . '</div>',
+//     );
+//     // header region
+//     $page['search_box']['share'] = array (
+//     	'#markup' => '<div class="region-search-block">' . render(_block_get_renderable_array(_block_render_blocks(array(block_load('easy_social', 'easy_social_block_1'))))) . '</div>',
+//     );
+//     if ($user->uid) {
+// 	    $page['search_box']['inscriptions'] = array (
+// 	    	'#markup' => '<div class="region-search-block" id="block-views-subscriptions-block"><h2>' . t('My subscriptions') . '</h2>' . views_embed_view('subscriptions', 'block') . '</div>',
+// 	    );
+// 	    $page['search_box']['my-account'] = array (
+// 	    	'#markup' => '<div class="region-search-block" id="block-views-usuarios-block-1">' . views_embed_view('usuarios', 'block_1') . '</div>',
+// 	    );
+// 	  } elseif (!$user->uid) {
+// 	    $page['search_box']['login'] = array (
+// 	    	'#markup' => '<div class="region-search-block" id="block-user-login">' . render(drupal_get_form('user_login_block')) . '</div>',
+// 	    );
+//   	}
+//   }
+// }

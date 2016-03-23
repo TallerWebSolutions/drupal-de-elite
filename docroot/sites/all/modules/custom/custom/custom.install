@@ -770,3 +770,117 @@ function custom_update_7153(&$sandbox) {
     'ds',
   ));
 }
+
+/**
+ * Disable and uninstall a lot modules.
+ */
+function custom_update_7160(&$sandbox) {
+  $ret = array();
+
+  module_disable(array(
+    'ds',
+    'responsive_menus',
+    'alchemy',
+    'alchemy_contentanalysis',
+    'contentanalysis',
+    'contentoptimizer',
+    'context_keywords',
+    'insight',
+    'wordstream',
+    'socialloginandsocialshare',
+    'socialloginandsocialshare_share',
+    'l10n_update',
+    'checklistapi',
+    'easy_social',
+    'stage_file_proxy',
+    'twitter_actions',
+    'twitter_post',
+    'twitter',
+    'kwresearch',
+    'kwresearch_google',
+    'seo_checklist',
+    'seotools',
+    'blockcache_alter',
+    'flag_actions',
+    'flag',
+    'commerce',
+    'fs_blog',
+    'fs_chat',
+    'fs_core',
+    'fs_cursos',
+    'fs_eventos',
+    'fs_podcast',
+    'fs_screencast',
+    'fs_seo',
+    'fs_webforms',
+    'webform',
+    'ckeditor',
+  ));
+
+  drupal_uninstall_modules($module_list = array(
+    'ds',
+    'responsive_menus',
+    'alchemy',
+    'alchemy_contentanalysis',
+    'contentanalysis',
+    'contentoptimizer',
+    'context_keywords',
+    'insight',
+    'wordstream',
+    'socialloginandsocialshare',
+    'socialloginandsocialshare_share',
+    'l10n_update',
+    'checklistapi',
+    'easy_social',
+    'stage_file_proxy',
+    'twitter_actions',
+    'twitter_post',
+    'twitter',
+    'kwresearch',
+    'kwresearch_google',
+    'seo_checklist',
+    'seotools',
+    'blockcache_alter',
+    'flag_actions',
+    'flag',
+    'commerce',
+    'fs_blog',
+    'fs_chat',
+    'fs_core',
+    'fs_cursos',
+    'fs_eventos',
+    'fs_podcast',
+    'fs_screencast',
+    'fs_seo',
+    'fs_webforms',
+    'webform',
+    'ckeditor',
+  ),
+  $uninstall_dependents = TRUE);
+}
+
+/**
+ * Enable some nice functions.
+ */
+function custom_update_7161(&$sandbox) {
+  $ret = array();
+
+  module_enable(array(
+    'simplified_social_share',
+    'entityform',
+    'search_api',
+    'search_api_db',
+    'search_api_views',
+    'facetapi',
+    'search_api_facetapi',
+    'hreflang',
+    'imagecache_token',
+    'views_simple_pager',
+    'wysiwyg',
+    'wysiwyg_codesnippet',
+    'media_wysiwyg',
+    'views_bootstrap',
+    'media_wysiwyg_view_mode',
+    'entityform',
+  ));
+}

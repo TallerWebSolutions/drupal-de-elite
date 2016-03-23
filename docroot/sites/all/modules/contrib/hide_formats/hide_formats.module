@@ -6,9 +6,6 @@
  * Credits go to D6 verson of http://drupal.org/project/better_formats for the hiding solution
  */
 
-
-
-
 /**
  * Implements hook_permission().
  */
@@ -20,9 +17,6 @@ function hide_formats_permission() {
     ),
   );
 }
-
-
-
 
 /**
  * Implements hook_element_info_alter().
@@ -44,11 +38,7 @@ function hide_formats_element_info_alter(&$type) {
 
 /*
  * Started as a direct copy of filter_process_format from core filter.module
- *
- *
- *
  */
-
 function hide_formats_filter_process_format($element) {
   global $user;
 
@@ -96,9 +86,9 @@ function hide_formats_filter_process_format($element) {
   );
 
   /*
-   * Custom addition start
+   * Add custom display.
    */
-  if (!user_access('show text format dropdown')) {
+  if (user_access('show text format dropdown')) {
     $element['format']['#title'] = "Text formats options";  // Title is needed in our theme or you can't expand the fieldset
     $element['format']['#collapsible'] = TRUE;
     $element['format']['#collapsed'] = TRUE;
@@ -110,10 +100,6 @@ function hide_formats_filter_process_format($element) {
       drupal_add_css($custom_css, 'inline');
     }
   }
-  /*
-  * Custom addition end
-  */
-
 
   // Prepare text format guidelines.
   $element['format']['guidelines'] = array(
@@ -199,4 +185,3 @@ function hide_formats_filter_process_format($element) {
 
   return $element;
 }
-

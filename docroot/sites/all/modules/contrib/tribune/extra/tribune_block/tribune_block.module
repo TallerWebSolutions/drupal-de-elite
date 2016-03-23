@@ -10,7 +10,7 @@ function tribune_block_block_info() {
 
   foreach ($tribunes as $tribune) {
     $blocks['tribune-' . $tribune->nid] = array(
-      'info' => t('Tribune: !title [nid: !nid]', array('!title' => $tribune->title, '!nid' => $tribune->nid)),
+      'info' => t('Tribune: @title [nid: !nid]', array('@title' => $tribune->title, '!nid' => $tribune->nid)),
       'cache' => DRUPAL_NO_CACHE,
       'properties' => array(
         'nid' => $tribune->nid,

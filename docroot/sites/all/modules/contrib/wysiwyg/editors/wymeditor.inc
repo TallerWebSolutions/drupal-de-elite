@@ -30,8 +30,9 @@ function wysiwyg_wymeditor_editor() {
     ),
     'version callback' => 'wysiwyg_wymeditor_version',
     'themes callback' => 'wysiwyg_wymeditor_themes',
+    'settings form callback' => 'wysiwyg_wymeditor_settings_form',
     'settings callback' => 'wysiwyg_wymeditor_settings',
-    'plugin callback' => 'wysiwyg_wymeditor_plugins',
+    'plugin callback' => '_wysiwyg_wymeditor_plugins',
     'versions' => array(
       '0.5-rc1' => array(
         'js files' => array('wymeditor.js'),
@@ -82,6 +83,30 @@ function wysiwyg_wymeditor_themes($editor, $profile) {
 }
 
 /**
+ * Enhances the editor profile settings form for WYMeditor.
+ *
+ * @see http://wymeditor.readthedocs.org/en/latest/version_1.0_and_0.5/getting_started/customize.html
+ */
+function wysiwyg_wymeditor_settings_form(&$form, &$form_state) {
+  $profile = $form_state['wysiwyg_profile'];
+  $settings = $profile->settings;
+  $settings += array(
+    'block_formats' => 'p,blockquote,pre,h2,h3,h4,h5,h6,div',
+  );
+
+  $form['css']['#description'] = t('Note: WYMeditor can only load a single stylesheet into the editor.');
+
+  $form['css']['block_formats'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Block formats'),
+    '#default_value' => $settings['block_formats'],
+    '#size' => 40,
+    '#maxlength' => 250,
+    '#description' => t('Comma separated list of HTML block formats. Possible values: <code>@format-list</code>.', array('@format-list' => 'p,h1,h2,h3,h4,h5,h6,blockquote,pre,th')),
+  );
+}
+
+/**
  * Return runtime editor settings for a given wysiwyg profile.
  *
  * @param $editor
@@ -103,7 +128,11 @@ function wysiwyg_wymeditor_settings($editor, $config, $theme) {
     'wymPath' => $editor['libraries'][$library]['files'][0],
     // @todo Does not work in Drupal; jQuery can live anywhere.
     'jQueryPath' => base_path() . 'misc/jquery.js',
-    'updateSelector' => '.form-submit',
+    // WYMeditor's update event handler will revert the field contents if
+    // changes were made after it was detached. Wysiwyg takes care of submit
+    // events anyway so make sure WYMeditor does not bind it anywhere.
+    'updateSelector' => '#wysiwyg-no-element',
+    'updateEvent' => 'wysiwyg-no-event',
     'skin' => $theme,
   );
 
@@ -158,7 +187,7 @@ function wysiwyg_wymeditor_settings($editor, $config, $theme) {
       'blockquote' => 'Blockquote',
       'th' => 'Table_Header',
     );
-    foreach (explode(',', $config['block_formats']) as $tag) {
+    foreach (explode(',', preg_replace('@\s+@', '', $config['block_formats'])) as $tag) {
       if (isset($containers[$tag])) {
         $settings['containersItems'][] = array(
           'name' => strtoupper($tag),
@@ -169,13 +198,15 @@ function wysiwyg_wymeditor_settings($editor, $config, $theme) {
     }
   }
 
+  // Add editor content stylesheet.
   if (isset($config['css_setting'])) {
     if ($config['css_setting'] == 'theme') {
       // WYMeditor only supports one CSS file currently.
-      $settings['stylesheet'] = reset(wysiwyg_get_css());
+      $css = wysiwyg_get_css();
+      $settings['stylesheet'] = reset($css);
     }
-    else if ($config['css_setting'] == 'self' && isset($config['css_path'])) {
-      $settings['stylesheet'] = strtr($config['css_path'], array('%b' => base_path(), '%t' => path_to_theme()));
+    elseif ($config['css_setting'] == 'self' && isset($config['css_path'])) {
+      $settings['stylesheet'] = strtr($config['css_path'], array('%b' => base_path(), '%t' => drupal_get_path('theme', variable_get('theme_default', NULL))));
     }
   }
 
@@ -185,12 +216,12 @@ function wysiwyg_wymeditor_settings($editor, $config, $theme) {
 /**
  * Return internal plugins for this editor; semi-implementation of hook_wysiwyg_plugin().
  */
-function wysiwyg_wymeditor_plugins($editor) {
+function _wysiwyg_wymeditor_plugins($editor) {
   $plugins = array(
     'default' => array(
       'buttons' => array(
         'Bold' => t('Bold'), 'Italic' => t('Italic'),
-        'InsertOrderedList' => t('Bullet list'), 'InsertUnorderedList' => t('Numbered list'),
+        'InsertOrderedList' => t('Numbered list'), 'InsertUnorderedList' => t('Bullet list'),
         'Outdent' => t('Outdent'), 'Indent' => t('Indent'),
         'Undo' => t('Undo'), 'Redo' => t('Redo'),
         'CreateLink' => t('Link'), 'Unlink' => t('Unlink'),
@@ -212,22 +243,22 @@ function wysiwyg_wymeditor_plugins($editor) {
  */
 function _wysiwyg_wymeditor_button_info() {
   return array(
-    'Bold' => array('title'=> 'Strong', 'css'=> 'wym_tools_strong'),
-    'Italic' => array('title'=> 'Emphasis', 'css'=> 'wym_tools_emphasis'),
-    'Superscript' => array('title'=> 'Superscript', 'css'=> 'wym_tools_superscript'),
-    'Subscript' => array('title'=> 'Subscript', 'css'=> 'wym_tools_subscript'),
-    'InsertOrderedList' => array('title'=> 'Ordered_List', 'css'=> 'wym_tools_ordered_list'),
-    'InsertUnorderedList' => array('title'=> 'Unordered_List', 'css'=> 'wym_tools_unordered_list'),
-    'Indent' => array('title'=> 'Indent', 'css'=> 'wym_tools_indent'),
-    'Outdent' => array('title'=> 'Outdent', 'css'=> 'wym_tools_outdent'),
-    'Undo' => array('title'=> 'Undo', 'css'=> 'wym_tools_undo'),
-    'Redo' => array('title'=> 'Redo', 'css'=> 'wym_tools_redo'),
-    'CreateLink' => array('title'=> 'Link', 'css'=> 'wym_tools_link'),
-    'Unlink' => array('title'=> 'Unlink', 'css'=> 'wym_tools_unlink'),
-    'InsertImage' => array('title'=> 'Image', 'css'=> 'wym_tools_image'),
-    'InsertTable' => array('title'=> 'Table', 'css'=> 'wym_tools_table'),
-    'Paste' => array('title'=> 'Paste_From_Word', 'css'=> 'wym_tools_paste'),
-    'ToggleHtml' => array('title'=> 'HTML', 'css'=> 'wym_tools_html'),
-    'Preview' => array('title'=> 'Preview', 'css'=> 'wym_tools_preview'),
+    'Bold' => array('title' => 'Strong', 'css' => 'wym_tools_strong'),
+    'Italic' => array('title' => 'Emphasis', 'css' => 'wym_tools_emphasis'),
+    'Superscript' => array('title' => 'Superscript', 'css' => 'wym_tools_superscript'),
+    'Subscript' => array('title' => 'Subscript', 'css' => 'wym_tools_subscript'),
+    'InsertOrderedList' => array('title' => 'Ordered_List', 'css' => 'wym_tools_ordered_list'),
+    'InsertUnorderedList' => array('title' => 'Unordered_List', 'css' => 'wym_tools_unordered_list'),
+    'Indent' => array('title' => 'Indent', 'css' => 'wym_tools_indent'),
+    'Outdent' => array('title' => 'Outdent', 'css' => 'wym_tools_outdent'),
+    'Undo' => array('title' => 'Undo', 'css' => 'wym_tools_undo'),
+    'Redo' => array('title' => 'Redo', 'css' => 'wym_tools_redo'),
+    'CreateLink' => array('title' => 'Link', 'css' => 'wym_tools_link'),
+    'Unlink' => array('title' => 'Unlink', 'css' => 'wym_tools_unlink'),
+    'InsertImage' => array('title' => 'Image', 'css' => 'wym_tools_image'),
+    'InsertTable' => array('title' => 'Table', 'css' => 'wym_tools_table'),
+    'Paste' => array('title' => 'Paste_From_Word', 'css' => 'wym_tools_paste'),
+    'ToggleHtml' => array('title' => 'HTML', 'css' => 'wym_tools_html'),
+    'Preview' => array('title' => 'Preview', 'css' => 'wym_tools_preview'),
   );
 }

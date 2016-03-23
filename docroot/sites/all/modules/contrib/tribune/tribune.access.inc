@@ -166,7 +166,7 @@ function _tribune_access_page_form($form, $form_state, $tribune) {
     $user = user_load($uid)->name;
     $form['custom']['users'][$user] = array(
       '#name' => 'custom[users]['.$user.']',
-      '#title' => t('Custom access rights for user: !name', array('!name' => $user)),
+      '#title' => t('Custom access rights for user: @name', array('@name' => $user)),
       '#type' => 'fieldset',
       '#collapsible' => TRUE,
       '#collapsed' => TRUE,
@@ -271,7 +271,7 @@ function tribune_access_add_user($form, $form_state) {
   if ($user) {
     $form = array(
       '#name' => 'custom[users]['.$user.']',
-      '#title' => t('Custom access rights for user: !name', array('!name' => $user)),
+      '#title' => t('Custom access rights for user: @name', array('@name' => $user)),
       '#type' => 'fieldset',
       'mod' => array(
         '#type' => 'checkbox',

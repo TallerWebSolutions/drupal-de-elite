@@ -43,6 +43,12 @@ function template_preprocess_views_nivo_slider_view(&$vars) {
     'pauseOnHover' => $options['pauseOnHover'] == 'true' ? TRUE : FALSE,
     'manualAdvance' => $options['manualAdvance'] == 'true' ? TRUE : FALSE,
     'captionOpacity' => (float) $options['captionOpacity'],
+    'beforeChange' => $options['advanced_settings']['beforeChange'] == '' ? 'function(){}' : $options['advanced_settings']['beforeChange'],
+    'afterChange' => $options['advanced_settings']['afterChange'] == '' ? 'function(){}' : $options['advanced_settings']['afterChange'],
+    'slideshowEnd' => $options['advanced_settings']['slideshowEnd'] == '' ? 'function(){}' : $options['advanced_settings']['slideshowEnd'],
+    'lastSlide' => $options['advanced_settings']['lastSlide'] == '' ? 'function(){}' : $options['advanced_settings']['lastSlide'],
+    'afterLoad' => $options['advanced_settings']['afterLoad'] == '' ? 'function(){}' : $options['advanced_settings']['afterLoad'],
+
   );
 
   // 2.7.x version options
@@ -211,7 +217,7 @@ function template_preprocess_views_nivo_slider_view_nivo_sliderfields(&$vars) {
   $img = (!$presetname) ? theme('image', $params) : theme('image_style', $params);
 
   if ($link) {
-    $img = l($img, $link, array('html' => TRUE, 'attributes' => array('class' => 'views-processed')));
+    $img = l($img, $link, array('html' => TRUE, 'attributes' => array('class' => array('views-processed'))));
   }
 
   $vars['content'] = $img;

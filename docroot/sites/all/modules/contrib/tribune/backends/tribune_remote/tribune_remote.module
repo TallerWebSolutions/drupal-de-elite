@@ -46,7 +46,7 @@ function tribune_remote_push($node) {
   if (!empty($_POST['post'])) {
     $post = drupal_json_decode($_POST['post']);
 
-    watchdog('tribune', 'Tribune !nid - new post pushed:<br /><pre>!post</pre>', array('!nid' => $node->nid, '!post' => print_r($post, TRUE), WATCHDOG_INFO));
+    watchdog('tribune', 'Tribune !nid - new post pushed:<br /><pre>@post</pre>', array('!nid' => $node->nid, '@post' => print_r($post, TRUE), WATCHDOG_INFO));
 
     if (!lock_acquire('tribune_remote_' . md5($node->tribune_xml_url) . '_push', 10)) {
       lock_wait('tribune_remote_' . md5($node->tribune_xml_url) . '_push', 10);
@@ -72,7 +72,7 @@ function tribune_remote_push($node) {
     }
     lock_release('tribune_remote_' . md5($node->tribune_xml_url) . '_push');
   } else {
-    watchdog('tribune', 'Tribune !nid - new post not pushed:<br /><pre>!post</pre>', array('!nid' => $node->nid, '!post' => print_r($_POST, TRUE), WATCHDOG_INFO));
+    watchdog('tribune', 'Tribune !nid - new post not pushed:<br /><pre>@post</pre>', array('!nid' => $node->nid, '@post' => print_r($_POST, TRUE), WATCHDOG_INFO));
     header('400 Bad Request');
   }
 
@@ -825,7 +825,7 @@ function tribune_remote_tribune_posts($node, $count = PHP_INT_MAX, $last_id = 0)
     $backend = curl_exec($curl);
 
     if (curl_getinfo($curl, CURLINFO_HTTP_CODE) == 404) {
-      drupal_set_message(t('!tribune_title: cannot retrieve remote tribune posts.', array('!tribune_title' => $node->title)), 'error', FALSE);
+      drupal_set_message(t('@tribune_title: cannot retrieve remote tribune posts.', array('@tribune_title' => $node->title)), 'error', FALSE);
       return array();
     }
 

@@ -99,7 +99,7 @@ function tribune_posts($node, $count, $last_id = 0, $include_moderated = TRUE) {
       $error = $posts;
     }
 
-    $error = t('Tribune !title: ', array('!title' => $node->title)) . $error;
+    $error = t('Tribune @title: ', array('@title' => $node->title)) . $error;
     $posts = array();
   }
 
@@ -153,7 +153,7 @@ function tribune_posts_history($node, $count, $until_id) {
       $error = $posts;
     }
 
-    $error = t('Tribune !title: ', array('!title' => $node->title)) . $error;
+    $error = t('Tribune @title: ', array('@title' => $node->title)) . $error;
     $posts = array();
   }
 

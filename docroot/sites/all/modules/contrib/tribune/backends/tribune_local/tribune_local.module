@@ -1031,7 +1031,7 @@ function tribune_local_block_info() {
   foreach ($tribunes as $tribune) {
     if ($tribune->tribune_type == 'local') {
       $blocks['tribune-active-users-' . $tribune->nid] = array(
-        'info' => t('Tribune: !title [nid: !nid] active users', array('!title' => $tribune->title, '!nid' => $tribune->nid)),
+        'info' => t('Tribune: @title [nid: !nid] active users', array('@title' => $tribune->title, '!nid' => $tribune->nid)),
         'cache' => DRUPAL_CACHE_PER_USER,
         'properties' => array(
           'nid' => $tribune->nid,
@@ -1050,7 +1050,7 @@ function tribune_local_block_view($delta = '') {
   $nid = str_replace('tribune-active-users-', '', $delta);
   if ($node = node_load($nid)) {
     return array(
-      'subject' => t('Active users in !title', array('!title' => $node->title)),
+      'subject' => t('Active users in @title', array('@title' => $node->title)),
       'content' => '<div id="tribune-active-users-' . $nid . '" class="tribune-active-users">' . tribune_local_active_users($node) . '</div>',
     );
   }

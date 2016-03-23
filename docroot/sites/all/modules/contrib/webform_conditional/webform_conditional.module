@@ -129,7 +129,7 @@ function webform_conditional_form_alter(&$form, $form_state, $form_id) {
           //get the reference the form element
           $form_element = &_webform_conditional_get_field($form['submitted'], $row['cid']);
           $form_element['#after_build'][] = "webform_conditional_element_after_build";
-          if ($row['mandatory']) {
+          if ($row['required']) {
             $form_element['#pre_render'][] = "webform_elment_pre_render_add_required";
           }
         }

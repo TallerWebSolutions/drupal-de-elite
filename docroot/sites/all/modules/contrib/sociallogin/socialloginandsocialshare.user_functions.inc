@@ -171,7 +171,6 @@ function socialloginandsocialshare_getuser_data($userprofile) {
 function socialloginandsocialshare_user_redirect($form, $account, $variable_path = '') {
   $variable_path = (!empty($variable_path) ? $variable_path : 'socialloginandsocialshare_userlogin_redirect');
   $variable_custom_path = (($variable_path == 'socialloginandsocialshare_userlogin_redirect') ? 'socialloginandsocialshare_custom_redirection' : 'socialloginandsocialshare_custom_register_redirection');
-  $custom_url = variable_get($variable_custom_path);
   $request_uri = request_uri();
 
   if (variable_get('sociallogin_user_register_redirect') == 1) {

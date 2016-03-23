@@ -72,47 +72,38 @@ Drupal.wysiwyg.editor.attach.whizzywig = function(context, params, settings) {
   wysiwygWhizzywig.currentField = params.field;
   wysiwygWhizzywig.fields[wysiwygWhizzywig.currentField] = '';
   // Whizzywig needs to have the width set 'inline'.
-  $field = $('#' + params.field);
-  var originalValues = Drupal.wysiwyg.instances[params.field];
-  originalValues.originalStyle = $field.attr('style');
+  var $field = $('#' + params.field);
+  this.originalStyle = $field.attr('style');
   $field.css('width', $field.width() + 'px');
 
   // Attach editor.
   makeWhizzyWig(params.field, (settings.buttons ? settings.buttons : 'all'));
   // Whizzywig fails to detect and set initial textarea contents.
-  var instance = $('#whizzy' + params.field).get(0);
-  if (instance) {
-    instance.contentWindow.document.body.innerHTML = tidyD($field.val());
-  }
+  $('#whizzy' + params.field).contents().find('body').html(tidyD($field.val()));
 };
 
 /**
  * Detach a single or all editors.
  */
-Drupal.wysiwyg.editor.detach.whizzywig = function(context, params) {
+Drupal.wysiwyg.editor.detach.whizzywig = function (context, params, trigger) {
+  var instance = this;
   var detach = function (index) {
-    var id = whizzies[index];
-    var instance = $('#whizzy' + id).get(0);
-    if (!instance) {
-      return;
-    }
-    var editingArea = instance.contentWindow.document;
-    var $field = $('#' + id);
-    // Whizzywig shows the original textarea in source mode.
-    if ($field.css('display') == 'block') {
-      editingArea.body.innerHTML = $field.val();
-    }
+    var id = whizzies[index], $field = $('#' + id);
 
     // Save contents of editor back into textarea.
-    $field.val(tidyH(editingArea));
+    $field.val(instance.getContent());
+    // If the editor is just being serialized (not detached), our work is done.
+    if (trigger == 'serialize') {
+      return;
+    }
     // Remove editor instance.
     $('#' + id + '-whizzywig').remove();
     whizzies.splice(index, 1);
 
     // Restore original textarea styling.
-    var originalValues = Drupal.wysiwyg.instances[id];
-    $field.removeAttr('style');
-    $field.attr('style', originalValues.originalStyle);
+    if ('originalStyle' in instance) {
+      $field.removeAttr('style').attr('style', instance.originalStyle);
+    }
   };
 
   if (typeof params != 'undefined') {
@@ -130,4 +121,38 @@ Drupal.wysiwyg.editor.detach.whizzywig = function(context, params) {
   }
 };
 
+/**
+ * Instance methods for Whizzywig.
+ */
+Drupal.wysiwyg.editor.instance.whizzywig = {
+  insert: function (content) {
+    // Whizzywig executes any string beginning with 'js:'.
+    insHTML(content.replace(/^js:/, 'js&colon;'));
+  },
+
+  setContent: function (content) {
+    // Whizzywig shows the original textarea in source mode.
+    if ($field.css('display') == 'block') {
+      $('#' + this.field).val(content);
+    }
+    else {
+      var doc = $('#whizzy' + this.field).contents()[0];
+      doc.open();
+      doc.write(content);
+      doc.close();
+    }
+  },
+
+  getContent: function () {
+    var $field = $('#' + this.field);
+    // Whizzywig's tidyH() expects a document node. Clone the editing iframe's
+    // document so tidyH() won't mess with it if this gets called while editing.
+    var clone = $($('#whizzy' + this.field).contents()[0].documentElement).clone()[0].ownerDocument;
+    // Whizzywig shows the original textarea in source mode so update the body.
+    if ($field.css('display') == 'block') {
+     clone.body.innerHTML = $field.val();
+    }
+    return tidyH(clone);
+  }
+};
 })(jQuery);
