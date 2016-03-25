@@ -1,9 +1,12 @@
 html {
   background: #222;
+  font-family: Open Sans;
 }
 body {
   font-size: 160%;
-  font-weight: 300;
+  font-weight: 400;
+  font-family: Open Sans;
+  line-height: 24px;
 }
 h1,
 h2,
@@ -41,14 +44,14 @@ pre {
 }
 .header .jumbotron {
   margin: 0;
-  padding: 12rem 0 6rem 0;
+  padding: 9rem 0 1rem 0;
   background-color: transparent;
 }
 .header .jumbotron h1,
 .header .jumbotron h2 {
-  font-size: 63px;
+  font-size: 41px;
   font-weight: 300;
-  margin: 0 0 1rem 0;
+  margin: 0;
 }
 .header-top {
   position: absolute;
@@ -255,11 +258,24 @@ margin: 0;
   text-align: right;
 }
 
+.views-pager a,
+.views-pager a:hover,
+.views-pager a:focus,
 .view-courses .btn-primary a,
 .view-courses .btn-primary a:hover,
 .view-courses .btn-primary a:focus {
   color: #ffffff;
   text-decoration: none;
+}
+
+.views-pager .previous {
+  display: inline-block;
+  float: left;
+}
+
+.views-pager .next {
+  display: inline-block;
+  float: right;
 }
 
 #block-views-courses-block,
@@ -269,6 +285,11 @@ margin: 0;
   display: block;
   padding: 0 20px 0 0;
   max-width: 380px;
+}
+
+.view-posts .views-row {
+  margin-bottom: 2em;
+  border-bottom: 1px solid #2D2D2D;
 }
 
 .fb-page, .fb-page iframe[style], .fb-page span {
