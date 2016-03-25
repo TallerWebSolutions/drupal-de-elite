@@ -104,8 +104,8 @@
   ?>
   <?php if (!empty($content['field_tags']) || !empty($content['links'])): ?>
   <footer>
-    <?php print render($content['field_tags']); ?>
     <?php print render($content['links']); ?>
+    <?php print render($content['field_tags']); ?>
   </footer>
   <?php endif; ?>
   <?php print render($content['comments']); ?>

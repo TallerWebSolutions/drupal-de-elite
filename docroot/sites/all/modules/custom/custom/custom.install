@@ -896,3 +896,15 @@ function custom_update_7162(&$sandbox) {
     'entityform',
   ));
 }
+
+/**
+ * Re enable core and podcast features
+ */
+function custom_update_7163(&$sandbox) {
+  $ret = array();
+
+  module_enable(array(
+    'fs_core',
+    'fs_podcast',
+  ));
+}

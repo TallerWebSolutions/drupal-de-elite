@@ -16,7 +16,7 @@ function fs_core_filter_default_formats() {
     'name' => 'Filtered HTML',
     'cache' => 1,
     'status' => 1,
-    'weight' => 0,
+    'weight' => -9,
     'filters' => array(
       'filter_htmlcorrector' => array(
         'weight' => -50,
@@ -29,6 +29,11 @@ function fs_core_filter_default_formats() {
         'settings' => array(
           'filter_url_length' => 72,
         ),
+      ),
+      'media_filter' => array(
+        'weight' => -46,
+        'status' => 1,
+        'settings' => array(),
       ),
       'filter_html' => array(
         'weight' => -44,
@@ -53,35 +58,36 @@ function fs_core_filter_default_formats() {
     'name' => 'Full HTML',
     'cache' => 1,
     'status' => 1,
-    'weight' => 1,
+    'weight' => -10,
     'filters' => array(
-      'filter_htmlcorrector' => array(
-        'weight' => -48,
-        'status' => 1,
-        'settings' => array(),
-      ),
       'filter_url' => array(
-        'weight' => -47,
+        'weight' => -49,
         'status' => 1,
         'settings' => array(
           'filter_url_length' => 72,
         ),
       ),
-      'syntaxhighlighter' => array(
-        'weight' => -41,
+      'filter_autop' => array(
+        'weight' => -48,
         'status' => 1,
         'settings' => array(),
       ),
-      'filter_html' => array(
-        'weight' => -10,
+      'media_filter' => array(
+        'weight' => -47,
         'status' => 1,
-        'settings' => array(
-          'allowed_html' => '<a> <em> <strong> <cite> <blockquote> <code> <ul> <ol> <li> <dl> <dt> <dd> <embed> <img> <php> <iframe> <p> <br> <h1> <h2> <h3> <div>',
-          'filter_html_help' => 1,
-          'filter_html_nofollow' => 0,
-        ),
+        'settings' => array(),
       ),
     ),
+  );
+
+  // Exported format: HTML puro.
+  $formats['html_puro'] = array(
+    'format' => 'html_puro',
+    'name' => 'HTML puro',
+    'cache' => 1,
+    'status' => 1,
+    'weight' => -8,
+    'filters' => array(),
   );
 
   // Exported format: Plain text.
@@ -90,7 +96,7 @@ function fs_core_filter_default_formats() {
     'name' => 'Plain text',
     'cache' => 1,
     'status' => 1,
-    'weight' => 10,
+    'weight' => -7,
     'filters' => array(
       'filter_htmlcorrector' => array(
         'weight' => -48,
@@ -103,6 +109,11 @@ function fs_core_filter_default_formats() {
         'settings' => array(
           'filter_url_length' => 72,
         ),
+      ),
+      'media_filter' => array(
+        'weight' => -43,
+        'status' => 1,
+        'settings' => array(),
       ),
       'syntaxhighlighter' => array(
         'weight' => -40,
