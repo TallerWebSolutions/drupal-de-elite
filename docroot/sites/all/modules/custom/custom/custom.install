@@ -884,3 +884,15 @@ function custom_update_7161(&$sandbox) {
     'entityform',
   ));
 }
+
+/**
+ * Re enable blog feature and new form module
+ */
+function custom_update_7162(&$sandbox) {
+  $ret = array();
+
+  module_enable(array(
+    'fs_blog',
+    'entityform',
+  ));
+}
