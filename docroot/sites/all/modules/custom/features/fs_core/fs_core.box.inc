@@ -37,7 +37,7 @@ function fs_core_default_box() {
   $box->description = 'Apresentação da home';
   $box->options = array(
     'body' => array(
-      'value' => '[[{"fid":"225","view_mode":"full","fields":{"format":"full"},"type":"media","link_text":"Drupal Zero - Como fazer um blog ou site institucional sem saber programar!","attributes":{"class":"file media-element file-full"}}]]
+      'value' => '<p>[[{"fid":"225","view_mode":"full","fields":{"format":"full"},"type":"media","link_text":"Drupal Zero - Como fazer um blog ou site institucional sem saber programar!","attributes":{"class":"file media-element file-full"}}]]</p>
 ',
       'format' => 'full_html',
     ),
@@ -108,6 +108,21 @@ function fs_core_default_box() {
     'additional_classes' => '',
   );
   $export['twitter_widget'] = $box;
+
+  $box = new stdClass();
+  $box->disabled = FALSE; /* Edit this to true to make a default box disabled initially */
+  $box->api_version = 1;
+  $box->delta = 'youtube_subscribe';
+  $box->plugin_key = 'simple';
+  $box->title = '<none>';
+  $box->description = 'Youtube widget';
+  $box->options = array(
+    'body' => array(
+      'value' => '<div class="g-ytsubscribe" data-channelid="UCRGragIHWUm4vxVj8XCwKyQ" data-layout="full" data-count="default" data-onytevent="onYtEvent"></div>',
+      'format' => 'html_puro',
+    ),
+  );
+  $export['youtube_subscribe'] = $box;
 
   return $export;
 }

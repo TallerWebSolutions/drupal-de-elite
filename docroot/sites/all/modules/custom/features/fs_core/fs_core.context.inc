@@ -38,17 +38,23 @@ function fs_core_context_default_contexts() {
           'region' => 'sidebar_second',
           'weight' => '-9',
         ),
+        'boxes-youtube_subscribe' => array(
+          'module' => 'boxes',
+          'delta' => 'youtube_subscribe',
+          'region' => 'sidebar_second',
+          'weight' => '-8',
+        ),
         'boxes-facebook_widget' => array(
           'module' => 'boxes',
           'delta' => 'facebook_widget',
           'region' => 'sidebar_second',
-          'weight' => '-8',
+          'weight' => '-7',
         ),
         'boxes-twitter_widget' => array(
           'module' => 'boxes',
           'delta' => 'twitter_widget',
           'region' => 'sidebar_second',
-          'weight' => '-7',
+          'weight' => '-6',
         ),
         'simplified_social_share-open_sharing' => array(
           'module' => 'simplified_social_share',
@@ -95,15 +101,15 @@ function fs_core_context_default_contexts() {
   $context->reactions = array(
     'block' => array(
       'blocks' => array(
-        'boxes-quem_somos' => array(
-          'module' => 'boxes',
-          'delta' => 'quem_somos',
-          'region' => 'content',
-          'weight' => '-10',
-        ),
         'boxes-home_presentation' => array(
           'module' => 'boxes',
           'delta' => 'home_presentation',
+          'region' => 'content',
+          'weight' => '-10',
+        ),
+        'boxes-quem_somos' => array(
+          'module' => 'boxes',
+          'delta' => 'quem_somos',
           'region' => 'content',
           'weight' => '-9',
         ),
