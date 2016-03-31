@@ -908,3 +908,14 @@ function custom_update_7163(&$sandbox) {
     'fs_podcast',
   ));
 }
+
+/**
+ * Enable email module
+ */
+function custom_update_7164(&$sandbox) {
+  $ret = array();
+
+  module_enable(array(
+    'email',
+  ));
+}
