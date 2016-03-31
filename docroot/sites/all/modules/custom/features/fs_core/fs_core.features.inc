@@ -56,14 +56,17 @@ function fs_core_default_entityform_type() {
       "page_title_view" : "",
       "preview_page" : 0,
       "submission_page_title" : "Contato",
-      "submission_text" : { "value" : "", "format" : "html_puro" },
+      "submission_text" : {
+        "value" : "\\u003Cp\\u003ESua mensagem foi enviada e responderemos em breve!\\u003C\\/p\\u003E\\r\\n",
+        "format" : "full_html"
+      },
       "submission_show_submitted" : 0,
       "submissions_view" : "default",
       "user_submissions_view" : "default",
       "form_status" : "ENTITYFORM_OPEN",
       "roles" : { "1" : "1", "2" : "2", "3" : "3" },
       "resubmit_action" : "new",
-      "redirect_path" : "",
+      "redirect_path" : "contato",
       "instruction_pre" : { "value" : "", "format" : "html_puro" }
     },
     "weight" : "0",

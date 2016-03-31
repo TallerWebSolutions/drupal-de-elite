@@ -33,6 +33,7 @@ function druelite_css_alter(&$css) {
  * Preprocesses variables for page.tpl.php.
  */
 function druelite_preprocess_page(&$vars) {
+//  dpm($vars); exit;
   $vars['header_attributes'] = '';
   $page = &$vars['page'];
 
@@ -53,6 +54,7 @@ function druelite_preprocess_page(&$vars) {
  * Processes variables for page.tpl.php.
  */
 function druelite_process_page(&$vars) {
+//  dpm($vars); exit;
   $page = &$vars['page'];
 
   if ($vars['is_front'] && !$vars['title']) {
@@ -64,6 +66,7 @@ function druelite_process_page(&$vars) {
  * Preprocesses variables for region.tpl.php.
  */
 function druelite_preprocess_region(&$vars) {
+//  dpm($vars['region']); exit;
   $vars['block_count'] = count(element_children($vars['elements']));
 }
 
@@ -134,8 +137,10 @@ function druelite_preprocess_item_list(&$vars) {
  * Preprocesses variables for theme_links().
  */
 function druelite_preprocess_links(&$vars) {
+//  dpm($vars);
   $vars['attributes']['class'][] = 'list-unstyled';
   $vars['links']['node-readmore']['attributes']['class'] = array('btn', 'btn-danger');
+  $vars['links']['calendar_link']['attributes']['class'] = array('btn', 'btn-danger');
   $vars['links']['disqus_comments_num']['attributes']['class'] = array('btn', 'btn-danger');
 }
 
@@ -143,14 +148,14 @@ function druelite_preprocess_links(&$vars) {
  * Implements hook_preprocess_field()
  */
 function druelite_preprocess_field(&$vars) {
-//  kpr($vars);
+  dpm($vars);
   if ($vars['element']['#field_name'] == 'field_tags') {
     array_walk($vars['items'], function(&$el) {
       $el['#options']['attributes']['class'] = array('btn', 'btn-default', 'btn-xs');
       }
     );
   }
-  if ($vars['element']['#field_name'] == 'field_video') {
+  if (($vars['element']['#field_name'] == 'field_video') || ($vars['element']['#field_name'] == 'field_video_auth')) {
     array_walk($vars['items'], function(&$el) {
       $el['file']['#options']['attributes']['class'] = array('embed-responsive', 'embed-responsive-16by9');
       }
