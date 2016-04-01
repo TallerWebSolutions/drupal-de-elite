@@ -380,3 +380,16 @@ margin: 0;
 #block-views-autor-block .views-field-field-about {
   margin-bottom: 1em;
 }
+
+.panel {
+  background: transparent;
+  padding: 8px;
+}
+
+.btn-xlw {
+  width: 100%;
+}
+
+.control-label input {
+  display: none;
+}

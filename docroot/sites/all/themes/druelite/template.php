@@ -168,6 +168,20 @@ function druelite_form_views_exposed_form_alter(&$form, &$form_state) {
 //dpm($form);
 }
 
+function druelite_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id = 'contato-entityform-edit-form') {
+//    dpm($form);
+    $form['actions']['submit']['#attributes']['class'] = array('btn-xlw', 'btn-lg');
+//    $form['field_realname']['#attributes']['class'] = array('form-item');
+  }
+}
+
+function druelite_form_element($variables) {
+  $element = $variables['element'];
+//  dpm($element);
+  return theme_form_element($variables);
+}
+
 function druelite_views_simple_pager($vars) {
   global $pager_page_array, $pager_total;
 

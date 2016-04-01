@@ -49,7 +49,7 @@ function fs_core_default_entityform_type() {
       "draft_button_text" : "",
       "draft_save_text" : { "value" : "", "format" : "html_puro" },
       "submit_button_text" : "",
-      "submit_confirm_msg" : "",
+      "submit_confirm_msg" : "Obrigado por entrar em contato conosco! Responderemos em breve.",
       "your_submissions" : "",
       "disallow_resubmit_msg" : "",
       "delete_confirm_msg" : "",
