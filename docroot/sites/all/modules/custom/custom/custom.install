@@ -919,3 +919,16 @@ function custom_update_7164(&$sandbox) {
     'email',
   ));
 }
+
+/**
+ * Re enable screencast, eventos e cursos features
+ */
+function custom_update_7165(&$sandbox) {
+  $ret = array();
+
+  module_enable(array(
+    'fs_screencast',
+    'fs_eventos',
+    'fs_cursos',
+  ));
+}

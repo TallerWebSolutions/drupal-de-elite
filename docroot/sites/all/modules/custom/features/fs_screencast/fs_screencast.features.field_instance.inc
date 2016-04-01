@@ -10,7 +10,59 @@
 function fs_screencast_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-screencast-field_description'
+  // Exported field_instance: 'node-screencast-body'.
+  $field_instances['node-screencast-body'] = array(
+    'bundle' => 'screencast',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 2,
+      ),
+      'rss' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 2,
+      ),
+      'teaser' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(
+          'trim_length' => 6000,
+        ),
+        'type' => 'text_summary_or_trimmed',
+        'weight' => 2,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'body',
+    'label' => 'Corpo',
+    'required' => 0,
+    'settings' => array(
+      'display_summary' => 0,
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 10,
+        'summary_rows' => 5,
+      ),
+      'type' => 'text_textarea_with_summary',
+      'weight' => 3,
+    ),
+  );
+
+  // Exported field_instance: 'node-screencast-field_description'.
   $field_instances['node-screencast-field_description'] = array(
     'bundle' => 'screencast',
     'default_value' => NULL,
@@ -34,10 +86,8 @@ function fs_screencast_field_default_field_instances() {
       'teaser' => array(
         'label' => 'hidden',
         'module' => 'text',
-        'settings' => array(
-          'trim_length' => 180,
-        ),
-        'type' => 'text_trimmed',
+        'settings' => array(),
+        'type' => 'text_default',
         'weight' => 1,
       ),
     ),
@@ -56,77 +106,11 @@ function fs_screencast_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 3,
+      'weight' => 2,
     ),
   );
 
-  // Exported field_instance: 'node-screencast-field_image'
-  $field_instances['node-screencast-field_image'] = array(
-    'bundle' => 'screencast',
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'hidden',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 4,
-      ),
-      'rss' => array(
-        'label' => 'hidden',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 4,
-      ),
-      'teaser' => array(
-        'label' => 'hidden',
-        'module' => 'image',
-        'settings' => array(
-          'image_link' => 'content',
-          'image_style' => 'list_posts_150x150',
-        ),
-        'type' => 'image',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_image',
-    'label' => 'Imagem de chamada',
-    'required' => 0,
-    'settings' => array(
-      'alt_field' => 0,
-      'default_image' => 0,
-      'file_directory' => 'img_videos',
-      'file_extensions' => 'png gif jpg jpeg',
-      'max_filesize' => '',
-      'max_resolution' => '',
-      'min_resolution' => '',
-      'title_field' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'media',
-      'settings' => array(
-        'allowed_schemes' => array(
-          'public' => 'public',
-          'youtube' => 0,
-        ),
-        'allowed_types' => array(
-          'audio' => 0,
-          'default' => 0,
-          'image' => 'image',
-          'video' => 0,
-        ),
-        'browser_plugins' => array(),
-        'progress_indicator' => 'throbber',
-      ),
-      'type' => 'media_generic',
-      'weight' => 1,
-    ),
-  );
-
-  // Exported field_instance: 'node-screencast-field_tags'
+  // Exported field_instance: 'node-screencast-field_tags'.
   $field_instances['node-screencast-field_tags'] = array(
     'bundle' => 'screencast',
     'default_value' => NULL,
@@ -145,14 +129,14 @@ function fs_screencast_field_default_field_instances() {
         'module' => 'taxonomy',
         'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
-        'weight' => 2,
+        'weight' => 3,
       ),
       'teaser' => array(
         'label' => 'hidden',
         'module' => 'taxonomy',
         'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
-        'weight' => 2,
+        'weight' => 3,
       ),
     ),
     'entity_type' => 'node',
@@ -174,7 +158,7 @@ function fs_screencast_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-screencast-field_video'
+  // Exported field_instance: 'node-screencast-field_video'.
   $field_instances['node-screencast-field_video'] = array(
     'bundle' => 'screencast',
     'deleted' => 0,
@@ -191,16 +175,21 @@ function fs_screencast_field_default_field_instances() {
       ),
       'rss' => array(
         'label' => 'hidden',
-        'module' => 'file',
-        'settings' => array(),
-        'type' => 'file_default',
+        'module' => 'file_entity',
+        'settings' => array(
+          'file_view_mode' => 'full',
+        ),
+        'type' => 'file_rendered',
         'weight' => 0,
       ),
       'teaser' => array(
         'label' => 'hidden',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 4,
+        'module' => 'file_entity',
+        'settings' => array(
+          'file_view_mode' => 'full',
+        ),
+        'type' => 'file_rendered',
+        'weight' => 0,
       ),
     ),
     'entity_type' => 'node',
@@ -239,14 +228,14 @@ function fs_screencast_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'media_generic',
-      'weight' => 2,
+      'weight' => 1,
     ),
   );
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Corpo');
   t('Descrição');
-  t('Imagem de chamada');
   t('Tags');
   t('Vídeo');
 

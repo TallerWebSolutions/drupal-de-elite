@@ -299,6 +299,84 @@ margin: 0;
   border-bottom: 1px solid #2D2D2D;
 }
 
+.navbar-nav > li > .dropdown-menu {
+  background-color: #E5E5E5;
+  border-top: 0 none;
+}
+
 .fb-page, .fb-page iframe[style], .fb-page span {
   width: 100% !important;
+}
+
+/* about author */
+.author-facebook a {
+  background: url("../images/icons/icon-fb.png") no-repeat scroll 0 0 transparent;
+  display: block;
+  padding: 3px 2px 5px 30px;
+  text-indent: -9999px;
+  overflow: hidden;
+  float: left;
+}
+
+.author-twitter a {
+  background: url("../images/icons/icon-twitter.png") no-repeat scroll 0 0 transparent;
+  display: block;
+  padding: 3px 2px 5px 30px;
+  text-indent: -9999px;
+  overflow: hidden;
+  float: left;
+}
+
+.author-youtube a {
+  background: url("../images/icons/icon-youtube.png") no-repeat scroll 0 0 transparent;
+  display: block;
+  padding: 3px 2px 5px 30px;
+  text-indent: -9999px;
+  overflow: hidden;
+  float: left;
+}
+
+.author-gplus a {
+  background: url("../images/icons/icon-gplus.png") no-repeat scroll 0 0 transparent;
+  display: block;
+  padding: 3px 2px 5px 30px;
+  text-indent: -9999px;
+  overflow: hidden;
+  float: left;
+}
+
+.author-vimeo a {
+  background: url("../images/icons/icon-vimeo.png") no-repeat scroll 0 0 transparent;
+  display: block;
+  padding: 3px 2px 5px 30px;
+  text-indent: -9999px;
+  overflow: hidden;
+  float: left;
+}
+
+.author-linkedin a {
+  background: url("../images/icons/icon-linkedin.png") no-repeat scroll 0 0 transparent;
+  display: block;
+  padding: 3px 2px 5px 30px;
+  text-indent: -9999px;
+  overflow: hidden;
+  float: left;
+}
+
+.perfil-drupal-org a {
+  background: url("../images/icons/icon-drupal.png") no-repeat scroll 0 0 transparent;
+  display: block;
+  padding: 3px 2px 5px 30px;  
+  text-indent: -9999px;
+  overflow: hidden;
+  float: left;
+}
+
+#block-views-autor-block {
+  margin-bottom: 2em;
+  border-bottom: 1px solid #2D2D2D;
+}
+
+#block-views-autor-block .views-field-field-about {
+  margin-bottom: 1em;
 }

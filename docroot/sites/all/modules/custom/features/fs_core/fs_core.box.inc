@@ -114,13 +114,14 @@ function fs_core_default_box() {
   $box->api_version = 1;
   $box->delta = 'youtube_subscribe';
   $box->plugin_key = 'simple';
-  $box->title = '<none>';
+  $box->title = 'Siga-nos';
   $box->description = 'Youtube widget';
   $box->options = array(
     'body' => array(
       'value' => '<div class="g-ytsubscribe" data-channelid="UCRGragIHWUm4vxVj8XCwKyQ" data-layout="full" data-count="default" data-onytevent="onYtEvent"></div>',
       'format' => 'html_puro',
     ),
+    'additional_classes' => '',
   );
   $export['youtube_subscribe'] = $box;
 

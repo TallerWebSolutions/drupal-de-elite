@@ -10,7 +10,7 @@
 function fs_cursos_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_carga_horaria'
+  // Exported field_base: 'field_carga_horaria'.
   $field_bases['field_carga_horaria'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -31,7 +31,7 @@ function fs_cursos_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_date'
+  // Exported field_base: 'field_date'.
   $field_bases['field_date'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -64,7 +64,7 @@ function fs_cursos_field_default_field_bases() {
     'type' => 'datetime',
   );
 
-  // Exported field_base: 'field_nivel'
+  // Exported field_base: 'field_nivel'.
   $field_bases['field_nivel'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -90,7 +90,7 @@ function fs_cursos_field_default_field_bases() {
     'type' => 'list_text',
   );
 
-  // Exported field_base: 'field_palestrante'
+  // Exported field_base: 'field_palestrante'.
   $field_bases['field_palestrante'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -123,7 +123,7 @@ function fs_cursos_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_preco_em_grupo_on_line'
+  // Exported field_base: 'field_preco_em_grupo_on_line'.
   $field_bases['field_preco_em_grupo_on_line'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -143,7 +143,7 @@ function fs_cursos_field_default_field_bases() {
     'type' => 'number_float',
   );
 
-  // Exported field_base: 'field_preco_em_grupo_presencial'
+  // Exported field_base: 'field_preco_em_grupo_presencial'.
   $field_bases['field_preco_em_grupo_presencial'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -163,7 +163,7 @@ function fs_cursos_field_default_field_bases() {
     'type' => 'number_float',
   );
 
-  // Exported field_base: 'field_preco_individual_on_line'
+  // Exported field_base: 'field_preco_individual_on_line'.
   $field_bases['field_preco_individual_on_line'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -183,7 +183,7 @@ function fs_cursos_field_default_field_bases() {
     'type' => 'number_float',
   );
 
-  // Exported field_base: 'field_preco_individual_presencia'
+  // Exported field_base: 'field_preco_individual_presencia'.
   $field_bases['field_preco_individual_presencia'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -203,31 +203,7 @@ function fs_cursos_field_default_field_bases() {
     'type' => 'number_float',
   );
 
-  // Exported field_base: 'field_product'
-  $field_bases['field_product'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_product',
-    'field_permissions' => array(
-      'type' => 0,
-    ),
-    'indexes' => array(
-      'product_id' => array(
-        0 => 'product_id',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'commerce_product_reference',
-    'settings' => array(
-      'options_list_limit' => NULL,
-    ),
-    'translatable' => 0,
-    'type' => 'commerce_product_reference',
-  );
-
-  // Exported field_base: 'field_publico_alvo'
+  // Exported field_base: 'field_publico_alvo'.
   $field_bases['field_publico_alvo'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -249,7 +225,7 @@ function fs_cursos_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_recursos_oferecidos'
+  // Exported field_base: 'field_recursos_oferecidos'.
   $field_bases['field_recursos_oferecidos'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -271,7 +247,7 @@ function fs_cursos_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_requesitos'
+  // Exported field_base: 'field_requesitos'.
   $field_bases['field_requesitos'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -291,31 +267,6 @@ function fs_cursos_field_default_field_bases() {
     'settings' => array(),
     'translatable' => 0,
     'type' => 'text_long',
-  );
-
-  // Exported field_base: 'field_tipo_curso'
-  $field_bases['field_tipo_curso'] = array(
-    'active' => 1,
-    'cardinality' => -1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_tipo_curso',
-    'indexes' => array(
-      'value' => array(
-        0 => 'value',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'list',
-    'settings' => array(
-      'allowed_values' => array(
-        1 => 'Presencial',
-        2 => 'Online',
-      ),
-      'allowed_values_function' => '',
-    ),
-    'translatable' => 0,
-    'type' => 'list_text',
   );
 
   return $field_bases;

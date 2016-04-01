@@ -10,7 +10,7 @@
 function fs_cursos_conditional_fields_default_fields() {
   $items = array();
 
-  $items[] = array(
+  $items["node:curso:0"] = array(
     'entity' => 'node',
     'bundle' => 'curso',
     'dependent' => 'field_preco_em_grupo_on_line',
@@ -86,7 +86,7 @@ function fs_cursos_conditional_fields_default_fields() {
     ),
   );
 
-  $items[] = array(
+  $items["node:curso:1"] = array(
     'entity' => 'node',
     'bundle' => 'curso',
     'dependent' => 'field_preco_em_grupo_presencial',
@@ -162,7 +162,7 @@ function fs_cursos_conditional_fields_default_fields() {
     ),
   );
 
-  $items[] = array(
+  $items["node:curso:2"] = array(
     'entity' => 'node',
     'bundle' => 'curso',
     'dependent' => 'field_preco_individual_on_line',
@@ -238,7 +238,7 @@ function fs_cursos_conditional_fields_default_fields() {
     ),
   );
 
-  $items[] = array(
+  $items["node:curso:3"] = array(
     'entity' => 'node',
     'bundle' => 'curso',
     'dependent' => 'field_preco_individual_presencia',

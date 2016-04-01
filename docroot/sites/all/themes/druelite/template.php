@@ -148,7 +148,7 @@ function druelite_preprocess_links(&$vars) {
  * Implements hook_preprocess_field()
  */
 function druelite_preprocess_field(&$vars) {
-  dpm($vars);
+//  dpm($vars);
   if ($vars['element']['#field_name'] == 'field_tags') {
     array_walk($vars['items'], function(&$el) {
       $el['#options']['attributes']['class'] = array('btn', 'btn-default', 'btn-xs');

@@ -10,7 +10,49 @@
 function fs_cursos_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-curso-field_carga_horaria'
+  // Exported field_instance: 'node-curso-body'.
+  $field_instances['node-curso-body'] = array(
+    'bundle' => 'curso',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 16,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'body',
+    'label' => 'Corpo',
+    'required' => 0,
+    'settings' => array(
+      'display_summary' => 0,
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 10,
+        'summary_rows' => 5,
+      ),
+      'type' => 'text_textarea_with_summary',
+      'weight' => 2,
+    ),
+  );
+
+  // Exported field_instance: 'node-curso-field_carga_horaria'.
   $field_instances['node-curso-field_carga_horaria'] = array(
     'bundle' => 'curso',
     'default_value' => NULL,
@@ -55,7 +97,7 @@ function fs_cursos_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-curso-field_date'
+  // Exported field_instance: 'node-curso-field_date'.
   $field_instances['node-curso-field_date'] = array(
     'bundle' => 'curso',
     'deleted' => 0,
@@ -70,6 +112,7 @@ function fs_cursos_field_default_field_instances() {
           'multiple_from' => '',
           'multiple_number' => '',
           'multiple_to' => '',
+          'show_remaining_days' => FALSE,
           'show_repeat_rule' => 'show',
         ),
         'type' => 'date_default',
@@ -111,7 +154,7 @@ function fs_cursos_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-curso-field_description'
+  // Exported field_instance: 'node-curso-field_description'.
   $field_instances['node-curso-field_description'] = array(
     'bundle' => 'curso',
     'default_value' => NULL,
@@ -150,72 +193,11 @@ function fs_cursos_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 2,
-    ),
-  );
-
-  // Exported field_instance: 'node-curso-field_image'
-  $field_instances['node-curso-field_image'] = array(
-    'bundle' => 'curso',
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'hidden',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 8,
-      ),
-      'teaser' => array(
-        'label' => 'hidden',
-        'module' => 'image',
-        'settings' => array(
-          'image_link' => 'content',
-          'image_style' => 'list_posts_207x150',
-        ),
-        'type' => 'image',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_image',
-    'label' => 'Imagem de chamada',
-    'required' => 1,
-    'settings' => array(
-      'alt_field' => 0,
-      'default_image' => 0,
-      'file_directory' => 'img_chamada',
-      'file_extensions' => 'png gif jpg jpeg',
-      'max_filesize' => '',
-      'max_resolution' => '',
-      'min_resolution' => '',
-      'title_field' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'media',
-      'settings' => array(
-        'allowed_schemes' => array(
-          'public' => 'public',
-          'vimeo' => 0,
-          'youtube' => 0,
-        ),
-        'allowed_types' => array(
-          'audio' => 0,
-          'default' => 0,
-          'image' => 'image',
-          'video' => 0,
-        ),
-        'browser_plugins' => array(),
-        'progress_indicator' => 'throbber',
-      ),
-      'type' => 'media_generic',
       'weight' => 1,
     ),
   );
 
-  // Exported field_instance: 'node-curso-field_nivel'
+  // Exported field_instance: 'node-curso-field_nivel'.
   $field_instances['node-curso-field_nivel'] = array(
     'bundle' => 'curso',
     'default_value' => NULL,
@@ -252,7 +234,7 @@ function fs_cursos_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-curso-field_palestrante'
+  // Exported field_instance: 'node-curso-field_palestrante'.
   $field_instances['node-curso-field_palestrante'] = array(
     'bundle' => 'curso',
     'default_value' => NULL,
@@ -292,7 +274,7 @@ function fs_cursos_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-curso-field_preco_em_grupo_on_line'
+  // Exported field_instance: 'node-curso-field_preco_em_grupo_on_line'.
   $field_instances['node-curso-field_preco_em_grupo_on_line'] = array(
     'bundle' => 'curso',
     'default_value' => NULL,
@@ -334,11 +316,11 @@ function fs_cursos_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 13,
+      'weight' => 9,
     ),
   );
 
-  // Exported field_instance: 'node-curso-field_preco_em_grupo_presencial'
+  // Exported field_instance: 'node-curso-field_preco_em_grupo_presencial'.
   $field_instances['node-curso-field_preco_em_grupo_presencial'] = array(
     'bundle' => 'curso',
     'default_value' => NULL,
@@ -380,11 +362,11 @@ function fs_cursos_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 14,
+      'weight' => 10,
     ),
   );
 
-  // Exported field_instance: 'node-curso-field_preco_individual_on_line'
+  // Exported field_instance: 'node-curso-field_preco_individual_on_line'.
   $field_instances['node-curso-field_preco_individual_on_line'] = array(
     'bundle' => 'curso',
     'default_value' => NULL,
@@ -426,11 +408,11 @@ function fs_cursos_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 15,
+      'weight' => 11,
     ),
   );
 
-  // Exported field_instance: 'node-curso-field_preco_individual_presencia'
+  // Exported field_instance: 'node-curso-field_preco_individual_presencia'.
   $field_instances['node-curso-field_preco_individual_presencia'] = array(
     'bundle' => 'curso',
     'default_value' => NULL,
@@ -472,63 +454,11 @@ function fs_cursos_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 16,
+      'weight' => 12,
     ),
   );
 
-  // Exported field_instance: 'node-curso-field_product'
-  $field_instances['node-curso-field_product'] = array(
-    'bundle' => 'curso',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'commerce_cart',
-        'settings' => array(
-          'combine' => TRUE,
-          'default_quantity' => 1,
-          'line_item_type' => 'product',
-          'show_quantity' => FALSE,
-          'show_single_product_attributes' => FALSE,
-        ),
-        'type' => 'commerce_cart_add_to_cart_form',
-        'weight' => 15,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_product',
-    'label' => 'Produto',
-    'required' => 0,
-    'settings' => array(
-      'field_injection' => 1,
-      'referenceable_types' => array(
-        'curso' => 'curso',
-        'product' => 0,
-      ),
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'commerce_product_reference',
-      'settings' => array(
-        'autocomplete_match' => 'contains',
-        'autocomplete_path' => 'commerce_product/autocomplete',
-        'size' => 60,
-      ),
-      'type' => 'commerce_product_reference_autocomplete',
-      'weight' => 20,
-    ),
-  );
-
-  // Exported field_instance: 'node-curso-field_publico_alvo'
+  // Exported field_instance: 'node-curso-field_publico_alvo'.
   $field_instances['node-curso-field_publico_alvo'] = array(
     'bundle' => 'curso',
     'default_value' => NULL,
@@ -564,11 +494,11 @@ function fs_cursos_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 18,
+      'weight' => 14,
     ),
   );
 
-  // Exported field_instance: 'node-curso-field_recursos_oferecidos'
+  // Exported field_instance: 'node-curso-field_recursos_oferecidos'.
   $field_instances['node-curso-field_recursos_oferecidos'] = array(
     'bundle' => 'curso',
     'default_value' => NULL,
@@ -604,11 +534,11 @@ function fs_cursos_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 19,
+      'weight' => 15,
     ),
   );
 
-  // Exported field_instance: 'node-curso-field_requesitos'
+  // Exported field_instance: 'node-curso-field_requesitos'.
   $field_instances['node-curso-field_requesitos'] = array(
     'bundle' => 'curso',
     'default_value' => NULL,
@@ -644,11 +574,11 @@ function fs_cursos_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 17,
+      'weight' => 13,
     ),
   );
 
-  // Exported field_instance: 'node-curso-field_tags'
+  // Exported field_instance: 'node-curso-field_tags'.
   $field_instances['node-curso-field_tags'] = array(
     'bundle' => 'curso',
     'default_value' => NULL,
@@ -688,7 +618,7 @@ function fs_cursos_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-curso-field_tipo_curso'
+  // Exported field_instance: 'node-curso-field_tipo_curso'.
   $field_instances['node-curso-field_tipo_curso'] = array(
     'bundle' => 'curso',
     'default_value' => NULL,
@@ -728,16 +658,15 @@ function fs_cursos_field_default_field_instances() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Carga horária');
+  t('Corpo');
   t('Dados');
   t('Descrição');
   t('Em grupo on-line');
   t('Em grupo presencial');
-  t('Imagem de chamada');
   t('Individual on-line');
   t('Individual presencial');
   t('Ministrante');
   t('Nível');
-  t('Produto');
   t('Publico alvo');
   t('Recursos oferecidos');
   t('Requesitos');

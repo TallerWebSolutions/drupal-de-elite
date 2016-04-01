@@ -10,7 +10,7 @@
 function fs_eventos_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_video_auth'
+  // Exported field_base: 'field_video_auth'.
   $field_bases['field_video_auth'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -18,7 +18,7 @@ function fs_eventos_field_default_field_bases() {
     'entity_types' => array(),
     'field_name' => 'field_video_auth',
     'field_permissions' => array(
-      'type' => 2,
+      'type' => 0,
     ),
     'indexes' => array(
       'fid' => array(

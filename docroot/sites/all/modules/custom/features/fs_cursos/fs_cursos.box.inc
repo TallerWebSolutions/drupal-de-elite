@@ -13,17 +13,18 @@ function fs_cursos_default_box() {
   $box = new stdClass();
   $box->disabled = FALSE; /* Edit this to true to make a default box disabled initially */
   $box->api_version = 1;
-  $box->delta = 'curso_chamada';
+  $box->delta = 'chamada_cursos';
   $box->plugin_key = 'simple';
   $box->title = '<none>';
   $box->description = 'Chamada para cursos';
   $box->options = array(
     'body' => array(
-      'value' => 'Você pode ser um gerente de TI querendo capacitar seu time de Drupal, um desenvolvedor web querendo aprender a criar aplicações com Drupal, um redator, editor de revista online, blogueiro... a gente ensina como suprir as necessidades e resolver as reais situações com Drupal.',
-      'format' => 'filtered_html',
+      'value' => '<p>Você pode ser um gerente de TI querendo capacitar seu time de Drupal, um desenvolvedor web querendo aprender a criar aplicações com Drupal, um redator, editor de revista online, blogueiro... a gente ensina como suprir as necessidades e resolver as reais situações com Drupal.</p>
+',
+      'format' => 'full_html',
     ),
   );
-  $export['curso_chamada'] = $box;
+  $export['chamada_cursos'] = $box;
 
   $box = new stdClass();
   $box->disabled = FALSE; /* Edit this to true to make a default box disabled initially */

@@ -14,8 +14,8 @@ function fs_blog_context_default_contexts() {
   $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
   $context->api_version = 3;
   $context->name = 'blogs';
-  $context->description = '';
-  $context->tag = 'blogs';
+  $context->description = 'Blogs';
+  $context->tag = 'common';
   $context->conditions = array(
     'node' => array(
       'values' => array(
@@ -41,9 +41,9 @@ function fs_blog_context_default_contexts() {
           'region' => 'content',
           'weight' => '-10',
         ),
-        'search-form' => array(
-          'module' => 'search',
-          'delta' => 'form',
+        'views--exp-general_search-page' => array(
+          'module' => 'views',
+          'delta' => '-exp-general_search-page',
           'region' => 'sidebar_second',
           'weight' => '-10',
         ),
@@ -53,29 +53,17 @@ function fs_blog_context_default_contexts() {
           'region' => 'sidebar_second',
           'weight' => '-9',
         ),
-        'views-banner-block' => array(
-          'module' => 'views',
-          'delta' => 'banner-block',
-          'region' => 'sidebar_second',
-          'weight' => '-8',
+        'simplified_social_share-open_sharing' => array(
+          'module' => 'simplified_social_share',
+          'delta' => 'open_sharing',
+          'region' => 'share',
+          'weight' => '-10',
         ),
-        'views-posts-block_2' => array(
-          'module' => 'views',
-          'delta' => 'posts-block_2',
-          'region' => 'sidebar_second',
-          'weight' => '-7',
-        ),
-        'views-tags-block' => array(
-          'module' => 'views',
-          'delta' => 'tags-block',
-          'region' => 'sidebar_second',
-          'weight' => '-6',
-        ),
-        'views-related_content-block_1' => array(
-          'module' => 'views',
-          'delta' => 'related_content-block_1',
-          'region' => 'sidebar_second',
-          'weight' => '-5',
+        'disqus-disqus_comments' => array(
+          'module' => 'disqus',
+          'delta' => 'disqus_comments',
+          'region' => 'bottom',
+          'weight' => '-10',
         ),
       ),
     ),
@@ -84,7 +72,8 @@ function fs_blog_context_default_contexts() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('blogs');
+  t('Blogs');
+  t('common');
   $export['blogs'] = $context;
 
   return $export;

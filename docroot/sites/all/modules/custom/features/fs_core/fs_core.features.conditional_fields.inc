@@ -26,8 +26,8 @@ function fs_core_conditional_fields_default_fields() {
       'element_view' => array(
         1 => 1,
         2 => 2,
-        3 => 3,
         5 => 0,
+        3 => 0,
         4 => 0,
       ),
       'element_view_per_role' => 0,
@@ -104,8 +104,8 @@ function fs_core_conditional_fields_default_fields() {
       'element_view' => array(
         1 => 1,
         2 => 2,
-        3 => 3,
         5 => 0,
+        3 => 0,
         4 => 0,
       ),
       'element_view_per_role' => 0,
@@ -181,8 +181,8 @@ function fs_core_conditional_fields_default_fields() {
       'element_view' => array(
         1 => 1,
         2 => 2,
-        3 => 3,
         5 => 0,
+        3 => 0,
         4 => 0,
       ),
       'element_view_per_role' => 0,
@@ -263,8 +263,8 @@ function fs_core_conditional_fields_default_fields() {
       'element_view' => array(
         1 => 1,
         2 => 2,
-        3 => 3,
         5 => 0,
+        3 => 0,
         4 => 0,
       ),
       'element_view_per_role' => 0,
@@ -338,8 +338,8 @@ function fs_core_conditional_fields_default_fields() {
       'element_view' => array(
         1 => 1,
         2 => 2,
-        3 => 3,
         5 => 0,
+        3 => 0,
         4 => 0,
       ),
       'element_view_per_role' => 0,
@@ -415,8 +415,8 @@ function fs_core_conditional_fields_default_fields() {
       'element_view' => array(
         1 => 1,
         2 => 2,
-        3 => 3,
         5 => 0,
+        3 => 0,
         4 => 0,
       ),
       'element_view_per_role' => 0,
@@ -492,8 +492,8 @@ function fs_core_conditional_fields_default_fields() {
       'element_view' => array(
         1 => 1,
         2 => 2,
-        3 => 3,
         5 => 0,
+        3 => 0,
         4 => 0,
       ),
       'element_view_per_role' => 0,
@@ -569,8 +569,8 @@ function fs_core_conditional_fields_default_fields() {
       'element_view' => array(
         1 => 1,
         2 => 2,
-        3 => 3,
         5 => 0,
+        3 => 0,
         4 => 0,
       ),
       'element_view_per_role' => 0,
@@ -648,8 +648,8 @@ function fs_core_conditional_fields_default_fields() {
       'element_view' => array(
         1 => 1,
         2 => 2,
-        3 => 3,
         5 => 0,
+        3 => 0,
         4 => 0,
       ),
       'element_view_per_role' => 0,
@@ -725,8 +725,8 @@ function fs_core_conditional_fields_default_fields() {
       'element_view' => array(
         1 => 1,
         2 => 2,
-        3 => 3,
         5 => 0,
+        3 => 0,
         4 => 0,
       ),
       'element_view_per_role' => 0,
@@ -802,8 +802,8 @@ function fs_core_conditional_fields_default_fields() {
       'element_view' => array(
         1 => 1,
         2 => 2,
-        3 => 3,
         5 => 0,
+        3 => 0,
         4 => 0,
       ),
       'element_view_per_role' => 0,

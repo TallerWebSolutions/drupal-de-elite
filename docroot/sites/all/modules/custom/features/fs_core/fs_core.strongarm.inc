@@ -270,5 +270,144 @@ function fs_core_strongarm() {
   $strongarm->value = '';
   $export['pathauto_node_page_pattern'] = $strongarm;
 
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'simplified_open_social_share_enable_horizontal_share';
+  $strongarm->value = '1';
+  $export['simplified_open_social_share_enable_horizontal_share'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'simplified_open_social_share_enable_vertical_share';
+  $strongarm->value = '0';
+  $export['simplified_open_social_share_enable_vertical_share'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'simplified_open_social_share_horizontal_images';
+  $strongarm->value = '10';
+  $export['simplified_open_social_share_horizontal_images'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'simplified_open_social_share_rearrange_providers_list';
+  $strongarm->value = array(
+    0 => 'facebook',
+    1 => 'googleplus',
+    2 => 'twitter',
+    3 => 'linkedin',
+    4 => 'email',
+  );
+  $export['simplified_open_social_share_rearrange_providers_list'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'simplified_open_social_share_rearran_providers_list';
+  $strongarm->value = '';
+  $export['simplified_open_social_share_rearran_providers_list'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'simplified_open_social_share_selected_share_interface';
+  $strongarm->value = '';
+  $export['simplified_open_social_share_selected_share_interface'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'simplified_open_social_share_show_horizotal';
+  $strongarm->value = '';
+  $export['simplified_open_social_share_show_horizotal'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'simplified_open_social_share_show_veritical';
+  $strongarm->value = '';
+  $export['simplified_open_social_share_show_veritical'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'simplified_open_social_share_vertical_images';
+  $strongarm->value = '4';
+  $export['simplified_open_social_share_vertical_images'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'simplified_social_share_enable_horizontal_share';
+  $strongarm->value = '1';
+  $export['simplified_social_share_enable_horizontal_share'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'simplified_social_share_enable_vertical_share';
+  $strongarm->value = '0';
+  $export['simplified_social_share_enable_vertical_share'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'simplified_social_share_horizontal_images';
+  $strongarm->value = '10';
+  $export['simplified_social_share_horizontal_images'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'simplified_social_share_rearrange_providers_list';
+  $strongarm->value = array(
+    0 => 'facebook',
+    1 => 'googleplus',
+    2 => 'google',
+    3 => 'twitter',
+    4 => 'linkedin',
+    5 => 'email',
+  );
+  $export['simplified_social_share_rearrange_providers_list'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'simplified_social_share_rearran_providers_list';
+  $strongarm->value = '';
+  $export['simplified_social_share_rearran_providers_list'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'simplified_social_share_selected_share_interface';
+  $strongarm->value = '';
+  $export['simplified_social_share_selected_share_interface'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'simplified_social_share_show_horizotal';
+  $strongarm->value = '';
+  $export['simplified_social_share_show_horizotal'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'simplified_social_share_show_veritical';
+  $strongarm->value = '';
+  $export['simplified_social_share_show_veritical'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'simplified_social_share_vertical_images';
+  $strongarm->value = '4';
+  $export['simplified_social_share_vertical_images'] = $strongarm;
+
   return $export;
 }

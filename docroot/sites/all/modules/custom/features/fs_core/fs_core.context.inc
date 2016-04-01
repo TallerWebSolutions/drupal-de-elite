@@ -19,13 +19,42 @@ function fs_core_context_default_contexts() {
   $context->conditions = array(
     'path' => array(
       'values' => array(
-        '*' => '*',
+        'podcast' => 'podcast',
+        'blog' => 'blog',
+        'video' => 'video',
+        'arquivo' => 'arquivo',
+        'arquivo/*' => 'arquivo/*',
+        'tags' => 'tags',
+        'tags/*' => 'tags/*',
+        'acesso-negado' => 'acesso-negado',
+        'pagina-nao-encontrada' => 'pagina-nao-encontrada',
+        'busca' => 'busca',
+        'busca/*' => 'busca/*',
+        'search' => 'search',
+        'search/*' => 'search/*',
+        'search404' => 'search404',
+        'search404/*' => 'search404/*',
+        'search404*' => 'search404*',
+        'page-not-found' => 'page-not-found',
+        'page-not-found/*' => 'page-not-found/*',
       ),
     ),
   );
   $context->reactions = array(
     'block' => array(
       'blocks' => array(
+        'system-help' => array(
+          'module' => 'system',
+          'delta' => 'help',
+          'region' => 'help',
+          'weight' => '-10',
+        ),
+        'system-main' => array(
+          'module' => 'system',
+          'delta' => 'main',
+          'region' => 'content',
+          'weight' => '-10',
+        ),
         'views--exp-general_search-page' => array(
           'module' => 'views',
           'delta' => '-exp-general_search-page',
@@ -101,17 +130,65 @@ function fs_core_context_default_contexts() {
   $context->reactions = array(
     'block' => array(
       'blocks' => array(
+        'system-help' => array(
+          'module' => 'system',
+          'delta' => 'help',
+          'region' => 'help',
+          'weight' => '-10',
+        ),
+        'system-main' => array(
+          'module' => 'system',
+          'delta' => 'main',
+          'region' => 'content',
+          'weight' => '-10',
+        ),
         'boxes-home_presentation' => array(
           'module' => 'boxes',
           'delta' => 'home_presentation',
           'region' => 'content',
-          'weight' => '-10',
+          'weight' => '-9',
         ),
         'boxes-quem_somos' => array(
           'module' => 'boxes',
           'delta' => 'quem_somos',
           'region' => 'content',
+          'weight' => '-8',
+        ),
+        'views--exp-general_search-page' => array(
+          'module' => 'views',
+          'delta' => '-exp-general_search-page',
+          'region' => 'sidebar_second',
+          'weight' => '-10',
+        ),
+        'boxes-youtube_subscribe' => array(
+          'module' => 'boxes',
+          'delta' => 'youtube_subscribe',
+          'region' => 'sidebar_second',
           'weight' => '-9',
+        ),
+        'boxes-facebook_widget' => array(
+          'module' => 'boxes',
+          'delta' => 'facebook_widget',
+          'region' => 'sidebar_second',
+          'weight' => '-8',
+        ),
+        'boxes-twitter_widget' => array(
+          'module' => 'boxes',
+          'delta' => 'twitter_widget',
+          'region' => 'sidebar_second',
+          'weight' => '-7',
+        ),
+        'simplified_social_share-open_sharing' => array(
+          'module' => 'simplified_social_share',
+          'delta' => 'open_sharing',
+          'region' => 'share',
+          'weight' => '-10',
+        ),
+        'disqus-disqus_comments' => array(
+          'module' => 'disqus',
+          'delta' => 'disqus_comments',
+          'region' => 'bottom',
+          'weight' => '-10',
         ),
       ),
     ),

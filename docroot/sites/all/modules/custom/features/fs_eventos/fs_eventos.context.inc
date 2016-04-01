@@ -14,8 +14,8 @@ function fs_eventos_context_default_contexts() {
   $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
   $context->api_version = 3;
   $context->name = 'eventos';
-  $context->description = '';
-  $context->tag = 'eventos';
+  $context->description = 'Eventos';
+  $context->tag = 'common';
   $context->conditions = array(
     'node' => array(
       'values' => array(
@@ -23,12 +23,6 @@ function fs_eventos_context_default_contexts() {
       ),
       'options' => array(
         'node_form' => '0',
-      ),
-    ),
-    'path' => array(
-      'values' => array(
-        'evento' => 'evento',
-        'evento/*' => 'evento/*',
       ),
     ),
   );
@@ -47,9 +41,9 @@ function fs_eventos_context_default_contexts() {
           'region' => 'content',
           'weight' => '-10',
         ),
-        'search-form' => array(
-          'module' => 'search',
-          'delta' => 'form',
+        'views--exp-general_search-page' => array(
+          'module' => 'views',
+          'delta' => '-exp-general_search-page',
           'region' => 'sidebar_second',
           'weight' => '-10',
         ),
@@ -59,23 +53,17 @@ function fs_eventos_context_default_contexts() {
           'region' => 'sidebar_second',
           'weight' => '-9',
         ),
-        'views-eventos-block_2' => array(
-          'module' => 'views',
-          'delta' => 'eventos-block_2',
-          'region' => 'sidebar_second',
-          'weight' => '-8',
+        'simplified_social_share-open_sharing' => array(
+          'module' => 'simplified_social_share',
+          'delta' => 'open_sharing',
+          'region' => 'share',
+          'weight' => '-10',
         ),
-        'views-tags-block' => array(
-          'module' => 'views',
-          'delta' => 'tags-block',
-          'region' => 'sidebar_second',
-          'weight' => '-7',
-        ),
-        'views-related_content-block_1' => array(
-          'module' => 'views',
-          'delta' => 'related_content-block_1',
-          'region' => 'sidebar_second',
-          'weight' => '-6',
+        'disqus-disqus_comments' => array(
+          'module' => 'disqus',
+          'delta' => 'disqus_comments',
+          'region' => 'bottom',
+          'weight' => '-10',
         ),
       ),
     ),
@@ -84,52 +72,9 @@ function fs_eventos_context_default_contexts() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('eventos');
+  t('Eventos');
+  t('common');
   $export['eventos'] = $context;
-
-  $context = new stdClass();
-  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
-  $context->api_version = 3;
-  $context->name = 'lista_de_eventos';
-  $context->description = '';
-  $context->tag = 'eventos';
-  $context->conditions = array(
-    'path' => array(
-      'values' => array(
-        'evento' => 'evento',
-      ),
-    ),
-  );
-  $context->reactions = array(
-    'block' => array(
-      'blocks' => array(
-        'views-eventos-block_5' => array(
-          'module' => 'views',
-          'delta' => 'eventos-block_5',
-          'region' => 'content',
-          'weight' => '-10',
-        ),
-        'views-eventos-block_4' => array(
-          'module' => 'views',
-          'delta' => 'eventos-block_4',
-          'region' => 'content',
-          'weight' => '-9',
-        ),
-        'system-help' => array(
-          'module' => 'system',
-          'delta' => 'help',
-          'region' => 'help',
-          'weight' => '-10',
-        ),
-      ),
-    ),
-  );
-  $context->condition_mode = 0;
-
-  // Translatables
-  // Included for use with string extractors like potx.
-  t('eventos');
-  $export['lista_de_eventos'] = $context;
 
   return $export;
 }

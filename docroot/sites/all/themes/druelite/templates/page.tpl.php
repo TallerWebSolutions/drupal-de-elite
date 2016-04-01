@@ -89,13 +89,14 @@
 <?php if ($page['content_bottom_1'] || $page['content_bottom_2'] || $page['content_bottom_3']): ?>
 <section class="content_bottom">
   <div class="container">
-    <section class="main-col col-md-4">
+    <?php $_content_cols_2 = 12 - 4 * !empty($page['content_bottom_1']) - 4 * !empty($page['content_bottom_2']) - 4 * !empty($page['content_bottom_3']) ?>
+    <section class="main-col col-md-<?php print $_content_cols_2  ?><?php print !empty(($page['content_bottom_2']) && !empty($page['content_bottom_3'])) ? ' col-md-push-4' : '' ?>">
       <?php print render($page['content_bottom_1']) ?>
     </section>
-    <section class="main-col col-md-4">
+    <section class="main-col col-md-<?php print $_content_cols_2  ?><?php print !empty(($page['content_bottom_1']) && !empty($page['content_bottom_3'])) ? ' col-md-push-4' : '' ?>">
       <?php print render($page['content_bottom_2']) ?>
     </section>
-    <section class="main-col col-md-4">
+    <section class="main-col col-md-<?php print $_content_cols_2  ?><?php print !empty(($page['content_bottom_1']) && !empty($page['content_bottom_2'])) ? ' col-md-push-4' : '' ?>">
       <?php print render($page['content_bottom_3']) ?>
     </section>
   </div>

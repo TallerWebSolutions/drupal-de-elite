@@ -13,46 +13,6 @@ function fs_cursos_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'additional_settings__active_tab_curso';
-  $strongarm->value = 'edit-submission';
-  $export['additional_settings__active_tab_curso'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'easy_social_curso_count';
-  $strongarm->value = '1';
-  $export['easy_social_curso_count'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'easy_social_curso_enable';
-  $strongarm->value = 1;
-  $export['easy_social_curso_enable'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'easy_social_curso_type';
-  $strongarm->value = '0';
-  $export['easy_social_curso_type'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'easy_social_curso_widgets';
-  $strongarm->value = array(
-    'twitter' => 'twitter',
-    'facebook' => 'facebook',
-    'googleplus' => 'googleplus',
-    'linkedin' => 'linkedin',
-  );
-  $export['easy_social_curso_widgets'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_node__curso';
   $strongarm->value = array(
     'view_modes' => array(
@@ -78,19 +38,19 @@ function fs_cursos_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '12',
+          'weight' => '19',
         ),
         'title' => array(
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '9',
+          'weight' => '16',
         ),
         'redirect' => array(
-          'weight' => '11',
+          'weight' => '18',
         ),
         'xmlsitemap' => array(
-          'weight' => '10',
+          'weight' => '17',
         ),
       ),
       'display' => array(
@@ -160,62 +120,6 @@ function fs_cursos_strongarm() {
   $strongarm->name = 'pathauto_node_curso_pattern';
   $strongarm->value = 'curso/[node:title]';
   $export['pathauto_node_curso_pattern'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'save_continue_curso';
-  $strongarm->value = 'Salvar e adicionar campos';
-  $export['save_continue_curso'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'scheduler_publish_enable_curso';
-  $strongarm->value = 1;
-  $export['scheduler_publish_enable_curso'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'scheduler_publish_required_curso';
-  $strongarm->value = 0;
-  $export['scheduler_publish_required_curso'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'scheduler_publish_revision_curso';
-  $strongarm->value = 1;
-  $export['scheduler_publish_revision_curso'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'scheduler_publish_touch_curso';
-  $strongarm->value = 1;
-  $export['scheduler_publish_touch_curso'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'scheduler_unpublish_enable_curso';
-  $strongarm->value = 1;
-  $export['scheduler_unpublish_enable_curso'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'scheduler_unpublish_required_curso';
-  $strongarm->value = 0;
-  $export['scheduler_unpublish_required_curso'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'scheduler_unpublish_revision_curso';
-  $strongarm->value = 1;
-  $export['scheduler_unpublish_revision_curso'] = $strongarm;
 
   return $export;
 }
