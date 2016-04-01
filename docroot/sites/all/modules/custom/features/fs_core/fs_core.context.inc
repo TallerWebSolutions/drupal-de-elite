@@ -190,6 +190,12 @@ function fs_core_context_default_contexts() {
           'region' => 'bottom',
           'weight' => '-10',
         ),
+        'boxes-rodape' => array(
+          'module' => 'boxes',
+          'delta' => 'rodape',
+          'region' => 'footer',
+          'weight' => '-10',
+        ),
       ),
     ),
   );
