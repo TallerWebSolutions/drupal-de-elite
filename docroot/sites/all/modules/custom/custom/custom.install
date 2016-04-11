@@ -934,7 +934,7 @@ function custom_update_7165(&$sandbox) {
 }
 
 /**
- * Enable modules to improve site and disable unsual modules
+ * Enable modules to improve site
  */
 function custom_update_7166(&$sandbox) {
   $ret = array();
@@ -945,16 +945,5 @@ function custom_update_7166(&$sandbox) {
     'entity_rules',
     'entityform_notifications',
     'smtp',
-  ));
-  module_disable(array(
-    'devel',
-    'context_ui',
-    'compact_forms',
-    'metatags_quick',
-    'l10n_update',
-    'update',
-    'syntaxhighlighter',
-    'variable',
-    'views_ui',
   ));
 }
