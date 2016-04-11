@@ -8,6 +8,9 @@
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
     <?php print $styles ?>
     <script src="https://apis.google.com/js/platform.js"></script>
+    <script>
+      var ElTracker = [];(function(){ var el = document.createElement('script');el.defer = true;el.type = 'text/javascript';el.async = true;el.src = "http://eltracker.io/";el.src += window === window.parent ? "project/cdn/56f29415-11a5-488a-a16c-31c77b34ee4d" : "project/cdn/editor/56f29415-11a5-488a-a16c-31c77b34ee4d";var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(el, s);})();
+    </script>
     <?php print $scripts ?>
     <div id="fb-root"></div>
   </head>

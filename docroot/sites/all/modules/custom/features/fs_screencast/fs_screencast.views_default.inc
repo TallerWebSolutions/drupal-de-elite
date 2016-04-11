@@ -48,14 +48,14 @@ function fs_screencast_views_default_views() {
   $handler->display->display_options['pager']['options']['tags']['last'] = 'fim »';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'node';
-  /* Field: Content: Title */
+  /* Campo: Conteúdo: Título */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['label'] = '';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  /* Sort criterion: Content: Post date */
+  /* Critério de ordenação: Conteúdo: Data de publicação */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';
   $handler->display->display_options['sorts']['created']['field'] = 'created';
@@ -65,14 +65,14 @@ function fs_screencast_views_default_views() {
     1 => 'AND',
     2 => 'AND',
   );
-  /* Filter criterion: Content: Published */
+  /* Critério de filtragem: Conteúdo: Publicado */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
   $handler->display->display_options['filters']['status']['field'] = 'status';
   $handler->display->display_options['filters']['status']['value'] = 1;
   $handler->display->display_options['filters']['status']['group'] = 1;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: Content: Type */
+  /* Critério de filtragem: Conteúdo: Tipo */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
@@ -80,7 +80,7 @@ function fs_screencast_views_default_views() {
     'screencast' => 'screencast',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Content: Video (field_video_auth:fid) */
+  /* Critério de filtragem: Conteúdo: Video (field_video_auth:fid) */
   $handler->display->display_options['filters']['field_video_auth_fid']['id'] = 'field_video_auth_fid';
   $handler->display->display_options['filters']['field_video_auth_fid']['table'] = 'field_data_field_video_auth';
   $handler->display->display_options['filters']['field_video_auth_fid']['field'] = 'field_video_auth_fid';
@@ -100,7 +100,7 @@ function fs_screencast_views_default_views() {
   $handler->display->display_options['pager']['options']['next_label'] = 'próximo';
   $handler->display->display_options['pager']['options']['reverse_links'] = 0;
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Content: Title */
+  /* Campo: Conteúdo: Título */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
@@ -110,13 +110,13 @@ function fs_screencast_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  /* Field: Broken/missing handler */
+  /* Campo: Handler quebrado ou não encontrado */
   $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
   $handler->display->display_options['fields']['field_image']['table'] = 'field_data_field_image';
   $handler->display->display_options['fields']['field_image']['field'] = 'field_image';
   $handler->display->display_options['fields']['field_image']['label'] = '';
   $handler->display->display_options['fields']['field_image']['element_label_colon'] = FALSE;
-  /* Field: Content: Descrição */
+  /* Campo: Conteúdo: Descrição */
   $handler->display->display_options['fields']['field_description']['id'] = 'field_description';
   $handler->display->display_options['fields']['field_description']['table'] = 'field_data_field_description';
   $handler->display->display_options['fields']['field_description']['field'] = 'field_description';
@@ -126,20 +126,20 @@ function fs_screencast_views_default_views() {
   $handler->display->display_options['fields']['field_description']['settings'] = array(
     'trim_length' => '200',
   );
-  /* Field: Content: Link */
+  /* Campo: Conteúdo: Link */
   $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
   $handler->display->display_options['fields']['view_node']['table'] = 'views_entity_node';
   $handler->display->display_options['fields']['view_node']['field'] = 'view_node';
   $handler->display->display_options['fields']['view_node']['label'] = '';
   $handler->display->display_options['fields']['view_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['view_node']['text'] = 'Leia mais';
-  /* Field: Content: Disqus Comment Count */
+  /* Campo: Conteúdo: Disqus Comment Count */
   $handler->display->display_options['fields']['disqus_comment_count']['id'] = 'disqus_comment_count';
   $handler->display->display_options['fields']['disqus_comment_count']['table'] = 'node';
   $handler->display->display_options['fields']['disqus_comment_count']['field'] = 'disqus_comment_count';
   $handler->display->display_options['fields']['disqus_comment_count']['label'] = '';
   $handler->display->display_options['fields']['disqus_comment_count']['element_label_colon'] = FALSE;
-  /* Field: Content: Tags */
+  /* Campo: Conteúdo: Tags */
   $handler->display->display_options['fields']['field_tags']['id'] = 'field_tags';
   $handler->display->display_options['fields']['field_tags']['table'] = 'field_data_field_tags';
   $handler->display->display_options['fields']['field_tags']['field'] = 'field_tags';
@@ -179,7 +179,6 @@ function fs_screencast_views_default_views() {
     t('próximo ›'),
     t('fim »'),
     t('Página'),
-    t('more'),
     t('anterior'),
     t('próximo'),
     t('<h2>[title]</h2>'),

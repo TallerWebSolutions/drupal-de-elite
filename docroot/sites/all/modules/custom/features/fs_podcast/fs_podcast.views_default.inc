@@ -45,7 +45,7 @@ function fs_podcast_views_default_views() {
   $handler->display->display_options['pager']['options']['tags']['last'] = 'fim »';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'entity';
-  /* Field: Content: Title */
+  /* Campo: Conteúdo: Título */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
@@ -55,7 +55,7 @@ function fs_podcast_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
-  /* Field: Content: Descrição */
+  /* Campo: Conteúdo: Descrição */
   $handler->display->display_options['fields']['field_description']['id'] = 'field_description';
   $handler->display->display_options['fields']['field_description']['table'] = 'field_data_field_description';
   $handler->display->display_options['fields']['field_description']['field'] = 'field_description';
@@ -65,14 +65,14 @@ function fs_podcast_views_default_views() {
   $handler->display->display_options['fields']['field_description']['settings'] = array(
     'trim_length' => '180',
   );
-  /* Field: Content: Link */
+  /* Campo: Conteúdo: Link */
   $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
   $handler->display->display_options['fields']['view_node']['table'] = 'views_entity_node';
   $handler->display->display_options['fields']['view_node']['field'] = 'view_node';
   $handler->display->display_options['fields']['view_node']['label'] = '';
   $handler->display->display_options['fields']['view_node']['exclude'] = TRUE;
   $handler->display->display_options['fields']['view_node']['element_label_colon'] = FALSE;
-  /* Field: Content: Audio */
+  /* Campo: Conteúdo: Audio */
   $handler->display->display_options['fields']['field_audio']['id'] = 'field_audio';
   $handler->display->display_options['fields']['field_audio']['table'] = 'field_data_field_audio';
   $handler->display->display_options['fields']['field_audio']['field'] = 'field_audio';
@@ -80,19 +80,19 @@ function fs_podcast_views_default_views() {
   $handler->display->display_options['fields']['field_audio']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_audio']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_audio']['type'] = 'enclosure_file';
-  /* Sort criterion: Content: Post date */
+  /* Critério de ordenação: Conteúdo: Data de publicação */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';
   $handler->display->display_options['sorts']['created']['field'] = 'created';
   $handler->display->display_options['sorts']['created']['order'] = 'DESC';
-  /* Filter criterion: Content: Published */
+  /* Critério de filtragem: Conteúdo: Publicado */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
   $handler->display->display_options['filters']['status']['field'] = 'status';
   $handler->display->display_options['filters']['status']['value'] = 1;
   $handler->display->display_options['filters']['status']['group'] = 1;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: Content: Type */
+  /* Critério de filtragem: Conteúdo: Tipo */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
@@ -118,7 +118,7 @@ function fs_podcast_views_default_views() {
   $handler->display->display_options['row_plugin'] = 'node';
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Content: Title */
+  /* Campo: Conteúdo: Título */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
@@ -126,7 +126,7 @@ function fs_podcast_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['title']['alter']['text'] = '<h2>[title]</h2>';
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  /* Field: Content: Descrição */
+  /* Campo: Conteúdo: Descrição */
   $handler->display->display_options['fields']['field_description']['id'] = 'field_description';
   $handler->display->display_options['fields']['field_description']['table'] = 'field_data_field_description';
   $handler->display->display_options['fields']['field_description']['field'] = 'field_description';
@@ -136,20 +136,20 @@ function fs_podcast_views_default_views() {
   $handler->display->display_options['fields']['field_description']['settings'] = array(
     'trim_length' => '200',
   );
-  /* Field: Content: Link */
+  /* Campo: Conteúdo: Link */
   $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
   $handler->display->display_options['fields']['view_node']['table'] = 'views_entity_node';
   $handler->display->display_options['fields']['view_node']['field'] = 'view_node';
   $handler->display->display_options['fields']['view_node']['label'] = '';
   $handler->display->display_options['fields']['view_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['view_node']['text'] = 'Leia mais';
-  /* Field: Content: Disqus Comment Count */
+  /* Campo: Conteúdo: Disqus Comment Count */
   $handler->display->display_options['fields']['disqus_comment_count']['id'] = 'disqus_comment_count';
   $handler->display->display_options['fields']['disqus_comment_count']['table'] = 'node';
   $handler->display->display_options['fields']['disqus_comment_count']['field'] = 'disqus_comment_count';
   $handler->display->display_options['fields']['disqus_comment_count']['label'] = '';
   $handler->display->display_options['fields']['disqus_comment_count']['element_label_colon'] = FALSE;
-  /* Field: Content: Tags */
+  /* Campo: Conteúdo: Tags */
   $handler->display->display_options['fields']['field_tags']['id'] = 'field_tags';
   $handler->display->display_options['fields']['field_tags']['table'] = 'field_data_field_tags';
   $handler->display->display_options['fields']['field_tags']['field'] = 'field_tags';
@@ -190,7 +190,6 @@ function fs_podcast_views_default_views() {
     t('fim »'),
     t('<h3>[title]</h3>'),
     t('Página'),
-    t('more'),
     t('anterior'),
     t('próximo'),
     t('<h2>[title]</h2>'),

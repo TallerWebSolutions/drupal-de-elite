@@ -20,7 +20,7 @@ function fs_core_facetapi_default_facet_settings() {
   $facet->enabled = FALSE;
   $facet->settings = array(
     'operator' => 'and',
-    'hard_limit' => '50',
+    'hard_limit' => '20',
     'dependencies' => array(
       'bundle' => 'none',
       'bundle_selected' => array(),
@@ -251,7 +251,7 @@ function fs_core_facetapi_default_facet_settings() {
     'empty_behavior' => 'none',
     'facet_more_text' => 'Mais',
     'facet_fewer_text' => 'Menos',
-    'soft_limit' => '20',
+    'soft_limit' => '10',
     'nofollow' => 1,
     'show_expanded' => 0,
     'empty_text' => array(

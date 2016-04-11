@@ -294,7 +294,8 @@ margin: 0;
 
 .view-posts .views-row,
 .view-podcast .views-row,
-.view-videos .views-row {
+.view-videos .views-row,
+.view-general-search .views-row {
   margin-bottom: 2em;
   border-bottom: 1px solid #2D2D2D;
 }
@@ -379,6 +380,22 @@ margin: 0;
 
 #block-views-autor-block .views-field-field-about {
   margin-bottom: 1em;
+}
+
+.region-content .view-autor .views-field-picture {
+  display: block;
+  float: left;
+  margin: 0 8px 5px 0;
+}
+
+.region-content .view-autor .views-field-field-about,
+.region-content .view-autor .views-field-field-more {
+  display: block;
+  margin: 0 0 1em 0;
+}
+
+#boxes-box-twitter_widget .panel {
+  padding: 0;
 }
 
 .panel {

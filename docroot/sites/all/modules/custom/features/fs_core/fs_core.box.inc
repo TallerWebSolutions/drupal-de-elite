@@ -19,7 +19,7 @@ function fs_core_default_box() {
   $box->description = 'Facebook widget';
   $box->options = array(
     'body' => array(
-      'value' => '<div id="container" style="width:100%;">  
+      'value' => '<div id="container" class="panel panel-primary">  
 <div class="fb-page" data-href="https://www.facebook.com/drupaldeelite" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/drupaldeelite"><a href="https://www.facebook.com/drupaldeelite">Drupal de Elite</a></blockquote></div></div>
 </div>',
       'format' => 'html_puro',
@@ -37,7 +37,8 @@ function fs_core_default_box() {
   $box->description = 'Twitter widget';
   $box->options = array(
     'body' => array(
-      'value' => '<a class="twitter-timeline"
+      'value' => '<div class="panel panel-primary">
+<a class="twitter-timeline"
   href="https://twitter.com/DrupalDeElite"
   data-widget-id="704120359059116033"
   data-chrome="nofooter noborders noscrollbar transparent"
@@ -45,7 +46,7 @@ function fs_core_default_box() {
 @DrupalDeElite
 </a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?\'http\':\'https\';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-          ',
+</div>',
       'format' => 'html_puro',
     ),
     'additional_classes' => '',
@@ -61,7 +62,9 @@ function fs_core_default_box() {
   $box->description = 'Youtube widget';
   $box->options = array(
     'body' => array(
-      'value' => '<div class="g-ytsubscribe" data-channelid="UCRGragIHWUm4vxVj8XCwKyQ" data-layout="full" data-count="default" data-onytevent="onYtEvent"></div>',
+      'value' => '<div class="panel panel-primary">
+<div class="g-ytsubscribe" data-channelid="UCRGragIHWUm4vxVj8XCwKyQ" data-layout="full" data-count="default" data-onytevent="onYtEvent"></div>
+</div>',
       'format' => 'html_puro',
     ),
     'additional_classes' => '',

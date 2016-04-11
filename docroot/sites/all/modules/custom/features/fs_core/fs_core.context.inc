@@ -37,6 +37,8 @@ function fs_core_context_default_contexts() {
         'search404*' => 'search404*',
         'page-not-found' => 'page-not-found',
         'page-not-found/*' => 'page-not-found/*',
+        'user' => 'user',
+        'user/*' => 'user/*',
       ),
     ),
   );

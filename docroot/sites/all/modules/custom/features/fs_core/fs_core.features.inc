@@ -137,15 +137,40 @@ function fs_core_default_search_api_index() {
           "status" : 1,
           "weight" : "0",
           "settings" : { "fields" : {
+              "type" : true,
               "title" : true,
+              "url" : true,
+              "status" : true,
+              "promote" : true,
+              "sticky" : true,
+              "created" : true,
+              "changed" : true,
+              "author" : true,
               "field_tags" : true,
+              "field_palestrante" : true,
+              "field_nivel" : true,
+              "field_tipo_curso" : true,
+              "search_api_language" : true,
+              "search_api_access_node" : true,
               "body:value" : true,
-              "body:summary" : true
+              "body:summary" : true,
+              "field_audio:file" : true,
+              "field_video:file" : true,
+              "field_video_auth:file" : true,
+              "field_audio:file:name" : true,
+              "field_audio:file:field_file_image_alt_text" : true,
+              "field_audio:file:field_file_image_title_text" : true,
+              "field_video:file:name" : true,
+              "field_video:file:field_file_image_alt_text" : true,
+              "field_video:file:field_file_image_title_text" : true,
+              "field_video_auth:file:name" : true,
+              "field_video_auth:file:field_file_image_alt_text" : true,
+              "field_video_auth:file:field_file_image_title_text" : true
             }
           }
         },
         "search_api_html_filter" : {
-          "status" : 1,
+          "status" : 0,
           "weight" : "10",
           "settings" : {
             "fields" : {
@@ -163,10 +188,35 @@ function fs_core_default_search_api_index() {
           "status" : 1,
           "weight" : "15",
           "settings" : { "fields" : {
+              "type" : true,
               "title" : true,
+              "url" : true,
+              "status" : true,
+              "promote" : true,
+              "sticky" : true,
+              "created" : true,
+              "changed" : true,
+              "author" : true,
               "field_tags" : true,
+              "field_palestrante" : true,
+              "field_nivel" : true,
+              "field_tipo_curso" : true,
+              "search_api_language" : true,
+              "search_api_access_node" : true,
               "body:value" : true,
-              "body:summary" : true
+              "body:summary" : true,
+              "field_audio:file" : true,
+              "field_video:file" : true,
+              "field_video_auth:file" : true,
+              "field_audio:file:name" : true,
+              "field_audio:file:field_file_image_alt_text" : true,
+              "field_audio:file:field_file_image_title_text" : true,
+              "field_video:file:name" : true,
+              "field_video:file:field_file_image_alt_text" : true,
+              "field_video:file:field_file_image_title_text" : true,
+              "field_video_auth:file:name" : true,
+              "field_video_auth:file:field_file_image_alt_text" : true,
+              "field_video_auth:file:field_file_image_title_text" : true
             }
           }
         },
@@ -174,7 +224,20 @@ function fs_core_default_search_api_index() {
           "status" : 1,
           "weight" : "20",
           "settings" : {
-            "fields" : { "title" : true, "body:value" : true, "body:summary" : true },
+            "fields" : {
+              "title" : true,
+              "body:value" : true,
+              "body:summary" : true,
+              "field_audio:file:name" : true,
+              "field_audio:file:field_file_image_alt_text" : true,
+              "field_audio:file:field_file_image_title_text" : true,
+              "field_video:file:name" : true,
+              "field_video:file:field_file_image_alt_text" : true,
+              "field_video:file:field_file_image_title_text" : true,
+              "field_video_auth:file:name" : true,
+              "field_video_auth:file:field_file_image_alt_text" : true,
+              "field_video_auth:file:field_file_image_title_text" : true
+            },
             "spaces" : "[^\\\\p{L}\\\\p{N}]",
             "ignorable" : "[-]"
           }
@@ -189,7 +252,7 @@ function fs_core_default_search_api_index() {
           }
         },
         "search_api_highlighting" : {
-          "status" : 0,
+          "status" : 1,
           "weight" : "35",
           "settings" : {
             "prefix" : "\\u003Cstrong\\u003E",
@@ -203,11 +266,26 @@ function fs_core_default_search_api_index() {
       },
       "fields" : {
         "author" : { "type" : "integer", "entity_type" : "user" },
-        "body:summary" : { "type" : "text" },
-        "body:value" : { "type" : "text" },
+        "body:summary" : { "type" : "text", "boost" : "3.0" },
+        "body:value" : { "type" : "text", "boost" : "3.0" },
         "changed" : { "type" : "date" },
         "created" : { "type" : "date" },
+        "field_audio:file" : { "type" : "integer", "entity_type" : "file" },
+        "field_audio:file:field_file_image_alt_text" : { "type" : "text" },
+        "field_audio:file:field_file_image_title_text" : { "type" : "text" },
+        "field_audio:file:name" : { "type" : "text" },
+        "field_nivel" : { "type" : "string" },
+        "field_palestrante" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "user" },
         "field_tags" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
+        "field_tipo_curso" : { "type" : "list\\u003Cstring\\u003E" },
+        "field_video:file" : { "type" : "integer", "entity_type" : "file" },
+        "field_video:file:field_file_image_alt_text" : { "type" : "text" },
+        "field_video:file:field_file_image_title_text" : { "type" : "text" },
+        "field_video:file:name" : { "type" : "text" },
+        "field_video_auth:file" : { "type" : "integer", "entity_type" : "file" },
+        "field_video_auth:file:field_file_image_alt_text" : { "type" : "text" },
+        "field_video_auth:file:field_file_image_title_text" : { "type" : "text" },
+        "field_video_auth:file:name" : { "type" : "text" },
         "promote" : { "type" : "boolean" },
         "search_api_access_node" : { "type" : "list\\u003Cstring\\u003E" },
         "search_api_language" : { "type" : "string" },
@@ -290,7 +368,7 @@ function fs_core_default_search_api_server() {
           "body:value" : {
             "table" : "search_api_db_default_node_index_text",
             "type" : "text",
-            "boost" : "1.0"
+            "boost" : "3.0"
           },
           "url" : {
             "table" : "search_api_db_default_node_index",
@@ -317,6 +395,87 @@ function fs_core_default_search_api_server() {
             "boost" : "1.0"
           },
           "body:summary" : {
+            "table" : "search_api_db_default_node_index_text",
+            "type" : "text",
+            "boost" : "3.0"
+          },
+          "field_palestrante" : {
+            "table" : "search_api_db_default_node_index_field_palestrante",
+            "column" : "value",
+            "type" : "list\\u003Cinteger\\u003E",
+            "boost" : "1.0"
+          },
+          "field_nivel" : {
+            "table" : "search_api_db_default_node_index",
+            "column" : "field_nivel",
+            "type" : "string",
+            "boost" : "1.0"
+          },
+          "field_tipo_curso" : {
+            "table" : "search_api_db_default_node_index_field_tipo_curso",
+            "column" : "value",
+            "type" : "list\\u003Cstring\\u003E",
+            "boost" : "1.0"
+          },
+          "field_audio:file" : {
+            "table" : "search_api_db_default_node_index",
+            "column" : "field_audio_file",
+            "type" : "integer",
+            "boost" : "1.0"
+          },
+          "field_video:file" : {
+            "table" : "search_api_db_default_node_index",
+            "column" : "field_video_file",
+            "type" : "integer",
+            "boost" : "1.0"
+          },
+          "field_video_auth:file" : {
+            "table" : "search_api_db_default_node_index",
+            "column" : "field_video_auth_file",
+            "type" : "integer",
+            "boost" : "1.0"
+          },
+          "field_audio:file:name" : {
+            "table" : "search_api_db_default_node_index_text",
+            "type" : "text",
+            "boost" : "1.0"
+          },
+          "field_audio:file:field_file_image_alt_text" : {
+            "table" : "search_api_db_default_node_index_text",
+            "type" : "text",
+            "boost" : "1.0"
+          },
+          "field_audio:file:field_file_image_title_text" : {
+            "table" : "search_api_db_default_node_index_text",
+            "type" : "text",
+            "boost" : "1.0"
+          },
+          "field_video:file:name" : {
+            "table" : "search_api_db_default_node_index_text",
+            "type" : "text",
+            "boost" : "1.0"
+          },
+          "field_video:file:field_file_image_alt_text" : {
+            "table" : "search_api_db_default_node_index_text",
+            "type" : "text",
+            "boost" : "1.0"
+          },
+          "field_video:file:field_file_image_title_text" : {
+            "table" : "search_api_db_default_node_index_text",
+            "type" : "text",
+            "boost" : "1.0"
+          },
+          "field_video_auth:file:name" : {
+            "table" : "search_api_db_default_node_index_text",
+            "type" : "text",
+            "boost" : "1.0"
+          },
+          "field_video_auth:file:field_file_image_alt_text" : {
+            "table" : "search_api_db_default_node_index_text",
+            "type" : "text",
+            "boost" : "1.0"
+          },
+          "field_video_auth:file:field_file_image_title_text" : {
             "table" : "search_api_db_default_node_index_text",
             "type" : "text",
             "boost" : "1.0"

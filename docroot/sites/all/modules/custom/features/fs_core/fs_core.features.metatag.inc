@@ -18,7 +18,7 @@ function fs_core_metatag_export_default() {
         'value' => '[current-page:title] | [site:name]',
       ),
       'description' => array(
-        'value' => '[site:slogan]',
+        'value' => '[site:slogan] O Drupal de Elite é dedicado ao ensino, através de cursos e treinamentos. Também ao compartilhamento de conteúdo, como artigos, screencasts e podcasts.',
       ),
       'abstract' => array(
         'value' => 'O Drupal de Elite é dedicado ao ensino, através de cursos e treinamentos. Também ao compartilhamento de conteúdo, como artigos, screencasts e podcasts.',
@@ -59,7 +59,7 @@ function fs_core_metatag_export_default() {
         'value' => 'Drupal de Elite',
       ),
       'image_src' => array(
-        'value' => '',
+        'value' => 'http://drupaldeelite.com.br/sites/all/themes/druelite/images/logo-alta.jpg',
       ),
       'canonical' => array(
         'value' => '[current-page:url]',
@@ -101,7 +101,7 @@ function fs_core_metatag_export_default() {
         'value' => '',
       ),
       'revisit-after' => array(
-        'value' => '',
+        'value' => 1,
         'period' => 'day',
       ),
       'pragma' => array(
@@ -144,7 +144,7 @@ function fs_core_metatag_export_default() {
         'value' => '',
       ),
       'og:image' => array(
-        'value' => 'http://drupalelite.com.br/sites/all/themes/druelite/logo.png',
+        'value' => 'http://drupaldeelite.com.br/sites/all/themes/druelite/images/logo-alta.jpg',
       ),
       'og:image:url' => array(
         'value' => '',
@@ -371,6 +371,9 @@ function fs_core_metatag_export_default() {
       'keywords' => array(
         'value' => '[node:field_tags]',
       ),
+      'news_keywords' => array(
+        'value' => '[node:field-tags]',
+      ),
       'og:title' => array(
         'value' => '[node:title]',
       ),
@@ -410,7 +413,13 @@ function fs_core_metatag_export_default() {
         'value' => '[user:field_about]',
       ),
       'keywords' => array(
-        'value' => '[user:field_realname], [user:field_facebook], [user:field_google], [user:field_twitter], [user:field_vimeo], [user:field_youtube], Drupal, Drupal de Elite, Curso, Treinamento, Drupal Brasil, Desenvolvimento Web',
+        'value' => '[user:field_realname], [user:field_more], [user:field_facebook], [user:field_google], [user:field_twitter], [user:field_vimeo], [user:field_youtube], Drupal, Drupal de Elite, Curso, Treinamento, Drupal Brasil, Desenvolvimento Web',
+      ),
+      'news_keywords' => array(
+        'value' => '[user:field_realname], [user:field_more], [user:field_facebook], [user:field_google], [user:field_twitter], [user:field_vimeo], [user:field_youtube], Drupal, Drupal de Elite, Curso, Treinamento, Drupal Brasil, Desenvolvimento Web',
+      ),
+      'image_src' => array(
+        'value' => '[user:picture]',
       ),
       'og:type' => array(
         'value' => 'profile',

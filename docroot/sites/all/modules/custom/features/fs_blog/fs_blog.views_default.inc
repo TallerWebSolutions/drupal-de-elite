@@ -39,11 +39,11 @@ function fs_blog_views_default_views() {
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
-  /* Relationship: Content: Author */
+  /* Relação: Conteúdo: Autor */
   $handler->display->display_options['relationships']['uid']['id'] = 'uid';
   $handler->display->display_options['relationships']['uid']['table'] = 'node';
   $handler->display->display_options['relationships']['uid']['field'] = 'uid';
-  /* Field: User: Picture */
+  /* Campo: Usuário: Foto */
   $handler->display->display_options['fields']['picture']['id'] = 'picture';
   $handler->display->display_options['fields']['picture']['table'] = 'users';
   $handler->display->display_options['fields']['picture']['field'] = 'picture';
@@ -52,7 +52,7 @@ function fs_blog_views_default_views() {
   $handler->display->display_options['fields']['picture']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['picture']['empty'] = '<img src="/sites/all/themes/delite/images/avatar-35.jpg">';
   $handler->display->display_options['fields']['picture']['image_style'] = 'large';
-  /* Field: Field: Nome */
+  /* Campo: Campo: Nome real */
   $handler->display->display_options['fields']['field_realname']['id'] = 'field_realname';
   $handler->display->display_options['fields']['field_realname']['table'] = 'field_data_field_realname';
   $handler->display->display_options['fields']['field_realname']['field'] = 'field_realname';
@@ -60,7 +60,7 @@ function fs_blog_views_default_views() {
   $handler->display->display_options['fields']['field_realname']['label'] = '';
   $handler->display->display_options['fields']['field_realname']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_realname']['element_label_colon'] = FALSE;
-  /* Field: User: Link */
+  /* Campo: Usuário: Link */
   $handler->display->display_options['fields']['view_user']['id'] = 'view_user';
   $handler->display->display_options['fields']['view_user']['table'] = 'users';
   $handler->display->display_options['fields']['view_user']['field'] = 'view_user';
@@ -69,7 +69,7 @@ function fs_blog_views_default_views() {
   $handler->display->display_options['fields']['view_user']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['view_user']['alter']['text'] = '<h4>[field_realname]</h4>';
   $handler->display->display_options['fields']['view_user']['element_label_colon'] = FALSE;
-  /* Field: User: Sobre */
+  /* Campo: Usuário: Sobre */
   $handler->display->display_options['fields']['field_about']['id'] = 'field_about';
   $handler->display->display_options['fields']['field_about']['table'] = 'field_data_field_about';
   $handler->display->display_options['fields']['field_about']['field'] = 'field_about';
@@ -80,7 +80,7 @@ function fs_blog_views_default_views() {
   $handler->display->display_options['fields']['field_about']['settings'] = array(
     'trim_length' => '250',
   );
-  /* Field: User: Drupal.org */
+  /* Campo: Usuário: Drupal.org */
   $handler->display->display_options['fields']['field_drupal_org']['id'] = 'field_drupal_org';
   $handler->display->display_options['fields']['field_drupal_org']['table'] = 'field_data_field_drupal_org';
   $handler->display->display_options['fields']['field_drupal_org']['field'] = 'field_drupal_org';
@@ -91,7 +91,7 @@ function fs_blog_views_default_views() {
 <a href="http://drupal.org/user/[field_drupal_org]">drupal.org/user/[field_drupal_org]</a>
 </div>';
   $handler->display->display_options['fields']['field_drupal_org']['element_label_colon'] = FALSE;
-  /* Field: User: Facebook */
+  /* Campo: Usuário: Facebook */
   $handler->display->display_options['fields']['field_facebook']['id'] = 'field_facebook';
   $handler->display->display_options['fields']['field_facebook']['table'] = 'field_data_field_facebook';
   $handler->display->display_options['fields']['field_facebook']['field'] = 'field_facebook';
@@ -103,7 +103,7 @@ function fs_blog_views_default_views() {
 </div>';
   $handler->display->display_options['fields']['field_facebook']['alter']['target'] = '_blank';
   $handler->display->display_options['fields']['field_facebook']['element_label_colon'] = FALSE;
-  /* Field: User: Twitter */
+  /* Campo: Usuário: Twitter */
   $handler->display->display_options['fields']['field_twitter']['id'] = 'field_twitter';
   $handler->display->display_options['fields']['field_twitter']['table'] = 'field_data_field_twitter';
   $handler->display->display_options['fields']['field_twitter']['field'] = 'field_twitter';
@@ -116,7 +116,7 @@ function fs_blog_views_default_views() {
   $handler->display->display_options['fields']['field_twitter']['alter']['path'] = '[field_twitter]';
   $handler->display->display_options['fields']['field_twitter']['alter']['target'] = '_blank';
   $handler->display->display_options['fields']['field_twitter']['element_label_colon'] = FALSE;
-  /* Field: User: Google+ */
+  /* Campo: Usuário: Google+ */
   $handler->display->display_options['fields']['field_google']['id'] = 'field_google';
   $handler->display->display_options['fields']['field_google']['table'] = 'field_data_field_google';
   $handler->display->display_options['fields']['field_google']['field'] = 'field_google';
@@ -128,7 +128,7 @@ function fs_blog_views_default_views() {
 </div>';
   $handler->display->display_options['fields']['field_google']['alter']['target'] = '_blank';
   $handler->display->display_options['fields']['field_google']['element_label_colon'] = FALSE;
-  /* Field: User: YouTube */
+  /* Campo: Usuário: YouTube */
   $handler->display->display_options['fields']['field_youtube']['id'] = 'field_youtube';
   $handler->display->display_options['fields']['field_youtube']['table'] = 'field_data_field_youtube';
   $handler->display->display_options['fields']['field_youtube']['field'] = 'field_youtube';
@@ -141,7 +141,7 @@ function fs_blog_views_default_views() {
   $handler->display->display_options['fields']['field_youtube']['alter']['path'] = '[field_youtube]';
   $handler->display->display_options['fields']['field_youtube']['alter']['target'] = '_blank';
   $handler->display->display_options['fields']['field_youtube']['element_label_colon'] = FALSE;
-  /* Field: User: Vimeo */
+  /* Campo: Usuário: Vimeo */
   $handler->display->display_options['fields']['field_vimeo']['id'] = 'field_vimeo';
   $handler->display->display_options['fields']['field_vimeo']['table'] = 'field_data_field_vimeo';
   $handler->display->display_options['fields']['field_vimeo']['field'] = 'field_vimeo';
@@ -153,12 +153,12 @@ function fs_blog_views_default_views() {
 </div>';
   $handler->display->display_options['fields']['field_vimeo']['alter']['target'] = '_blank';
   $handler->display->display_options['fields']['field_vimeo']['element_label_colon'] = FALSE;
-  /* Sort criterion: Content: Post date */
+  /* Critério de ordenação: Conteúdo: Data de publicação */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';
   $handler->display->display_options['sorts']['created']['field'] = 'created';
   $handler->display->display_options['sorts']['created']['order'] = 'DESC';
-  /* Contextual filter: Content: Nid */
+  /* Filtro contextual: Conteúdo: Nid */
   $handler->display->display_options['arguments']['nid']['id'] = 'nid';
   $handler->display->display_options['arguments']['nid']['table'] = 'node';
   $handler->display->display_options['arguments']['nid']['field'] = 'nid';
@@ -172,6 +172,264 @@ function fs_blog_views_default_views() {
   /* Display: Block */
   $handler = $view->new_display('block', 'Block', 'block');
   $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Campo: Usuário: Foto */
+  $handler->display->display_options['fields']['picture']['id'] = 'picture';
+  $handler->display->display_options['fields']['picture']['table'] = 'users';
+  $handler->display->display_options['fields']['picture']['field'] = 'picture';
+  $handler->display->display_options['fields']['picture']['relationship'] = 'uid';
+  $handler->display->display_options['fields']['picture']['label'] = '';
+  $handler->display->display_options['fields']['picture']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['picture']['empty'] = '<img src="/sites/all/themes/druelite/images/avatar-480x480.jpg">';
+  $handler->display->display_options['fields']['picture']['image_style'] = 'large';
+  /* Campo: Campo: Nome real */
+  $handler->display->display_options['fields']['field_realname']['id'] = 'field_realname';
+  $handler->display->display_options['fields']['field_realname']['table'] = 'field_data_field_realname';
+  $handler->display->display_options['fields']['field_realname']['field'] = 'field_realname';
+  $handler->display->display_options['fields']['field_realname']['relationship'] = 'uid';
+  $handler->display->display_options['fields']['field_realname']['label'] = '';
+  $handler->display->display_options['fields']['field_realname']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_realname']['element_label_colon'] = FALSE;
+  /* Campo: Usuário: Link */
+  $handler->display->display_options['fields']['view_user']['id'] = 'view_user';
+  $handler->display->display_options['fields']['view_user']['table'] = 'users';
+  $handler->display->display_options['fields']['view_user']['field'] = 'view_user';
+  $handler->display->display_options['fields']['view_user']['relationship'] = 'uid';
+  $handler->display->display_options['fields']['view_user']['label'] = '';
+  $handler->display->display_options['fields']['view_user']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['view_user']['alter']['text'] = '<h4>[field_realname]</h4>';
+  $handler->display->display_options['fields']['view_user']['element_label_colon'] = FALSE;
+  /* Campo: Usuário: Sobre */
+  $handler->display->display_options['fields']['field_about']['id'] = 'field_about';
+  $handler->display->display_options['fields']['field_about']['table'] = 'field_data_field_about';
+  $handler->display->display_options['fields']['field_about']['field'] = 'field_about';
+  $handler->display->display_options['fields']['field_about']['relationship'] = 'uid';
+  $handler->display->display_options['fields']['field_about']['label'] = '';
+  $handler->display->display_options['fields']['field_about']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_about']['type'] = 'text_trimmed';
+  $handler->display->display_options['fields']['field_about']['settings'] = array(
+    'trim_length' => '250',
+  );
+  /* Campo: Usuário: Drupal.org */
+  $handler->display->display_options['fields']['field_drupal_org']['id'] = 'field_drupal_org';
+  $handler->display->display_options['fields']['field_drupal_org']['table'] = 'field_data_field_drupal_org';
+  $handler->display->display_options['fields']['field_drupal_org']['field'] = 'field_drupal_org';
+  $handler->display->display_options['fields']['field_drupal_org']['relationship'] = 'uid';
+  $handler->display->display_options['fields']['field_drupal_org']['label'] = '';
+  $handler->display->display_options['fields']['field_drupal_org']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_drupal_org']['alter']['text'] = '<div class="perfil-drupal-org">
+<a href="http://drupal.org/user/[field_drupal_org]">drupal.org/user/[field_drupal_org]</a>
+</div>';
+  $handler->display->display_options['fields']['field_drupal_org']['element_label_colon'] = FALSE;
+  /* Campo: Usuário: Facebook */
+  $handler->display->display_options['fields']['field_facebook']['id'] = 'field_facebook';
+  $handler->display->display_options['fields']['field_facebook']['table'] = 'field_data_field_facebook';
+  $handler->display->display_options['fields']['field_facebook']['field'] = 'field_facebook';
+  $handler->display->display_options['fields']['field_facebook']['relationship'] = 'uid';
+  $handler->display->display_options['fields']['field_facebook']['label'] = '';
+  $handler->display->display_options['fields']['field_facebook']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_facebook']['alter']['text'] = '<div class="author-facebook">
+<a href="http://facebook.com/[field_facebook]">facebook.com/[field_facebook]</a>
+</div>';
+  $handler->display->display_options['fields']['field_facebook']['alter']['target'] = '_blank';
+  $handler->display->display_options['fields']['field_facebook']['element_label_colon'] = FALSE;
+  /* Campo: Usuário: Twitter */
+  $handler->display->display_options['fields']['field_twitter']['id'] = 'field_twitter';
+  $handler->display->display_options['fields']['field_twitter']['table'] = 'field_data_field_twitter';
+  $handler->display->display_options['fields']['field_twitter']['field'] = 'field_twitter';
+  $handler->display->display_options['fields']['field_twitter']['relationship'] = 'uid';
+  $handler->display->display_options['fields']['field_twitter']['label'] = '';
+  $handler->display->display_options['fields']['field_twitter']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_twitter']['alter']['text'] = '<div class="author-twitter">
+<a href="http://twitter.com/[field_twitter]">@[field_twitter]</a>
+</div>';
+  $handler->display->display_options['fields']['field_twitter']['alter']['path'] = '[field_twitter]';
+  $handler->display->display_options['fields']['field_twitter']['alter']['target'] = '_blank';
+  $handler->display->display_options['fields']['field_twitter']['element_label_colon'] = FALSE;
+  /* Campo: Usuário: Google+ */
+  $handler->display->display_options['fields']['field_google']['id'] = 'field_google';
+  $handler->display->display_options['fields']['field_google']['table'] = 'field_data_field_google';
+  $handler->display->display_options['fields']['field_google']['field'] = 'field_google';
+  $handler->display->display_options['fields']['field_google']['relationship'] = 'uid';
+  $handler->display->display_options['fields']['field_google']['label'] = '';
+  $handler->display->display_options['fields']['field_google']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_google']['alter']['text'] = '<div class="author-gplus">
+<a href="https://plus.google.com/[field_google]">plus.google.com/[field_google]</a>
+</div>';
+  $handler->display->display_options['fields']['field_google']['alter']['target'] = '_blank';
+  $handler->display->display_options['fields']['field_google']['element_label_colon'] = FALSE;
+  /* Campo: Usuário: YouTube */
+  $handler->display->display_options['fields']['field_youtube']['id'] = 'field_youtube';
+  $handler->display->display_options['fields']['field_youtube']['table'] = 'field_data_field_youtube';
+  $handler->display->display_options['fields']['field_youtube']['field'] = 'field_youtube';
+  $handler->display->display_options['fields']['field_youtube']['relationship'] = 'uid';
+  $handler->display->display_options['fields']['field_youtube']['label'] = '';
+  $handler->display->display_options['fields']['field_youtube']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_youtube']['alter']['text'] = '<div class="author-youtube">
+<a href="http://youtube.com/[field_youtube]">youtube.com/[field_youtube]</a>
+</div>';
+  $handler->display->display_options['fields']['field_youtube']['alter']['path'] = '[field_youtube]';
+  $handler->display->display_options['fields']['field_youtube']['alter']['target'] = '_blank';
+  $handler->display->display_options['fields']['field_youtube']['element_label_colon'] = FALSE;
+  /* Campo: Usuário: Vimeo */
+  $handler->display->display_options['fields']['field_vimeo']['id'] = 'field_vimeo';
+  $handler->display->display_options['fields']['field_vimeo']['table'] = 'field_data_field_vimeo';
+  $handler->display->display_options['fields']['field_vimeo']['field'] = 'field_vimeo';
+  $handler->display->display_options['fields']['field_vimeo']['relationship'] = 'uid';
+  $handler->display->display_options['fields']['field_vimeo']['label'] = '';
+  $handler->display->display_options['fields']['field_vimeo']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_vimeo']['alter']['text'] = '<div class="author-vimeo">
+<a href="http://vimeo.com/[field_vimeo]">vimeo.com/[field_vimeo]</a>
+</div>';
+  $handler->display->display_options['fields']['field_vimeo']['alter']['target'] = '_blank';
+  $handler->display->display_options['fields']['field_vimeo']['element_label_colon'] = FALSE;
+
+  /* Display: Página */
+  $handler = $view->new_display('page', 'Página', 'page_1');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Quem';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['row_options']['inline'] = array(
+    'picture' => 'picture',
+    'field_about' => 'field_about',
+  );
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Campo: Campo: Nome real */
+  $handler->display->display_options['fields']['field_realname']['id'] = 'field_realname';
+  $handler->display->display_options['fields']['field_realname']['table'] = 'field_data_field_realname';
+  $handler->display->display_options['fields']['field_realname']['field'] = 'field_realname';
+  $handler->display->display_options['fields']['field_realname']['relationship'] = 'uid';
+  $handler->display->display_options['fields']['field_realname']['label'] = '';
+  $handler->display->display_options['fields']['field_realname']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_realname']['element_label_colon'] = FALSE;
+  /* Campo: Usuário: Link */
+  $handler->display->display_options['fields']['view_user']['id'] = 'view_user';
+  $handler->display->display_options['fields']['view_user']['table'] = 'users';
+  $handler->display->display_options['fields']['view_user']['field'] = 'view_user';
+  $handler->display->display_options['fields']['view_user']['relationship'] = 'uid';
+  $handler->display->display_options['fields']['view_user']['label'] = '';
+  $handler->display->display_options['fields']['view_user']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['view_user']['alter']['text'] = '<h2>[field_realname]</h2>';
+  $handler->display->display_options['fields']['view_user']['element_label_colon'] = FALSE;
+  /* Campo: Usuário: Foto */
+  $handler->display->display_options['fields']['picture']['id'] = 'picture';
+  $handler->display->display_options['fields']['picture']['table'] = 'users';
+  $handler->display->display_options['fields']['picture']['field'] = 'picture';
+  $handler->display->display_options['fields']['picture']['relationship'] = 'uid';
+  $handler->display->display_options['fields']['picture']['label'] = '';
+  $handler->display->display_options['fields']['picture']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['picture']['empty'] = '<img src="/sites/all/themes/druelite/images/avatar-100x100.jpg">';
+  $handler->display->display_options['fields']['picture']['hide_alter_empty'] = FALSE;
+  $handler->display->display_options['fields']['picture']['image_style'] = 'thumbnail';
+  /* Campo: Usuário: Sobre */
+  $handler->display->display_options['fields']['field_about']['id'] = 'field_about';
+  $handler->display->display_options['fields']['field_about']['table'] = 'field_data_field_about';
+  $handler->display->display_options['fields']['field_about']['field'] = 'field_about';
+  $handler->display->display_options['fields']['field_about']['relationship'] = 'uid';
+  $handler->display->display_options['fields']['field_about']['label'] = '';
+  $handler->display->display_options['fields']['field_about']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_about']['settings'] = array(
+    'trim_length' => '250',
+  );
+  /* Campo: Usuário: Mais */
+  $handler->display->display_options['fields']['field_more']['id'] = 'field_more';
+  $handler->display->display_options['fields']['field_more']['table'] = 'field_data_field_more';
+  $handler->display->display_options['fields']['field_more']['field'] = 'field_more';
+  $handler->display->display_options['fields']['field_more']['relationship'] = 'uid';
+  $handler->display->display_options['fields']['field_more']['label'] = '';
+  $handler->display->display_options['fields']['field_more']['element_label_colon'] = FALSE;
+  /* Campo: Usuário: Drupal.org */
+  $handler->display->display_options['fields']['field_drupal_org']['id'] = 'field_drupal_org';
+  $handler->display->display_options['fields']['field_drupal_org']['table'] = 'field_data_field_drupal_org';
+  $handler->display->display_options['fields']['field_drupal_org']['field'] = 'field_drupal_org';
+  $handler->display->display_options['fields']['field_drupal_org']['relationship'] = 'uid';
+  $handler->display->display_options['fields']['field_drupal_org']['label'] = '';
+  $handler->display->display_options['fields']['field_drupal_org']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_drupal_org']['alter']['text'] = '<div class="perfil-drupal-org">
+<a href="http://drupal.org/user/[field_drupal_org]">drupal.org/user/[field_drupal_org]</a>
+</div>';
+  $handler->display->display_options['fields']['field_drupal_org']['element_label_colon'] = FALSE;
+  /* Campo: Usuário: Facebook */
+  $handler->display->display_options['fields']['field_facebook']['id'] = 'field_facebook';
+  $handler->display->display_options['fields']['field_facebook']['table'] = 'field_data_field_facebook';
+  $handler->display->display_options['fields']['field_facebook']['field'] = 'field_facebook';
+  $handler->display->display_options['fields']['field_facebook']['relationship'] = 'uid';
+  $handler->display->display_options['fields']['field_facebook']['label'] = '';
+  $handler->display->display_options['fields']['field_facebook']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_facebook']['alter']['text'] = '<div class="author-facebook">
+<a href="http://facebook.com/[field_facebook]">facebook.com/[field_facebook]</a>
+</div>';
+  $handler->display->display_options['fields']['field_facebook']['alter']['target'] = '_blank';
+  $handler->display->display_options['fields']['field_facebook']['element_label_colon'] = FALSE;
+  /* Campo: Usuário: Twitter */
+  $handler->display->display_options['fields']['field_twitter']['id'] = 'field_twitter';
+  $handler->display->display_options['fields']['field_twitter']['table'] = 'field_data_field_twitter';
+  $handler->display->display_options['fields']['field_twitter']['field'] = 'field_twitter';
+  $handler->display->display_options['fields']['field_twitter']['relationship'] = 'uid';
+  $handler->display->display_options['fields']['field_twitter']['label'] = '';
+  $handler->display->display_options['fields']['field_twitter']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_twitter']['alter']['text'] = '<div class="author-twitter">
+<a href="http://twitter.com/[field_twitter]">@[field_twitter]</a>
+</div>';
+  $handler->display->display_options['fields']['field_twitter']['alter']['path'] = '[field_twitter]';
+  $handler->display->display_options['fields']['field_twitter']['alter']['target'] = '_blank';
+  $handler->display->display_options['fields']['field_twitter']['element_label_colon'] = FALSE;
+  /* Campo: Usuário: Google+ */
+  $handler->display->display_options['fields']['field_google']['id'] = 'field_google';
+  $handler->display->display_options['fields']['field_google']['table'] = 'field_data_field_google';
+  $handler->display->display_options['fields']['field_google']['field'] = 'field_google';
+  $handler->display->display_options['fields']['field_google']['relationship'] = 'uid';
+  $handler->display->display_options['fields']['field_google']['label'] = '';
+  $handler->display->display_options['fields']['field_google']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_google']['alter']['text'] = '<div class="author-gplus">
+<a href="https://plus.google.com/[field_google]">plus.google.com/[field_google]</a>
+</div>';
+  $handler->display->display_options['fields']['field_google']['alter']['target'] = '_blank';
+  $handler->display->display_options['fields']['field_google']['element_label_colon'] = FALSE;
+  /* Campo: Usuário: YouTube */
+  $handler->display->display_options['fields']['field_youtube']['id'] = 'field_youtube';
+  $handler->display->display_options['fields']['field_youtube']['table'] = 'field_data_field_youtube';
+  $handler->display->display_options['fields']['field_youtube']['field'] = 'field_youtube';
+  $handler->display->display_options['fields']['field_youtube']['relationship'] = 'uid';
+  $handler->display->display_options['fields']['field_youtube']['label'] = '';
+  $handler->display->display_options['fields']['field_youtube']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_youtube']['alter']['text'] = '<div class="author-youtube">
+<a href="http://youtube.com/[field_youtube]">youtube.com/[field_youtube]</a>
+</div>';
+  $handler->display->display_options['fields']['field_youtube']['alter']['path'] = '[field_youtube]';
+  $handler->display->display_options['fields']['field_youtube']['alter']['target'] = '_blank';
+  $handler->display->display_options['fields']['field_youtube']['element_label_colon'] = FALSE;
+  /* Campo: Usuário: Vimeo */
+  $handler->display->display_options['fields']['field_vimeo']['id'] = 'field_vimeo';
+  $handler->display->display_options['fields']['field_vimeo']['table'] = 'field_data_field_vimeo';
+  $handler->display->display_options['fields']['field_vimeo']['field'] = 'field_vimeo';
+  $handler->display->display_options['fields']['field_vimeo']['relationship'] = 'uid';
+  $handler->display->display_options['fields']['field_vimeo']['label'] = '';
+  $handler->display->display_options['fields']['field_vimeo']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_vimeo']['alter']['text'] = '<div class="author-vimeo">
+<a href="http://vimeo.com/[field_vimeo]">vimeo.com/[field_vimeo]</a>
+</div>';
+  $handler->display->display_options['fields']['field_vimeo']['alter']['target'] = '_blank';
+  $handler->display->display_options['fields']['field_vimeo']['element_label_colon'] = FALSE;
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Filtro contextual: Usuário: Uid */
+  $handler->display->display_options['arguments']['uid']['id'] = 'uid';
+  $handler->display->display_options['arguments']['uid']['table'] = 'users';
+  $handler->display->display_options['arguments']['uid']['field'] = 'uid';
+  $handler->display->display_options['arguments']['uid']['relationship'] = 'uid';
+  $handler->display->display_options['arguments']['uid']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['uid']['exception']['title'] = 'Tudo';
+  $handler->display->display_options['arguments']['uid']['default_argument_type'] = 'user';
+  $handler->display->display_options['arguments']['uid']['default_argument_options']['user'] = TRUE;
+  $handler->display->display_options['arguments']['uid']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['uid']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['uid']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['path'] = 'user/%';
   $translatables['autor'] = array(
     t('Master'),
     t('Sobre o autor'),
@@ -181,7 +439,7 @@ function fs_blog_views_default_views() {
     t('Ordenar por'),
     t('Crescente'),
     t('Desc'),
-    t('author'),
+    t('autor'),
     t('<img src="/sites/all/themes/delite/images/avatar-35.jpg">'),
     t('<h4>[field_realname]</h4>'),
     t('<div class="perfil-drupal-org">
@@ -204,7 +462,11 @@ function fs_blog_views_default_views() {
 </div>'),
     t('Tudo'),
     t('Block'),
-    t('more'),
+    t('<img src="/sites/all/themes/druelite/images/avatar-480x480.jpg">'),
+    t('Página'),
+    t('Quem'),
+    t('<h2>[field_realname]</h2>'),
+    t('<img src="/sites/all/themes/druelite/images/avatar-100x100.jpg">'),
   );
   $export['autor'] = $view;
 
@@ -246,14 +508,14 @@ function fs_blog_views_default_views() {
   $handler->display->display_options['pager']['options']['tags']['last'] = 'fim »';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'node';
-  /* Field: Content: Title */
+  /* Campo: Conteúdo: Título */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['label'] = '';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  /* Field: Content: Corpo */
+  /* Campo: Conteúdo: Corpo */
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
   $handler->display->display_options['fields']['body']['field'] = 'body';
@@ -262,7 +524,7 @@ function fs_blog_views_default_views() {
   $handler->display->display_options['fields']['body']['alter']['max_length'] = '230';
   $handler->display->display_options['fields']['body']['alter']['more_link_text'] = 'Leia mais';
   $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
-  /* Field: Content: Link */
+  /* Campo: Conteúdo: Link */
   $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
   $handler->display->display_options['fields']['view_node']['table'] = 'views_entity_node';
   $handler->display->display_options['fields']['view_node']['field'] = 'view_node';
@@ -272,12 +534,12 @@ function fs_blog_views_default_views() {
   $handler->display->display_options['fields']['view_node']['alter']['max_length'] = '230';
   $handler->display->display_options['fields']['view_node']['alter']['trim'] = TRUE;
   $handler->display->display_options['fields']['view_node']['element_label_colon'] = FALSE;
-  /* Sort criterion: Content: Post date */
+  /* Critério de ordenação: Conteúdo: Data de publicação */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';
   $handler->display->display_options['sorts']['created']['field'] = 'created';
   $handler->display->display_options['sorts']['created']['order'] = 'DESC';
-  /* Contextual filter: Content: Has taxonomy term ID */
+  /* Filtro contextual: Conteúdo: Tem ID de termo de taxonomia */
   $handler->display->display_options['arguments']['tid']['id'] = 'tid';
   $handler->display->display_options['arguments']['tid']['table'] = 'taxonomy_index';
   $handler->display->display_options['arguments']['tid']['field'] = 'tid';
@@ -295,14 +557,14 @@ return implode(\'+\',$terms);
   $handler->display->display_options['arguments']['tid']['validate']['type'] = 'php';
   $handler->display->display_options['arguments']['tid']['break_phrase'] = TRUE;
   $handler->display->display_options['arguments']['tid']['reduce_duplicates'] = TRUE;
-  /* Filter criterion: Content: Published */
+  /* Critério de filtragem: Conteúdo: Publicado */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
   $handler->display->display_options['filters']['status']['field'] = 'status';
   $handler->display->display_options['filters']['status']['value'] = 1;
   $handler->display->display_options['filters']['status']['group'] = 1;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: Content: Type */
+  /* Critério de filtragem: Conteúdo: Tipo */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
@@ -329,13 +591,13 @@ return implode(\'+\',$terms);
   $handler->display->display_options['row_plugin'] = 'node';
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Content: Title */
+  /* Campo: Conteúdo: Título */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['label'] = '';
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  /* Field: Content: Descrição */
+  /* Campo: Conteúdo: Descrição */
   $handler->display->display_options['fields']['field_description']['id'] = 'field_description';
   $handler->display->display_options['fields']['field_description']['table'] = 'field_data_field_description';
   $handler->display->display_options['fields']['field_description']['field'] = 'field_description';
@@ -345,20 +607,20 @@ return implode(\'+\',$terms);
   $handler->display->display_options['fields']['field_description']['settings'] = array(
     'trim_length' => '200',
   );
-  /* Field: Content: Link */
+  /* Campo: Conteúdo: Link */
   $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
   $handler->display->display_options['fields']['view_node']['table'] = 'views_entity_node';
   $handler->display->display_options['fields']['view_node']['field'] = 'view_node';
   $handler->display->display_options['fields']['view_node']['label'] = '';
   $handler->display->display_options['fields']['view_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['view_node']['text'] = 'Leia mais';
-  /* Field: Content: Disqus Comment Count */
+  /* Campo: Conteúdo: Disqus Comment Count */
   $handler->display->display_options['fields']['disqus_comment_count']['id'] = 'disqus_comment_count';
   $handler->display->display_options['fields']['disqus_comment_count']['table'] = 'node';
   $handler->display->display_options['fields']['disqus_comment_count']['field'] = 'disqus_comment_count';
   $handler->display->display_options['fields']['disqus_comment_count']['label'] = '';
   $handler->display->display_options['fields']['disqus_comment_count']['element_label_colon'] = FALSE;
-  /* Field: Content: Tags */
+  /* Campo: Conteúdo: Tags */
   $handler->display->display_options['fields']['field_tags']['id'] = 'field_tags';
   $handler->display->display_options['fields']['field_tags']['table'] = 'field_data_field_tags';
   $handler->display->display_options['fields']['field_tags']['field'] = 'field_tags';
@@ -368,14 +630,14 @@ return implode(\'+\',$terms);
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Filter criterion: Content: Published */
+  /* Critério de filtragem: Conteúdo: Publicado */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
   $handler->display->display_options['filters']['status']['field'] = 'status';
   $handler->display->display_options['filters']['status']['value'] = 1;
   $handler->display->display_options['filters']['status']['group'] = 1;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: Content: Type */
+  /* Critério de filtragem: Conteúdo: Tipo */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
@@ -418,7 +680,6 @@ return implode(\'+\',$terms);
     t('[body]'),
     t('Tudo'),
     t('Page'),
-    t('more'),
     t('anterior'),
     t('próximo'),
     t('Feed'),

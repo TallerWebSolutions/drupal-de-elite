@@ -75,7 +75,11 @@ function druelite_preprocess_region(&$vars) {
  */
 function druelite_preprocess_block(&$vars) {
   $block = &$vars['block'];
-
+  
+//  if ($block->region == 'sidebar_second' && $block->module == 'boxes') {
+//    dpm($block);
+//    $vars['classes_array'] = array('panel', 'panel-primary');
+//  }
   if ($block->region == 'header' && $block->module == 'imageblock' && module_exists('imageblock')) {
     if ($img = imageblock_get_file($block->delta)) {
       $src = file_create_url($img->uri);

@@ -38,13 +38,13 @@ function fs_eventos_views_default_views() {
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
-  /* Relationship: Entity Reference: Referenced Entity */
+  /* Relação: Entity Reference: Referenced Entity */
   $handler->display->display_options['relationships']['field_palestrante_target_id']['id'] = 'field_palestrante_target_id';
   $handler->display->display_options['relationships']['field_palestrante_target_id']['table'] = 'field_data_field_palestrante';
   $handler->display->display_options['relationships']['field_palestrante_target_id']['field'] = 'field_palestrante_target_id';
   $handler->display->display_options['relationships']['field_palestrante_target_id']['label'] = 'palestrante';
   $handler->display->display_options['relationships']['field_palestrante_target_id']['required'] = TRUE;
-  /* Field: User: Picture */
+  /* Campo: Usuário: Foto */
   $handler->display->display_options['fields']['picture']['id'] = 'picture';
   $handler->display->display_options['fields']['picture']['table'] = 'users';
   $handler->display->display_options['fields']['picture']['field'] = 'picture';
@@ -55,7 +55,7 @@ function fs_eventos_views_default_views() {
   $handler->display->display_options['fields']['picture']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['picture']['empty'] = '<img src="/sites/all/themes/delite/images/avatar-35.jpg">';
   $handler->display->display_options['fields']['picture']['image_style'] = 'large';
-  /* Field: Field: Nome */
+  /* Campo: Campo: Nome real */
   $handler->display->display_options['fields']['field_realname']['id'] = 'field_realname';
   $handler->display->display_options['fields']['field_realname']['table'] = 'field_data_field_realname';
   $handler->display->display_options['fields']['field_realname']['field'] = 'field_realname';
@@ -65,7 +65,7 @@ function fs_eventos_views_default_views() {
   $handler->display->display_options['fields']['field_realname']['alter']['text'] = '<strong>[field_realname]</strong>';
   $handler->display->display_options['fields']['field_realname']['alter']['path'] = '[view_user]';
   $handler->display->display_options['fields']['field_realname']['element_label_colon'] = FALSE;
-  /* Field: User: Link */
+  /* Campo: Usuário: Link */
   $handler->display->display_options['fields']['view_user']['id'] = 'view_user';
   $handler->display->display_options['fields']['view_user']['table'] = 'users';
   $handler->display->display_options['fields']['view_user']['field'] = 'view_user';
@@ -74,7 +74,7 @@ function fs_eventos_views_default_views() {
   $handler->display->display_options['fields']['view_user']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['view_user']['alter']['text'] = '<h4>[field_realname]</h4>';
   $handler->display->display_options['fields']['view_user']['element_label_colon'] = FALSE;
-  /* Field: User: Sobre */
+  /* Campo: Usuário: Sobre */
   $handler->display->display_options['fields']['field_about']['id'] = 'field_about';
   $handler->display->display_options['fields']['field_about']['table'] = 'field_data_field_about';
   $handler->display->display_options['fields']['field_about']['field'] = 'field_about';
@@ -85,7 +85,7 @@ function fs_eventos_views_default_views() {
   $handler->display->display_options['fields']['field_about']['settings'] = array(
     'trim_length' => '250',
   );
-  /* Field: User: Drupal.org */
+  /* Campo: Usuário: Drupal.org */
   $handler->display->display_options['fields']['field_drupal_org']['id'] = 'field_drupal_org';
   $handler->display->display_options['fields']['field_drupal_org']['table'] = 'field_data_field_drupal_org';
   $handler->display->display_options['fields']['field_drupal_org']['field'] = 'field_drupal_org';
@@ -96,7 +96,7 @@ function fs_eventos_views_default_views() {
 <a href="http://drupal.org/user/[field_drupal_org]">drupal.org/user/[field_drupal_org]</a>
 </div>';
   $handler->display->display_options['fields']['field_drupal_org']['element_label_colon'] = FALSE;
-  /* Field: User: Facebook */
+  /* Campo: Usuário: Facebook */
   $handler->display->display_options['fields']['field_facebook']['id'] = 'field_facebook';
   $handler->display->display_options['fields']['field_facebook']['table'] = 'field_data_field_facebook';
   $handler->display->display_options['fields']['field_facebook']['field'] = 'field_facebook';
@@ -108,7 +108,7 @@ function fs_eventos_views_default_views() {
 </div>';
   $handler->display->display_options['fields']['field_facebook']['alter']['target'] = '_blank';
   $handler->display->display_options['fields']['field_facebook']['element_label_colon'] = FALSE;
-  /* Field: User: Twitter */
+  /* Campo: Usuário: Twitter */
   $handler->display->display_options['fields']['field_twitter']['id'] = 'field_twitter';
   $handler->display->display_options['fields']['field_twitter']['table'] = 'field_data_field_twitter';
   $handler->display->display_options['fields']['field_twitter']['field'] = 'field_twitter';
@@ -121,7 +121,7 @@ function fs_eventos_views_default_views() {
   $handler->display->display_options['fields']['field_twitter']['alter']['path'] = '[field_twitter]';
   $handler->display->display_options['fields']['field_twitter']['alter']['target'] = '_blank';
   $handler->display->display_options['fields']['field_twitter']['element_label_colon'] = FALSE;
-  /* Field: User: Google+ */
+  /* Campo: Usuário: Google+ */
   $handler->display->display_options['fields']['field_google']['id'] = 'field_google';
   $handler->display->display_options['fields']['field_google']['table'] = 'field_data_field_google';
   $handler->display->display_options['fields']['field_google']['field'] = 'field_google';
@@ -133,7 +133,7 @@ function fs_eventos_views_default_views() {
 </div>';
   $handler->display->display_options['fields']['field_google']['alter']['target'] = '_blank';
   $handler->display->display_options['fields']['field_google']['element_label_colon'] = FALSE;
-  /* Field: User: YouTube */
+  /* Campo: Usuário: YouTube */
   $handler->display->display_options['fields']['field_youtube']['id'] = 'field_youtube';
   $handler->display->display_options['fields']['field_youtube']['table'] = 'field_data_field_youtube';
   $handler->display->display_options['fields']['field_youtube']['field'] = 'field_youtube';
@@ -146,7 +146,7 @@ function fs_eventos_views_default_views() {
   $handler->display->display_options['fields']['field_youtube']['alter']['path'] = '[field_youtube]';
   $handler->display->display_options['fields']['field_youtube']['alter']['target'] = '_blank';
   $handler->display->display_options['fields']['field_youtube']['element_label_colon'] = FALSE;
-  /* Field: User: Vimeo */
+  /* Campo: Usuário: Vimeo */
   $handler->display->display_options['fields']['field_vimeo']['id'] = 'field_vimeo';
   $handler->display->display_options['fields']['field_vimeo']['table'] = 'field_data_field_vimeo';
   $handler->display->display_options['fields']['field_vimeo']['field'] = 'field_vimeo';
@@ -158,12 +158,12 @@ function fs_eventos_views_default_views() {
 </div>';
   $handler->display->display_options['fields']['field_vimeo']['alter']['target'] = '_blank';
   $handler->display->display_options['fields']['field_vimeo']['element_label_colon'] = FALSE;
-  /* Sort criterion: Content: Post date */
+  /* Critério de ordenação: Conteúdo: Data de publicação */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';
   $handler->display->display_options['sorts']['created']['field'] = 'created';
   $handler->display->display_options['sorts']['created']['order'] = 'DESC';
-  /* Contextual filter: Content: Nid */
+  /* Filtro contextual: Conteúdo: Nid */
   $handler->display->display_options['arguments']['nid']['id'] = 'nid';
   $handler->display->display_options['arguments']['nid']['table'] = 'node';
   $handler->display->display_options['arguments']['nid']['field'] = 'nid';
@@ -211,7 +211,6 @@ function fs_eventos_views_default_views() {
 </div>'),
     t('Tudo'),
     t('Block'),
-    t('more'),
   );
   $export['palestrante'] = $view;
 
