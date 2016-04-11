@@ -325,9 +325,10 @@ function fs_core_default_search_api_server() {
             "boost" : "1.0"
           },
           "title" : {
-            "table" : "search_api_db_default_node_index_text",
+            "table" : "search_api_db_default_node_index_text_1",
             "type" : "text",
-            "boost" : "5.0"
+            "boost" : "5.0",
+            "column" : "title"
           },
           "promote" : {
             "table" : "search_api_db_default_node_index",
@@ -366,9 +367,10 @@ function fs_core_default_search_api_server() {
             "boost" : "1.0"
           },
           "body:value" : {
-            "table" : "search_api_db_default_node_index_text",
+            "table" : "search_api_db_default_node_index_text_1",
             "type" : "text",
-            "boost" : "3.0"
+            "boost" : "3.0",
+            "column" : "body_value"
           },
           "url" : {
             "table" : "search_api_db_default_node_index",
@@ -395,9 +397,10 @@ function fs_core_default_search_api_server() {
             "boost" : "1.0"
           },
           "body:summary" : {
-            "table" : "search_api_db_default_node_index_text",
+            "table" : "search_api_db_default_node_index_text_1",
             "type" : "text",
-            "boost" : "3.0"
+            "boost" : "3.0",
+            "column" : "body_summary"
           },
           "field_palestrante" : {
             "table" : "search_api_db_default_node_index_field_palestrante",
@@ -436,49 +439,58 @@ function fs_core_default_search_api_server() {
             "boost" : "1.0"
           },
           "field_audio:file:name" : {
-            "table" : "search_api_db_default_node_index_text",
+            "table" : "search_api_db_default_node_index_text_1",
             "type" : "text",
-            "boost" : "1.0"
+            "boost" : "1.0",
+            "column" : "field_audio_file_name"
           },
           "field_audio:file:field_file_image_alt_text" : {
-            "table" : "search_api_db_default_node_index_text",
+            "table" : "search_api_db_default_node_index_text_1",
             "type" : "text",
-            "boost" : "1.0"
+            "boost" : "1.0",
+            "column" : "field_audio_file_field_file_image_alt_text"
           },
           "field_audio:file:field_file_image_title_text" : {
-            "table" : "search_api_db_default_node_index_text",
+            "table" : "search_api_db_default_node_index_text_1",
             "type" : "text",
-            "boost" : "1.0"
+            "boost" : "1.0",
+            "column" : "field_audio_file_field_file_image_title_text"
           },
           "field_video:file:name" : {
-            "table" : "search_api_db_default_node_index_text",
+            "table" : "search_api_db_default_node_index_text_1",
             "type" : "text",
-            "boost" : "1.0"
+            "boost" : "1.0",
+            "column" : "field_video_file_name"
           },
           "field_video:file:field_file_image_alt_text" : {
-            "table" : "search_api_db_default_node_index_text",
+            "table" : "search_api_db_default_node_index_text_1",
             "type" : "text",
-            "boost" : "1.0"
+            "boost" : "1.0",
+            "column" : "field_video_file_field_file_image_alt_text"
           },
           "field_video:file:field_file_image_title_text" : {
-            "table" : "search_api_db_default_node_index_text",
+            "table" : "search_api_db_default_node_index_text_1",
             "type" : "text",
-            "boost" : "1.0"
+            "boost" : "1.0",
+            "column" : "field_video_file_field_file_image_title_text"
           },
           "field_video_auth:file:name" : {
-            "table" : "search_api_db_default_node_index_text",
+            "table" : "search_api_db_default_node_index_text_1",
             "type" : "text",
-            "boost" : "1.0"
+            "boost" : "1.0",
+            "column" : "field_video_auth_file_name"
           },
           "field_video_auth:file:field_file_image_alt_text" : {
-            "table" : "search_api_db_default_node_index_text",
+            "table" : "search_api_db_default_node_index_text_1",
             "type" : "text",
-            "boost" : "1.0"
+            "boost" : "1.0",
+            "column" : "field_video_auth_file_field_file_image_alt_text"
           },
           "field_video_auth:file:field_file_image_title_text" : {
-            "table" : "search_api_db_default_node_index_text",
+            "table" : "search_api_db_default_node_index_text_1",
             "type" : "text",
-            "boost" : "1.0"
+            "boost" : "1.0",
+            "column" : "field_video_auth_file_field_file_image_title_text"
           }
         }
       }
