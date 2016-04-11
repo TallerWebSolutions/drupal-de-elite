@@ -394,6 +394,12 @@ margin: 0;
   margin: 0 0 1em 0;
 }
 
+#boxes-box-youtube_subscribe,
+#block-boxes-facebook-widget,
+#block-boxes-twitter-widget {
+  margin: 0 0 1em 0;
+}
+
 #boxes-box-twitter_widget .panel {
   padding: 0;
 }
