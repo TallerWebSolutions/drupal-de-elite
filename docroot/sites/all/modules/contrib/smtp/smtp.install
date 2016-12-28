@@ -6,6 +6,75 @@
  */
 
 /**
+ * Implements hook_requirements().
+ */
+function smtp_requirements($phase) {
+  $requirements = array();
+
+  if ($phase == 'runtime') {
+    if (variable_get('smtp_queue', FALSE) || variable_get('smtp_queue_fail', FALSE)) {
+      $count = db_query("SELECT count('name') FROM {queue} WHERE name='smtp_send_queue'")->fetchField();
+      $requirements['smtp_queue'] = array(
+        'title' => t('SMTP Queue'),
+        'value' => '',
+        'severity' => REQUIREMENT_INFO,
+      );
+      if ($count > 0) {
+        $requirements['smtp_queue']['value'] = format_plural($count, 'There is 1 message queued for delivery.', 'There are @count messages queued for delivery.', array('@count' => $count))
+          . ' '
+          . t('Delivery of the message(s) will be attempted the next time cron runs.');
+      }
+      else {
+        $requirements['smtp_queue']['value'] = t('There are no messages queued for delivery.');
+      }
+    }
+  }
+
+  return $requirements;
+}
+
+/**
+ * Implements hook_schema().
+ */
+function smtp_schema() {
+  $schema['smtp_selection_criteria'] = array(
+    'description' => 'Stores criterias for provider selection.',
+    'fields' => array(
+      'cid' => array(
+        'type' => 'serial',
+        'size' => 'big',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'provider' => array(
+        'type' => 'varchar',
+        'length' => 64,
+        'not null' => TRUE,
+      ),
+      'message_module' => array(
+        'type' => 'varchar',
+        'length' => 255,
+      ),
+      'message_key' => array(
+        'type' => 'varchar',
+        'length' => 255,
+      ),
+      'message_language' => array(
+        'type' => 'varchar',
+        'length' => 12,
+      ),
+      'weight' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+    ),
+    'primary key' => array('cid'),
+  );
+  return $schema;
+}
+
+/**
  * Implements hook_install().
  */
  function smtp_install() {
@@ -27,13 +96,12 @@ function smtp_uninstall() {
   variable_del('smtp_protocol');
   variable_del('smtp_queue');
   variable_del('smtp_queue_fail');
-  variable_del('smtp_test_address');
   variable_del('smtp_username');
   variable_del('smtp_debugging');
-
-  if (variable_get('smtp_library', '') == drupal_get_path('module', 'smtp') . '/smtp.module') {
-    variable_del('smtp_library');
-  }
+  variable_del('smtp_client_hostname');
+  variable_del('smtp_client_helo');
+  variable_del('smtp_deliver');
+  variable_del('smtp_reroute_address');
 }
 
 /**
@@ -46,19 +114,21 @@ function smtp_disable() {
 }
 
 /**
- * Implements hook_update_N().
- *
+ * Implementations of hook_update_N().
+ */
+
+/**
  * Upgrade to Drupal 7.x
  */
 function smtp_update_7000() {
   if (variable_get('smtp_on', 0) != 0) {
     variable_set('mail_system', array('default-system' => 'SmtpMailSystem'));
   }
+  // Not used any more in D7.
+  variable_del('smtp_library');
 }
 
 /**
- * Implements hook_update_N().
- *
  * Back to default mail system if the status flag is off.
  */
 function smtp_update_7100() {
@@ -70,8 +140,6 @@ function smtp_update_7100() {
 }
 
 /**
- * Implements hook_update_N().
- *
  * Updating variable value now that new SMTP logging behavior has been
  * implemented.
  */
@@ -85,4 +153,65 @@ function smtp_update_7101() {
   }
 
   variable_set('smtp_debugging', $logging);
+}
+
+/**
+ * Remove the unused 'smtp_library' variable.
+ */
+function smtp_update_7102() {
+  variable_del('smtp_library');
+}
+
+/**
+ * Set the current smtp server into a 'default' provider
+ */
+function smtp_update_7103() {
+  $smtp_providers = array();
+  $smtp_providers['default'] = array(
+    'machine_name' => 'default',
+  );
+
+  $smtp_fields = array(
+    'smtp_host' => '',
+    'smtp_hostbackup' => '',
+    'smtp_port' => '25',
+    'smtp_protocol' => 'standard',
+    'smtp_username' => '',
+    'smtp_password' => '',
+    'smtp_from' => '',
+    'smtp_fromname' => '',
+    'smtp_allowhtml' => '',
+  );
+
+  foreach ($smtp_fields as $field => $default_value) {
+    // If the field is set, remove it. If not, use the default value
+    $value = variable_get($field, FALSE);
+    if ($value) {
+      variable_del($field);
+    }
+    else {
+      $value = $default_value;
+    }
+    $smtp_providers['default'][$field] = $value;
+  }
+  variable_set('smtp_providers', $smtp_providers);
+
+  variable_set('smtp_default_provider', 'default');
+}
+
+/**
+ * Delete the variable "smtp_test_address". It is unlikely that this would
+ * actually be set in the normal course of events, and it's no longer needed as
+ * it was replaced with a form submit handler.
+ */
+function smtp_update_7104() {
+  variable_del('smtp_test_address');
+}
+
+/**
+ * Create table to store selection criterias.
+ */
+function smtp_update_7105() {
+  $schema = drupal_get_schema_unprocessed('smtp', 'smtp_selection_criteria');
+  db_create_table('smtp_selection_criteria', $schema);
 }

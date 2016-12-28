@@ -53,6 +53,55 @@ function smtp_menu() {
     'description'      => 'Allow for site emails to be sent through an SMTP server of your choice.',
     'file'             => 'smtp.admin.inc',
   );
+  $items['admin/config/system/smtp/provider/add'] = array(
+    'title'            => 'SMTP Provider',
+    'page callback'    => 'drupal_get_form',
+    'page arguments'   => array('smtp_admin_provider_settings'),
+    'access arguments' => array('administer smtp module'),
+    'description'      => 'Edition page for SMTP providers.',
+    'file'             => 'smtp.admin.inc',
+  );
+  $items['admin/config/system/smtp/provider/%/edit'] = array(
+    'title'            => 'SMTP Provider',
+    'page callback'    => 'drupal_get_form',
+    'page arguments'   => array('smtp_admin_provider_settings', 5),
+    'access arguments' => array('administer smtp module'),
+    'description'      => 'Edition page for SMTP providers.',
+    'file'             => 'smtp.admin.inc',
+  );
+  $items['admin/config/system/smtp/provider/%/delete'] = array(
+    'title'            => 'Delete SMTP provider',
+    'page callback'    => 'drupal_get_form',
+    'page arguments'   => array('smtp_admin_provider_delete', 5),
+    'access arguments' => array('administer smtp module'),
+    'description'      => 'Edition page for SMTP providers.',
+    'file'             => 'smtp.admin.inc',
+  );
+  $items['admin/config/system/smtp/criteria/add'] = array(
+    'title'            => 'Selection Criteria',
+    'page callback'    => 'drupal_get_form',
+    'page arguments'   => array('smtp_admin_criteria_settings'),
+    'access arguments' => array('administer smtp module'),
+    'description'      => 'Edition page for selection criterias.',
+    'file'             => 'smtp.admin.inc',
+  );
+  $items['admin/config/system/smtp/criteria/%smtp_selection_criteria/edit'] = array(
+    'title'            => 'Selection Criteria',
+    'page callback'    => 'drupal_get_form',
+    'page arguments'   => array('smtp_admin_criteria_settings', 5),
+    'access arguments' => array('administer smtp module'),
+    'description'      => 'Edition page for selection criterias.',
+    'file'             => 'smtp.admin.inc',
+  );
+  $items['admin/config/system/smtp/criteria/%smtp_selection_criteria/delete'] = array(
+    'title'            => 'Delete selection criteria',
+    'page callback'    => 'drupal_get_form',
+    'page arguments'   => array('smtp_admin_criteria_delete', 5),
+    'access arguments' => array('administer smtp module'),
+    'description'      => 'Deletion page for selection criterias.',
+    'file'             => 'smtp.admin.inc',
+  );
+
   return $items;
 }
 
@@ -67,6 +116,21 @@ function smtp_permission() {
   );
 }
 
+/**
+ * Implements hook_theme().
+ */
+function smtp_theme($existing, $type, $theme, $path) {
+  return array(
+    'smtp_table' => array(
+      'render element' => 'element',
+      'file' => 'smtp.theme.inc',
+    ),
+    'smtp_selection_criteria' => array(
+      'render element' => 'element',
+      'file' => 'smtp.theme.inc',
+    ),
+  );
+}
 
 /**
  * Implements hook_mail().
@@ -113,8 +177,9 @@ function smtp_send_queue_runner($message) {
       if ($logging == SMTP_LOGGING_ALL || $logging == SMTP_LOGGING_ERRORS) {
         watchdog('smtp', 'Error sending e-mail from @from to @to, will retry on cron run : !error_message.',
           array(
-            @from => $message['from'],
-            @to => $message['to'],
+            '@from' => $message['from'],
+            '@to' => $message['to'],
+            '!error_message' => $message['mailer']->ErrorInfo,
           ), WATCHDOG_ERROR);
       }
     }
@@ -123,27 +188,12 @@ function smtp_send_queue_runner($message) {
 
   // Let the people know what is going on.
   if ($logging == SMTP_LOGGING_ALL) {
-    watchdog('smtp', 'Sending mail to: @to', array('@to' => $to));
+    watchdog('smtp', 'Sending mail to: @to', array('@to' => $message['to']));
   }
 
+  // Send the message.
   $mail_system = new SmtpMailSystem();
-  if (!$mail_system->mailWithoutQueue($message)) {
-    $params = array(
-      '@from' => $message['from'],
-      '@to' => $message['to'],
-      '!error_message' => $mailer->ErrorInfo,
-    );
-
-    if (variable_get('smtp_queue_fail', FALSE)) {
-      if ($logging == SMTP_LOGGING_ALL || $logging == SMTP_LOGGING_ERRORS) {
-        watchdog('smtp', 'Error sending e-mail from @from to @to, will retry on cron run : !error_message.', $params, WATCHDOG_ERROR);
-      }
-      smtp_failed_messages($message);
-    }
-    elseif ($logging == SMTP_LOGGING_ALL || $logging == SMTP_LOGGING_ERRORS) {
-      watchdog('smtp', 'Error sending e-mail from @from to @to : !error_message', $params, WATCHDOG_ERROR);
-    }
-  }
+  $mail_system->mailWithoutQueue($message);
 }
 
 /**
@@ -157,6 +207,172 @@ function smtp_send_queue_runner($message) {
 function smtp_failed_messages($message) {
   $queue = DrupalQueue::get('smtp_failure_queue');
   $queue->createItem($message);
+}
+
+/**
+ * Get the variable value of the enabled provider
+ *
+ * @param string $name
+ *   The name of the variable to return.
+ * @param $default
+ *   The default value to use if this variable has never been set.
+ *
+ * @return
+ *   The value of the variable. Unserialization is taken care of as necessary.
+ */
+function smtp_provider_variable_get($name, $default = NULL) {
+  $providers = variable_get('smtp_providers', array());
+  $current_provider = smtp_current_provider();
+
+  return isset($providers[$current_provider][$name]) ? $providers[$current_provider][$name] : $default;
+}
+
+/**
+ * Auxiliar function that retrieves the current SMTP provider.
+ * It can be used in other places of the code to force a provider,
+ * using the $provider param.
+ *
+ * @param string $provider
+ *   The machine name of the provider to be used on this code execution.
+ *   Be aware that this parameter only changes the provider on drupal_static
+ *   time, so if you need to change the default provider on all requests, please
+ *   use the administration interface.
+ *
+ * @return
+ *   The machine name of the current provider.
+ */
+function smtp_current_provider($provider = NULL) {
+  static $drupal_static;
+  if (!isset($drupal_static)) {
+    $drupal_static = &drupal_static(__FUNCTION__);
+  }
+
+  $current_provider = &$drupal_static;
+
+  if (isset($provider)) {
+    $current_provider = $provider;
+  }
+  elseif (!isset($current_provider)) {
+    // The default fallback is the default provider
+    $default_provider = variable_get('smtp_default_provider', '');
+    $current_provider = $default_provider;
+  }
+
+  return $current_provider;
+}
+
+/**
+ * Gets the provider for the first met selection criteria.
+ *
+ * @param message
+ *  The message being sent. Its values will be used to check selection criterias.
+ *
+ * @return
+ *  A string with the machine name of the selected provider.
+ *  If none of the selection criterias are satisfied, this function returns NULL.
+ */
+function smtp_prefered_provider($message) {
+  static $drupal_static;
+  if (!isset($drupal_static)) {
+    $drupal_static = &drupal_static(__FUNCTION__);
+  }
+
+  $prefered_provider = NULL;
+
+  // Gets prefered provider from cache
+  if (isset($drupal_static['provider'])) {
+    $prefered_provider = &$drupal_static['provider'];
+
+    // Checks if conditions are still valid
+    foreach ($drupal_static['criteria'] as $key => $value) {
+      if (empty($value) || strpos($key, 'message_') !== 0 || $key == 'message_language') {
+        continue;
+      }
+      if (!isset($message[$key]) || $message[$key] != $value) {
+        // Conditions changed
+        $prefered_provider = NULL;
+        break;
+      }
+    }
+
+    // Language is an object and checked separately
+    if (!empty($drupal_static['criteria']['message_language'])) {
+      $value = $drupal_static['criteria']['message_language'];
+      if (!isset($message['language']) || $message['language']->language != $value) {
+        // Conditions changed
+        $prefered_provider = NULL;
+      }
+    }
+  }
+
+  // Gets provider from database
+  if (empty($prefered_provider)) {
+    $query = db_select('smtp_selection_criteria', 'c')
+      ->fields('c')
+      ->orderBy('weight')
+      ->range(0, 1);
+
+    // Adds conditions for the listed keys
+    $message_keys = array('module', 'key');
+    foreach ($message_keys as $key) {
+      $condition = db_or()->condition("message_$key", '');
+      if (isset($message[$key])) {
+        $condition->condition("message_$key", $message[$key]);
+      }
+      $query->condition($condition);
+    }
+
+    // Language is an object and added separately
+    $condition = db_or()->condition('message_language', '');
+    if (isset($message['language'])) {
+      $condition->condition('message_language', $message['language']->language);
+    }
+    $query->condition($condition);
+
+    // Caches selected provider
+    $result = $query->execute()->fetchAssoc();
+    if ($result) {
+      $prefered_provider = $result['provider'];
+      $drupal_static['criteria'] = $result;
+    }
+  }
+
+  return $prefered_provider;
+}
+
+/**
+ * Lists selection criterias.
+ *
+ * @param provider
+ *  Optionally filters selection criterias by provider.
+ *
+ * @return
+ *  An associative array of selection criterias keyed by identifiers (cid).
+ */
+function smtp_list_selection_criterias($provider = NULL) {
+  $query= db_select('smtp_selection_criteria', 'c')
+    ->fields('c')
+    ->orderBy('weight', 'asc');
+  if (isset($provider)) {
+    $query->condition('provider', $provider);
+  }
+  $result = $query->execute()->fetchAllAssoc('cid', PDO::FETCH_ASSOC);
+  return $result;
+}
+
+/**
+ * Loads a criteria by its identifier.
+ *
+ * @return
+ *  Associative array with selection criterias' properties.
+ *  Returns FALSE if selection criteria does not exist.
+ */
+function smtp_selection_criteria_load($cid) {
+  $result = db_select('smtp_selection_criteria', 'c')
+    ->fields('c')
+    ->condition('cid', $cid)
+    ->execute();
+  return $result->fetchAssoc();
 }
 
 /**
